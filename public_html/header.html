@@ -19,7 +19,7 @@
                     </svg>
                 </button>
             </div>
-            <a href="autoatencion.html" class="login-btn chat-btn">Chat</a>
+            <a href="chatonline.html" class="login-btn chat-btn">Chat</a>
             <a href="https://itsm.serviciosmds.cl/marketplace/formcreator/front/formdisplay.php?id=1" class="login-btn ticket-btn" target="_blank">Crear Ticket</a>
         </div>
     </div>
@@ -81,6 +81,58 @@
     .status-text {
         font-size: 80px;
         padding: 2px 8px;
+    }
+}
+/* Headers sticky */
+.header {
+    position: fixed;
+    top: 0; /* Cambiamos a 0 para que esté en la parte superior */
+    left: 0;
+    right: 0;
+    background: #fff;
+    z-index: 1000; /* Aumentamos el z-index para que esté por encima */
+    transition: transform 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.header-top-bar {
+    position: fixed;
+    top: 80px; /* Ajusta este valor según la altura de tu header blanco */
+    left: 0;
+    right: 0;
+    background: #000;
+    z-index: 999;
+    height: 40px;
+    transition: transform 0.3s ease;
+}
+
+/* Espaciador para el contenido */
+body::before {
+    content: '';
+    display: block;
+    height: 120px; /* Ajusta según la altura combinada de ambos headers */
+}
+
+/* Ajustes responsive */
+@media (max-width: 768px) {
+    .header-top-bar {
+        top: 60px; /* Ajusta según la altura del header en móvil */
+        height: 30px;
+    }
+    
+    body::before {
+        height: 90px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-top-bar {
+        top: 50px; /* Ajusta según la altura del header en pantallas pequeñas */
+        height: 25px;
+    }
+    
+    body::before {
+        height: 75px;
     }
 }
 </style>
