@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración - MDSHP | Centro de Soporte HP</title>
+    <meta name="description" content="Panel de administración para gestión de tutoriales HP.">
+    
+    <!-- HP Favicon -->
+    <link rel="icon" type="image/x-icon" href="../imagenes/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="../imagenes/favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../imagenes/favicon.png">
+    
+    <!-- Google Fonts - HP Style -->
+    <link href="https://fonts.googleapis.com/css2?family=Forma+DJR+Display:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700;9..144,800;9..144,900&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css">
+    
+    <!-- CSS Styles -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/pages.css">
+    <link rel="stylesheet" href="panel.css">
+</head>
+<body>
+    <!-- Admin Header -->
+    <header class="admin-header">
+        <div class="admin-header-content">
+            <div class="admin-logo">
+                <div class="hp-icon">HP</div>
+                <div>
+                    <h1 class="admin-title">Panel de Administración</h1>
+                    <p class="admin-subtitle">Centro de Tutoriales MDSHP</p>
+                </div>
+            </div>
+            
+            <div class="admin-user-info">
+                <div class="user-avatar">
+                    <i class="bi bi-person"></i>
+                </div>
+                <div class="user-details">
+                    <span id="userDisplayName">Administrador</span>
+                    <span class="user-email" id="userEmail">admin@mdshp.com</span>
+                </div>
+                <button class="logout-btn" id="logoutBtn">
+                    <i class="bi bi-box-arrow-right"></i>
+                    Cerrar Sesión
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+        <div class="admin-container">
+            
+            <!-- Messages -->
+            <div class="message success" id="successMessage">
+                <i class="bi bi-check-circle"></i>
+                <span id="successText">Archivo subido exitosamente</span>
+            </div>
+            
+            <div class="message error" id="errorMessage">
+                <i class="bi bi-exclamation-triangle"></i>
+                <span id="errorText">Error al procesar el archivo</span>
+            </div>
+
+            <!-- Upload Section -->
+            <section class="upload-section">
+                <div class="upload-header">
+                    <h2>Subir Nuevo Tutorial</h2>
+                    <p>Agregue videos y documentos para el equipo</p>
+                </div>
+                
+                <div class="upload-progress" id="uploadProgress">
+                    <div class="progress-text">Subiendo archivo...</div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-fill" id="progressBarFill"></div>
+                    </div>
+                </div>
+
+                <form class="form-section" id="uploadForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Título <span class="required">*</span></label>
+                            <input type="text" id="tutorialTitle" placeholder="Nombre del tutorial" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Categoría <span class="required">*</span></label>
+                            <select id="tutorialCategory" required>
+                                <option value="">Seleccionar categoría</option>
+                                <option value="hardware">Hardware</option>
+                                <option value="software">Software</option>
+                                <option value="redes">Redes</option>
+                                <option value="seguridad">Seguridad</option>
+                                <option value="procedimientos">Procedimientos</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Archivo <span class="required">*</span></label>
+                        <div class="file-upload" id="fileUploadArea">
+                            <div class="file-upload-icon">
+                                <i class="bi bi-cloud-upload"></i>
+                            </div>
+                            <div class="file-upload-text">Arrastre el archivo aquí o haga clic para seleccionar</div>
+                            <div class="file-upload-hint">Videos: MP4, AVI, MOV (máx. 500MB) | Documentos: PDF, DOC, DOCX (máx. 50MB)</div>
+                            <input type="file" id="fileInput" accept="video/*,.pdf,.doc,.docx" hidden>
+                        </div>
+                        
+                        <div class="file-selected-info" id="fileSelectedInfo">
+                            <div class="file-info-content">
+                                <div class="file-info-icon">
+                                    <i class="bi bi-file-earmark"></i>
+                                </div>
+                                <div class="file-details">
+                                    <h4 id="fileName">archivo.mp4</h4>
+                                    <p id="fileSize">25.3 MB</p>
+                                </div>
+                                <div class="file-actions">
+                                    <button type="button" class="remove-file-btn" id="removeFileBtn">
+                                        <i class="bi bi-trash"></i>
+                                        Quitar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Descripción <span class="required">*</span></label>
+                        <textarea id="tutorialDescription" placeholder="Descripción del contenido" rows="3" required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        <i class="bi bi-cloud-upload"></i>
+                        <span>Subir Tutorial</span>
+                    </button>
+                </form>
+            </section>
+
+            <!-- Files Management Section -->
+            <section class="files-section">
+                <div class="files-header">
+                    <h2 class="files-title">Tutoriales Subidos</h2>
+                    <span class="files-count" id="filesCount">0 archivos</span>
+                </div>
+                
+                <div class="files-list" id="filesList">
+                    <!-- Empty state -->
+                    <div class="empty-state" id="emptyState">
+                        <div class="empty-state-icon">
+                            <i class="bi bi-folder2-open"></i>
+                        </div>
+                        <h3>No hay tutoriales subidos</h3>
+                        <p>Los archivos que suba aparecerán aquí</p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script>
+        // Variables globales
+        let uploadedFiles = [];
+
+        // Verificar autenticación al cargar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuthentication();
+            loadUserInfo();
+            initializeFileUpload();
+            loadUploadedFiles();
+        });
+
+        // Verificar sesión administrativa
+        function checkAuthentication() {
+            const session = localStorage.getItem('mdshp_admin_session');
+            if (!session) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            try {
+                const sessionData = JSON.parse(session);
+                const now = new Date().toISOString();
+                
+                if (sessionData.expiresAt <= now) {
+                    localStorage.removeItem('mdshp_admin_session');
+                    window.location.href = 'login.html';
+                    return;
+                }
+            } catch (e) {
+                localStorage.removeItem('mdshp_admin_session');
+                window.location.href = 'login.html';
+                return;
+            }
+        }
+
+        // Cargar información del usuario
+        function loadUserInfo() {
+            const session = localStorage.getItem('mdshp_admin_session');
+            if (session) {
+                const sessionData = JSON.parse(session);
+                document.getElementById('userEmail').textContent = sessionData.email;
+                document.getElementById('userDisplayName').textContent = 'Administrador';
+            }
+        }
+
+        // Cerrar sesión
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            if (confirm('¿Está seguro que desea cerrar sesión?')) {
+                localStorage.removeItem('mdshp_admin_session');
+                window.location.href = 'login.html';
+            }
+        });
+
+        // Inicializar upload de archivos
+        function initializeFileUpload() {
+            const fileUploadArea = document.getElementById('fileUploadArea');
+            const fileInput = document.getElementById('fileInput');
+            const fileSelectedInfo = document.getElementById('fileSelectedInfo');
+            const removeFileBtn = document.getElementById('removeFileBtn');
+
+            // Click para seleccionar archivo
+            fileUploadArea.addEventListener('click', () => fileInput.click());
+
+            // Drag and drop
+            fileUploadArea.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                this.classList.add('dragover');
+            });
+
+            fileUploadArea.addEventListener('dragleave', function(e) {
+                e.preventDefault();
+                this.classList.remove('dragover');
+            });
+
+            fileUploadArea.addEventListener('drop', function(e) {
+                e.preventDefault();
+                this.classList.remove('dragover');
+                const files = e.dataTransfer.files;
+                if (files.length > 0) {
+                    handleFileSelection(files[0]);
+                }
+            });
+
+            // Selección de archivo
+            fileInput.addEventListener('change', function(e) {
+                if (this.files.length > 0) {
+                    handleFileSelection(this.files[0]);
+                }
+            });
+
+            // Remover archivo
+            removeFileBtn.addEventListener('click', function() {
+                fileInput.value = '';
+                fileUploadArea.style.display = 'block';
+                fileSelectedInfo.style.display = 'none';
+            });
+        }
+
+        // Manejar selección de archivo
+        function handleFileSelection(file) {
+            const fileName = document.getElementById('fileName');
+            const fileSize = document.getElementById('fileSize');
+            const fileIcon = document.querySelector('.file-info-icon i');
+            
+            // Validar tipo de archivo
+            const validVideoTypes = ['video/mp4', 'video/avi', 'video/mov', 'video/wmv'];
+            const validDocTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+            
+            if (!validVideoTypes.includes(file.type) && !validDocTypes.includes(file.type)) {
+                showError('Tipo de archivo no válido. Solo se permiten videos (MP4, AVI, MOV) y documentos (PDF, DOC, DOCX).');
+                return;
+            }
+
+            // Validar tamaño
+            const maxSize = file.type.startsWith('video/') ? 500 * 1024 * 1024 : 50 * 1024 * 1024; // 500MB para videos, 50MB para documentos
+            if (file.size > maxSize) {
+                const maxSizeText = file.type.startsWith('video/') ? '500MB' : '50MB';
+                showError(`El archivo es demasiado grande. Tamaño máximo: ${maxSizeText}`);
+                return;
+            }
+            
+            fileName.textContent = file.name;
+            fileSize.textContent = formatFileSize(file.size);
+            
+            // Cambiar icono según tipo de archivo
+            if (file.type.startsWith('video/')) {
+                fileIcon.className = 'bi bi-play-circle';
+            } else {
+                fileIcon.className = 'bi bi-file-earmark-text';
+            }
+            
+            document.getElementById('fileUploadArea').style.display = 'none';
+            document.getElementById('fileSelectedInfo').style.display = 'block';
+        }
+
+        // Formatear tamaño de archivo
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        // Envío del formulario
+        document.getElementById('uploadForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                title: document.getElementById('tutorialTitle').value,
+                category: document.getElementById('tutorialCategory').value,
+                description: document.getElementById('tutorialDescription').value,
+                file: document.getElementById('fileInput').files[0]
+            };
+            
+            // Validar campos requeridos
+            if (!formData.title || !formData.category || !formData.description || !formData.file) {
+                showError('Por favor complete todos los campos requeridos.');
+                return;
+            }
+            
+            simulateUpload(formData);
+        });
+
+        // Simular subida de archivo
+        function simulateUpload(formData) {
+            const uploadProgress = document.getElementById('uploadProgress');
+            const progressBarFill = document.getElementById('progressBarFill');
+            const submitBtn = document.getElementById('submitBtn');
+            
+            uploadProgress.style.display = 'block';
+            submitBtn.disabled = true;
+            hideMessages();
+            
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.random() * 25 + 10;
+                if (progress > 100) progress = 100;
+                
+                progressBarFill.style.width = progress + '%';
+                
+                if (progress === 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        // Agregar archivo a la lista
+                        const newFile = {
+                            id: Date.now(),
+                            title: formData.title,
+                            category: formData.category,
+                            description: formData.description,
+                            fileName: formData.file.name,
+                            fileSize: formatFileSize(formData.file.size),
+                            type: formData.file.type.startsWith('video/') ? 'video' : 'document',
+                            uploadDate: new Date().toLocaleDateString('es-ES')
+                        };
+                        
+                        uploadedFiles.push(newFile);
+                        localStorage.setItem('mdshp_uploaded_files', JSON.stringify(uploadedFiles));
+                        
+                        showSuccess('Tutorial subido exitosamente!');
+                        document.getElementById('uploadForm').reset();
+                        uploadProgress.style.display = 'none';
+                        submitBtn.disabled = false;
+                        
+                        // Resetear vista de archivo
+                        document.getElementById('fileUploadArea').style.display = 'block';
+                        document.getElementById('fileSelectedInfo').style.display = 'none';
+                        
+                        // Actualizar lista de archivos
+                        loadUploadedFiles();
+                    }, 1000);
+                }
+            }, 200);
+        }
+
+        // Cargar archivos subidos
+        function loadUploadedFiles() {
+            const stored = localStorage.getItem('mdshp_uploaded_files');
+            if (stored) {
+                uploadedFiles = JSON.parse(stored);
+            }
+            
+            renderFilesList();
+        }
+
+        // Renderizar lista de archivos
+        function renderFilesList() {
+            const filesList = document.getElementById('filesList');
+            const emptyState = document.getElementById('emptyState');
+            const filesCount = document.getElementById('filesCount');
+            
+            filesCount.textContent = `${uploadedFiles.length} archivo${uploadedFiles.length !== 1 ? 's' : ''}`;
+            
+            if (uploadedFiles.length === 0) {
+                emptyState.style.display = 'block';
+                return;
+            }
+            
+            emptyState.style.display = 'none';
+            
+            const filesHTML = uploadedFiles.map(file => `
+                <div class="file-item" data-id="${file.id}">
+                    <div class="file-item-icon ${file.type}">
+                        <i class="bi bi-${file.type === 'video' ? 'play-circle' : 'file-earmark-text'}"></i>
+                    </div>
+                    <div class="file-item-content">
+                        <h3 class="file-item-title">${file.title}</h3>
+                        <div class="file-item-meta">
+                            <span><i class="bi bi-tag"></i> ${file.category}</span>
+                            <span><i class="bi bi-file-earmark"></i> ${file.fileName}</span>
+                            <span><i class="bi bi-hdd"></i> ${file.fileSize}</span>
+                            <span><i class="bi bi-calendar"></i> ${file.uploadDate}</span>
+                        </div>
+                    </div>
+                    <div class="file-item-actions">
+                        <button class="action-btn view-btn" onclick="viewFile(${file.id})">
+                            <i class="bi bi-eye"></i>
+                            Ver
+                        </button>
+                        <button class="action-btn delete-btn" onclick="deleteFile(${file.id})">
+                            <i class="bi bi-trash"></i>
+                            Eliminar
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+            
+            filesList.innerHTML = filesHTML;
+        }
+
+        // Ver archivo
+        function viewFile(fileId) {
+            const file = uploadedFiles.find(f => f.id === fileId);
+            if (file) {
+                alert(`Título: ${file.title}\nCategoría: ${file.category}\nDescripción: ${file.description}\nArchivo: ${file.fileName}`);
+            }
+        }
+
+        // Eliminar archivo
+        function deleteFile(fileId) {
+            const file = uploadedFiles.find(f => f.id === fileId);
+            if (file && confirm(`¿Está seguro que desea eliminar "${file.title}"?`)) {
+                uploadedFiles = uploadedFiles.filter(f => f.id !== fileId);
+                localStorage.setItem('mdshp_uploaded_files', JSON.stringify(uploadedFiles));
+                renderFilesList();
+                showSuccess('Archivo eliminado exitosamente');
+            }
+        }
+
+        // Mostrar mensaje de éxito
+        function showSuccess(message) {
+            hideMessages();
+            const successMessage = document.getElementById('successMessage');
+            document.getElementById('successText').textContent = message;
+            successMessage.style.display = 'block';
+            setTimeout(hideMessages, 5000);
+        }
+
+        // Mostrar mensaje de error
+        function showError(message) {
+            hideMessages();
+            const errorMessage = document.getElementById('errorMessage');
+            document.getElementById('errorText').textContent = message;
+            errorMessage.style.display = 'block';
+            setTimeout(hideMessages, 5000);
+        }
+
+        // Ocultar mensajes
+        function hideMessages() {
+            document.getElementById('successMessage').style.display = 'none';
+            document.getElementById('errorMessage').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

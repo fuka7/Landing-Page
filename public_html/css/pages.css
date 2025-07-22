@@ -387,222 +387,30 @@
    TUTORIALES PAGE -
    ============================================== */
 
-/* Header Section*/
-.tutoriales-header {
-    background: #ffffff;
-    border-bottom: 1px solid #e0e0e0;
-    padding: 2rem 0;
-}
-
-.tutoriales-header .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-}
-
-.tutoriales-header h1 {
-    font-size: 2rem;
-    color: #333333;
-    font-weight: 400;
-    margin: 0 0 0.5rem 0;
-    letter-spacing: normal;
-}
-
-.tutoriales-header p {
-    font-size: 1rem;
-    color: #666666;
-    margin: 0;
-    font-weight: 400;
-}
-
-/* Upload Section - Diseño rectangular */
-.upload-section {
-    background: #f8f9fa;
-    padding: 2rem 0;
-    border-bottom: 1px solid #e0e0e0;
-}
-
-.upload-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    background: #ffffff;
-    border: 1px solid #e0e0e0;
-    padding: 0;
-}
-
-.upload-header {
-    background: #0096d6;
-    color: #ffffff;
-    padding: 1.5rem 2rem;
-    border-bottom: 1px solid #0082b8;
-}
-
-.upload-header h2 {
-    font-size: 1.25rem;
-    font-weight: 500;
-    margin: 0 0 0.25rem 0;
-}
-
-.upload-header p {
+/* filters */
+.filter-select {
+    padding: 0.75rem 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 0px;
     font-size: 0.9rem;
-    margin: 0;
-    opacity: 0.9;
+    background: white;
+    min-width: 150px;
 }
 
-/* Upload Tabs - Rectangulares */
-.upload-tabs {
-    display: flex;
-    background: #ffffff;
-    border-bottom: 1px solid #e0e0e0;
-}
-
-.upload-tab {
-    background: #f8f9fa;
-    border: none;
-    border-right: 1px solid #e0e0e0;
-    padding: 1rem 2rem;
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: #666666;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    flex: 1;
-}
-
-.upload-tab:last-child {
-    border-right: none;
-}
-
-.upload-tab.active {
-    background: #ffffff;
-    color: #0096d6;
-    border-bottom: 2px solid #0096d6;
-}
-
-.upload-tab:hover:not(.active) {
-    background: #e9ecef;
-    color: #333333;
-}
-
-/* Upload Forms */
-.upload-form-container {
-    display: none;
-    padding: 2rem;
-}
-
-.upload-form-container.active {
-    display: block;
-}
-
-.upload-form {
-    max-width: 800px;
-}
-
-.form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    margin-bottom: 1.5rem;
-}
-
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-.form-group label {
-    display: block;
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: #333333;
-    margin-bottom: 0.5rem;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #cccccc;
-    font-size: 0.9rem;
-    font-family: inherit;
-    background: #ffffff;
-    transition: border-color 0.2s ease;
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
+.filter-select:focus {
     outline: none;
     border-color: #0096d6;
-    box-shadow: 0 0 0 2px rgba(0, 150, 214, 0.1);
 }
 
-.form-group textarea {
-    resize: vertical;
-    min-height: 80px;
-}
-
-/* File Upload */
-.file-upload {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.file-btn {
-    background: #f8f9fa;
-    border: 1px solid #cccccc;
-    padding: 0.75rem 1.5rem;
+.results-count {
     font-size: 0.9rem;
-    font-weight: 500;
-    color: #333333;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.file-btn:hover {
-    background: #e9ecef;
-    border-color: #0096d6;
-}
-
-.file-btn.file-selected {
-    background: #e7f4fd;
-    border-color: #0096d6;
-    color: #0096d6;
-}
-
-.file-info {
-    font-size: 0.8rem;
-    color: #666666;
-}
-
-/* Submit Button */
-.submit-btn {
-    background: #0096d6;
-    border: none;
-    color: #ffffff;
-    padding: 0.875rem 2rem;
-    font-size: 0.9rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
+    color: #666;
+    text-align: center;
     margin-top: 1rem;
 }
 
-.submit-btn:hover {
-    background: #0082b8;
-}
-
-/* Tutorials Library */
-.tutorials-library {
-    background: #ffffff;
-    padding: 2rem 0;
-}
-
-.library-header {
+/* Enhanced library header */
+.enhanced-library-header {
     max-width: 1200px;
     margin: 0 auto 2rem auto;
     padding: 0 2rem;
@@ -613,164 +421,278 @@
     padding-bottom: 1rem;
 }
 
-.library-header h2 {
-    font-size: 1.5rem;
+.library-title-section h2 {
+    font-size: 1.75rem;
     font-weight: 400;
-    color: #333333;
+    color: #333;
+    margin: 0 0 0.25rem 0;
+}
+
+.library-subtitle {
+    font-size: 0.95rem;
+    color: #666;
     margin: 0;
 }
 
-/* Filter Controls - Rectangulares */
-.filter-controls {
+.view-controls {
     display: flex;
-    gap: 0;
-    border: 1px solid #cccccc;
+    gap: 0.5rem;
+    align-items: center;
 }
 
-.filter-btn {
-    background: #ffffff;
-    border: none;
-    border-right: 1px solid #cccccc;
-    padding: 0.5rem 1rem;
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: #666666;
+.view-btn {
+    padding: 0.5rem;
+    border: 2px solid #e0e0e0;
+    background: white;
     cursor: pointer;
-    transition: all 0.2s ease;
+    border-radius: 0px;
+    transition: all 0.3s ease;
 }
 
-.filter-btn:last-child {
-    border-right: none;
-}
-
-.filter-btn.active {
+.view-btn.active {
+    border-color: #0096d6;
     background: #0096d6;
-    color: #ffffff;
+    color: white;
 }
 
-.filter-btn:hover:not(.active) {
+.view-btn:hover:not(.active) {
+    border-color: #0096d6;
     background: #f8f9fa;
-    color: #333333;
 }
 
-/* Tutorials List - Layout tipo tabla */
-.tutorials-list {
+/* Grid view for tutorials */
+.tutorials-grid-view {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1.5rem;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
 }
 
-.tutorial-item {
-    display: flex;
-    align-items: center;
-    background: #ffffff;
+.tutorial-grid-card {
+    background: white;
     border: 1px solid #e0e0e0;
-    border-bottom: none;
-    padding: 1.5rem 2rem;
-    transition: background-color 0.2s ease;
+    border-radius: 0px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
 
-.tutorial-item:last-child {
-    border-bottom: 1px solid #e0e0e0;
+.tutorial-grid-card:hover {
+    border-color: #0096d6;
+    box-shadow: 0 4px 12px rgba(0, 150, 214, 0.15);
+    transform: translateY(-2px);
 }
 
-.tutorial-item:hover {
+.tutorial-thumbnail {
+    height: 180px;
     background: #f8f9fa;
-}
-
-/* Tutorial Type */
-.tutorial-type {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    min-width: 100px;
-    margin-right: 2rem;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
 }
 
-.tutorial-type i {
-    font-size: 1.25rem;
+.tutorial-thumbnail.video {
+    background: linear-gradient(135deg, #0096d6 0%, #007bb5 100%);
+}
+
+.tutorial-thumbnail.document {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.thumbnail-icon {
+    font-size: 4rem;
+    color: white;
+    opacity: 0.8;
+}
+
+.tutorial-thumbnail.document .thumbnail-icon {
     color: #0096d6;
 }
 
-.tutorial-type span {
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: #666666;
-    text-transform: uppercase;
-}
-
-/* Tutorial Content */
-.tutorial-content {
-    flex: 1;
-    margin-right: 2rem;
-}
-
-.tutorial-content h3 {
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: #333333;
-    margin: 0 0 0.25rem 0;
-    line-height: 1.3;
-}
-
-.tutorial-content p {
-    font-size: 0.9rem;
-    color: #666666;
-    margin: 0 0 0.75rem 0;
-    line-height: 1.4;
-}
-
-/* Tutorial Meta */
-.tutorial-meta {
-    display: flex;
-    gap: 1rem;
+.tutorial-duration {
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0px;
     font-size: 0.8rem;
 }
 
-.tutorial-meta span {
-    color: #888888;
-    padding: 0.25rem 0.5rem;
-    background: #f8f9fa;
-    border: 1px solid #e0e0e0;
+.tutorial-grid-content {
+    padding: 1.5rem;
 }
 
-.tutorial-meta .category {
+.tutorial-grid-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 0.75rem 0;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.tutorial-grid-description {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0 0 1rem 0;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.tutorial-grid-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.tutorial-category-badge {
     background: #e7f4fd;
     color: #0096d6;
-    border-color: #b3d9f0;
-}
-
-/* Tutorial Actions */
-.tutorial-actions {
-    min-width: 120px;
-}
-
-.action-btn {
-    background: #0096d6;
-    border: none;
-    color: #ffffff;
-    padding: 0.5rem 1rem;
-    font-size: 0.85rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
     font-weight: 500;
+}
+
+.tutorial-stats {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.8rem;
+    color: #888;
+}
+
+.tutorial-grid-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.tutorial-action-btn {
+    flex: 1;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
-    width: 100%;
+}
+
+.play-tutorial-btn {
+    background: #0096d6;
+    color: white;
+}
+
+.play-tutorial-btn:hover {
+    background: #007bb5;
+}
+
+.download-tutorial-btn {
+    background: #28a745;
+    color: white;
+}
+
+.download-tutorial-btn:hover {
+    background: #218838;
+}
+
+/* List view (existing styles remain) */
+.tutorials-list-view {
+    display: block;
+}
+
+.tutorials-grid-view.hidden {
+    display: none;
+}
+
+/* No results state */
+.no-results {
+    text-align: center;
+    padding: 3rem 2rem;
+    color: #666;
+}
+
+.no-results-icon {
+    font-size: 4rem;
+    color: #ccc;
+    margin-bottom: 1rem;
+}
+
+.no-results h3 {
+    font-size: 1.5rem;
+    margin: 0 0 0.5rem 0;
+}
+
+.no-results p {
+    font-size: 1rem;
+    margin: 0;
+}
+
+/* Admin access link */
+.admin-access {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 1000;
+}
+
+.admin-access-btn {
+    background: #0096d6;
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 150, 214, 0.3);
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
     justify-content: center;
 }
 
-.action-btn:hover {
-    background: #0082b8;
+.admin-access-btn:hover {
+    background: #007bb5;
+    transform: scale(1.1);
 }
 
-.action-btn.download-btn {
-    background: #28a745;
+.admin-tooltip {
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    background: #333;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    margin-bottom: 0.5rem;
 }
 
-.action-btn.download-btn:hover {
-    background: #218838;
+.admin-access:hover .admin-tooltip {
+    opacity: 1;
+    visibility: visible;
 }
 
 /* Video Modal - Simple */
