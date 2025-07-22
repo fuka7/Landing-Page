@@ -4,15 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tutoriales - MDSHP | Centro de Soporte HP</title>
-    <meta name="description" content="Accede a nuestra biblioteca completa de tutoriales, videos y documentación técnica.">
+    <meta name="description" content="Centro de tutoriales y recursos de aprendizaje para usuarios de HP.">
     
     <!-- HP Favicon -->
     <link rel="icon" type="image/x-icon" href="imagenes/favicon.png">
     <link rel="shortcut icon" type="image/x-icon" href="imagenes/favicon.png">
     <link rel="apple-touch-icon" sizes="180x180" href="imagenes/favicon.png">
     
+    <!-- Google Fonts - HP Style -->
     <link href="https://fonts.googleapis.com/css2?family=Forma+DJR+Display:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700;9..144,800;9..144,900&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css">
+    
+    <!-- CSS Styles -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/pages.css">
 </head>
@@ -20,151 +25,263 @@
     <!-- Header Placeholder -->
     <div id="header-placeholder"></div>
 
-    <!-- Hero Section -->
-    <section class="tutoriales-hero">
-        <div class="tutoriales-hero-container">
-            <h1 class="tutoriales-hero-title">Tutoriales y Documentación</h1>
-            <p class="tutoriales-hero-subtitle">Biblioteca completa de videos HD, guías paso a paso y documentación técnica</p>
+    <!-- Page Header -->
+    <section class="tutoriales-header">
+        <div class="container">
+            <h1>Centro de Tutoriales</h1>
+            <p>Recursos de aprendizaje y documentación técnica</p>
         </div>
     </section>
 
-    <!-- Main Services -->
-    <section class="tutoriales-main-services">
-        <div class="tutoriales-services-container">
-            <div class="tutoriales-services-grid">
-                <div class="tutorial-service-card video-card">
-                    <div class="tutorial-service-image">
-                        <i class="bi bi-play-circle tutorial-service-icon"></i>
-                    </div>
-                    <div class="tutorial-service-content">
-                        <h3 class="tutorial-service-title">Videos tutoriales</h3>
-                        <p class="tutorial-service-description">Biblioteca completa de videos HD con instrucciones paso a paso para resolver problemas comunes.</p>
-                    </div>
+    <!-- Upload Section -->
+    <section class="upload-section">
+        <div class="container">
+            <div class="upload-container">
+                <div class="upload-header">
+                    <h2>Subir Contenido</h2>
+                    <p>Comparte recursos con el equipo</p>
+                </div>
+                
+                <div class="upload-tabs">
+                    <button class="upload-tab active" data-tab="video">Video Tutorial</button>
+                    <button class="upload-tab" data-tab="document">Documento</button>
                 </div>
 
-                <a href="mesa-de-ayuda.html" class="tutorial-service-card">
-                    <div class="tutorial-service-image">
-                        <i class="bi bi-journal-text tutorial-service-icon"></i>
-                    </div>
-                    <div class="tutorial-service-content">
-                        <h3 class="tutorial-service-title">Guías paso a paso</h3>
-                        <p class="tutorial-service-description">Documentación detallada con imágenes y explicaciones claras para cada procedimiento.</p>
-                    </div>
-                </a>
-
-                <a href="autoatencion.html" class="tutorial-service-card">
-                    <div class="tutorial-service-image">
-                        <i class="bi bi-question-circle tutorial-service-icon"></i>
-                    </div>
-                    <div class="tutorial-service-content">
-                        <h3 class="tutorial-service-title">Preguntas frecuentes</h3>
-                        <p class="tutorial-service-description">Respuestas a las consultas más comunes organizadas por categorías y productos.</p>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Tutorial Categories -->
-    <section class="tutorial-categories">
-        <div class="tutorial-categories-container">
-            <h2 class="tutorial-categories-title">Categorías de Tutoriales</h2>
-            <div class="tutorial-categories-grid">
-                <div class="tutorial-category-card">
-                    <div class="tutorial-category-header">
-                        <div class="tutorial-category-icon">
-                            <i class="bi bi-laptop"></i>
+                <!-- Video Upload Form -->
+                <div class="upload-form-container active" id="video-form">
+                    <form class="upload-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Título</label>
+                                <input type="text" placeholder="Nombre del tutorial" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Categoría</label>
+                                <select required>
+                                    <option value="">Seleccionar</option>
+                                    <option value="hardware">Hardware</option>
+                                    <option value="software">Software</option>
+                                    <option value="redes">Redes</option>
+                                    <option value="seguridad">Seguridad</option>
+                                </select>
+                            </div>
                         </div>
-                        <h3 class="tutorial-category-title">Hardware</h3>
-                    </div>
-                    <p class="tutorial-category-description">
-                        Instalación, configuración y mantenimiento de componentes físicos y periféricos.
-                    </p>
+                        
+                        <div class="form-group">
+                            <label>Archivo de Video</label>
+                            <div class="file-upload">
+                                <input type="file" id="video-file" accept="video/*" hidden>
+                                <button type="button" class="file-btn" onclick="document.getElementById('video-file').click()">
+                                    <i class="bi bi-cloud-upload"></i> Seleccionar Archivo
+                                </button>
+                                <span class="file-info">MP4, AVI, MOV (máx. 500MB)</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Descripción</label>
+                            <textarea placeholder="Descripción del contenido" rows="3"></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Subir Tutorial</button>
+                    </form>
                 </div>
 
-                <div class="tutorial-category-card">
-                    <div class="tutorial-category-header">
-                        <div class="tutorial-category-icon">
-                            <i class="bi bi-gear"></i>
+                <!-- Document Upload Form -->
+                <div class="upload-form-container" id="document-form">
+                    <form class="upload-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Título</label>
+                                <input type="text" placeholder="Nombre del documento" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Tipo</label>
+                                <select required>
+                                    <option value="">Seleccionar</option>
+                                    <option value="manual">Manual</option>
+                                    <option value="guia">Guía</option>
+                                    <option value="procedimiento">Procedimiento</option>
+                                    <option value="faq">FAQ</option>
+                                </select>
+                            </div>
                         </div>
-                        <h3 class="tutorial-category-title">Software</h3>
-                    </div>
-                    <p class="tutorial-category-description">
-                        Instalación de programas, actualizaciones, configuración y resolución de problemas.
-                    </p>
-                </div>
+                        
+                        <div class="form-group">
+                            <label>Archivo</label>
+                            <div class="file-upload">
+                                <input type="file" id="doc-file" accept=".pdf,.doc,.docx" hidden>
+                                <button type="button" class="file-btn" onclick="document.getElementById('doc-file').click()">
+                                    <i class="bi bi-file-earmark"></i> Seleccionar Archivo
+                                </button>
+                                <span class="file-info">PDF, DOC, DOCX (máx. 50MB)</span>
+                            </div>
+                        </div>
 
-                <div class="tutorial-category-card">
-                    <div class="tutorial-category-header">
-                        <div class="tutorial-category-icon">
-                            <i class="bi bi-wifi"></i>
-                        </div>
-                        <h3 class="tutorial-category-title">Conectividad</h3>
-                    </div>
-                    <p class="tutorial-category-description">
-                        Configuración de redes, Wi-Fi, Bluetooth y solución de problemas de conexión.
-                    </p>
-                </div>
-
-                <div class="tutorial-category-card">
-                    <div class="tutorial-category-header">
-                        <div class="tutorial-category-icon">
-                            <i class="bi bi-shield-check"></i>
-                        </div>
-                        <h3 class="tutorial-category-title">Seguridad</h3>
-                    </div>
-                    <p class="tutorial-category-description">
-                        Configuración de antivirus, firewall y mejores prácticas de seguridad informática.
-                    </p>
-                </div>
-
-                <div class="tutorial-category-card">
-                    <div class="tutorial-category-header">
-                        <div class="tutorial-category-icon">
-                            <i class="bi bi-printer"></i>
-                        </div>
-                        <h3 class="tutorial-category-title">Impresoras</h3>
-                    </div>
-                    <p class="tutorial-category-description">
-                        Configuración, instalación de drivers y resolución de problemas de impresión.
-                    </p>
-                </div>
-
-                <div class="tutorial-category-card">
-                    <div class="tutorial-category-header">
-                        <div class="tutorial-category-icon">
-                            <i class="bi bi-tools"></i>
-                        </div>
-                        <h3 class="tutorial-category-title">Mantenimiento</h3>
-                    </div>
-                    <p class="tutorial-category-description">
-                        Rutinas de limpieza, optimización del sistema y cuidado preventivo de equipos.
-                    </p>
+                        <button type="submit" class="submit-btn">Subir Documento</button>
+                    </form>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Support Links -->
-    <section class="tutoriales-support-links">
-        <div class="tutoriales-support-container">
-            <p class="tutoriales-support-subtitle">Soporte para otro producto:</p>
-            <div class="tutoriales-support-grid">
-                <a href="tutoriales.html" class="tutoriales-support-link">
-                    <i class="bi bi-windows"></i>
-                    <span>Soporte para Windows 11</span>
-                </a>
-                <a href="mesa-de-ayuda.html" class="tutoriales-support-link">
-                    <i class="bi bi-headset"></i>
-                    <span>Mesa de ayuda</span>
-                </a>
-                <a href="autoatencion.html" class="tutoriales-support-link">
-                    <i class="bi bi-chat-dots"></i>
-                    <span>Pregunta a nuestro Asistente Virtual</span>
-                </a>
+    <!-- Tutorials Library -->
+    <section class="tutorials-library">
+        <div class="container">
+            <div class="library-header">
+                <h2>Biblioteca de Recursos</h2>
+                <div class="filter-controls">
+                    <button class="filter-btn active" data-filter="all">Todos</button>
+                    <button class="filter-btn" data-filter="hardware">Hardware</button>
+                    <button class="filter-btn" data-filter="software">Software</button>
+                    <button class="filter-btn" data-filter="redes">Redes</button>
+                    <button class="filter-btn" data-filter="seguridad">Seguridad</button>
+                </div>
+            </div>
+
+            <div class="tutorials-list">
+                <!-- Video Tutorial -->
+                <div class="tutorial-item" data-category="software">
+                    <div class="tutorial-type">
+                        <i class="bi bi-play-circle"></i>
+                        <span>Video</span>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>Configurar Outlook 365</h3>
+                        <p>Configuración de cuenta de correo corporativo paso a paso</p>
+                        <div class="tutorial-meta">
+                            <span class="category">Software</span>
+                            <span class="duration">5:32 min</span>
+                            <span class="views">1,234 vistas</span>
+                        </div>
+                    </div>
+                    <div class="tutorial-actions">
+                        <button class="action-btn play-btn" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
+                            <i class="bi bi-play"></i> Reproducir
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Video Tutorial -->
+                <div class="tutorial-item" data-category="hardware">
+                    <div class="tutorial-type">
+                        <i class="bi bi-play-circle"></i>
+                        <span>Video</span>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>Resolución de Problemas de Impresora</h3>
+                        <p>Soluciones para problemas comunes de conectividad de impresoras</p>
+                        <div class="tutorial-meta">
+                            <span class="category">Hardware</span>
+                            <span class="duration">8:45 min</span>
+                            <span class="views">856 vistas</span>
+                        </div>
+                    </div>
+                    <div class="tutorial-actions">
+                        <button class="action-btn play-btn" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
+                            <i class="bi bi-play"></i> Reproducir
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Video Tutorial -->
+                <div class="tutorial-item" data-category="redes">
+                    <div class="tutorial-type">
+                        <i class="bi bi-play-circle"></i>
+                        <span>Video</span>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>Configuración de VPN Corporativa</h3>
+                        <p>Guía completa para conexión VPN desde ubicaciones remotas</p>
+                        <div class="tutorial-meta">
+                            <span class="category">Redes</span>
+                            <span class="duration">12:18 min</span>
+                            <span class="views">2,105 vistas</span>
+                        </div>
+                    </div>
+                    <div class="tutorial-actions">
+                        <button class="action-btn play-btn" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
+                            <i class="bi bi-play"></i> Reproducir
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Document -->
+                <div class="tutorial-item" data-category="seguridad">
+                    <div class="tutorial-type">
+                        <i class="bi bi-file-pdf"></i>
+                        <span>PDF</span>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>Manual de Seguridad Digital</h3>
+                        <p>Mejores prácticas de seguridad para usuarios corporativos</p>
+                        <div class="tutorial-meta">
+                            <span class="category">Seguridad</span>
+                            <span class="size">2.4 MB</span>
+                            <span class="downloads">432 descargas</span>
+                        </div>
+                    </div>
+                    <div class="tutorial-actions">
+                        <button class="action-btn download-btn">
+                            <i class="bi bi-download"></i> Descargar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Video Tutorial -->
+                <div class="tutorial-item" data-category="software">
+                    <div class="tutorial-type">
+                        <i class="bi bi-play-circle"></i>
+                        <span>Video</span>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>Microsoft Teams: Reuniones Efectivas</h3>
+                        <p>Uso avanzado de Teams para reuniones productivas</p>
+                        <div class="tutorial-meta">
+                            <span class="category">Software</span>
+                            <span class="duration">6:22 min</span>
+                            <span class="views">1,789 vistas</span>
+                        </div>
+                    </div>
+                    <div class="tutorial-actions">
+                        <button class="action-btn play-btn" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
+                            <i class="bi bi-play"></i> Reproducir
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Video Tutorial -->
+                <div class="tutorial-item" data-category="hardware">
+                    <div class="tutorial-type">
+                        <i class="bi bi-play-circle"></i>
+                        <span>Video</span>
+                    </div>
+                    <div class="tutorial-content">
+                        <h3>Mantenimiento Preventivo de PC</h3>
+                        <p>Rutinas de limpieza y mantenimiento para equipos corporativos</p>
+                        <div class="tutorial-meta">
+                            <span class="category">Hardware</span>
+                            <span class="duration">4:15 min</span>
+                            <span class="views">945 vistas</span>
+                        </div>
+                    </div>
+                    <div class="tutorial-actions">
+                        <button class="action-btn play-btn" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
+                            <i class="bi bi-play"></i> Reproducir
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
+
+    <!-- Video Modal -->
+    <div id="videoModal" class="video-modal">
+        <div class="video-modal-content">
+            <button class="video-close">&times;</button>
+            <iframe id="videoFrame" src="" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
 
     <!-- Footer Placeholder -->
     <div id="footer-placeholder"></div>
@@ -172,13 +289,86 @@
     <!-- Components Loader -->
     <script src="js/components.js"></script>
     <script src="js/main.js"></script>
-
-    <script src="js/file-upload.js"></script>
-
-    <!-- Page-specific JavaScript -->
     <script>
-        // Page-specific functionality can go here
-        console.log('Tutoriales page loaded');
+        // Tab switching
+        document.querySelectorAll('.upload-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                const tabType = this.dataset.tab;
+                
+                // Update active tab
+                document.querySelectorAll('.upload-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Update active form
+                document.querySelectorAll('.upload-form-container').forEach(form => {
+                    form.classList.remove('active');
+                });
+                document.getElementById(tabType + '-form').classList.add('active');
+            });
+        });
+
+        // Filter functionality
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const filter = this.dataset.filter;
+                
+                // Update active filter
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Filter tutorials
+                document.querySelectorAll('.tutorial-item').forEach(item => {
+                    if (filter === 'all' || item.dataset.category === filter) {
+                        item.style.display = 'flex';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Video modal functionality
+        const videoModal = document.getElementById('videoModal');
+        const videoFrame = document.getElementById('videoFrame');
+        const closeBtn = document.querySelector('.video-close');
+
+        document.querySelectorAll('.play-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const videoUrl = this.dataset.video;
+                videoFrame.src = videoUrl;
+                videoModal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        closeBtn.addEventListener('click', function() {
+            videoModal.style.display = 'none';
+            videoFrame.src = '';
+            document.body.style.overflow = 'auto';
+        });
+
+        videoModal.addEventListener('click', function(e) {
+            if (e.target === videoModal) {
+                videoModal.style.display = 'none';
+                videoFrame.src = '';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // File upload handling
+        document.querySelectorAll('input[type="file"]').forEach(input => {
+            input.addEventListener('change', function() {
+                const fileBtn = this.parentElement.querySelector('.file-btn');
+                const fileName = this.files[0]?.name || 'Seleccionar Archivo';
+                const icon = fileBtn.querySelector('i');
+                
+                if (this.files[0]) {
+                    icon.className = 'bi bi-check-circle';
+                    fileBtn.innerHTML = `<i class="bi bi-check-circle"></i> ${fileName}`;
+                    fileBtn.classList.add('file-selected');
+                }
+            });
+        });
     </script>
 </body>
 </html>
