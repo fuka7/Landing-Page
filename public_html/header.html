@@ -6,7 +6,7 @@
                 <img src="imagenes/logo_HP.jpg" alt="HP Logo" class="logo-image">
             </a>
             <div class="platform-status">
-                <span class="status-text">Centro de Soporte HP minsal</span>
+                <h1 class="status-text">Centro de Soporte HP Minsal</h1>
             </div>
         </div>
         
@@ -34,7 +34,7 @@
     </div>
 </div>
 
-<!-- Estilos CSS adicionales para el texto de desarrollo -->
+<!-- Estilos CSS corregidos -->
 <style>
 .logo-section {
     display: flex;
@@ -49,17 +49,16 @@
 }
 
 .status-text {
-    background: #ffffff;
+    font-family: 'Forma DJR Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
     color: rgb(44, 44, 44);
-    padding: 4px 12px;
-    font-size: 23px;
+    font-size: 24px;
     font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    border-radius: 0;
+    margin: 0;
+    line-height: 1.2;
+    white-space: nowrap;
 }
 
-/* Responsive para móvil */
+/* Responsive para tablet */
 @media (max-width: 768px) {
     .logo-section {
         flex-direction: column;
@@ -68,36 +67,43 @@
     }
     
     .status-text {
-        font-size: 11px;
-        padding: 3px 10px;
+        font-size: 20px;
     }
 }
 
+/* Responsive para móvil */
 @media (max-width: 480px) {
     .logo-section {
         gap: 6px;
     }
     
     .status-text {
-        font-size: 80px;
-        padding: 2px 8px;
+        font-size: 16px; /* CORREGIDO: era 80px */
     }
 }
+
+/* Responsive para móviles muy pequeños */
+@media (max-width: 360px) {
+    .status-text {
+        font-size: 14px;
+    }
+}
+
 /* Headers sticky */
 .header {
     position: fixed;
-    top: 0; /* Cambiamos a 0 para que esté en la parte superior */
+    top: 0;
     left: 0;
     right: 0;
     background: #fff;
-    z-index: 1000; /* Aumentamos el z-index para que esté por encima */
+    z-index: 1000;
     transition: transform 0.3s ease;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .header-top-bar {
     position: fixed;
-    top: 80px; /* Ajusta este valor según la altura de tu header blanco */
+    top: 80px;
     left: 0;
     right: 0;
     background: #000;
@@ -110,13 +116,13 @@
 body::before {
     content: '';
     display: block;
-    height: 120px; /* Ajusta según la altura combinada de ambos headers */
+    height: 120px;
 }
 
 /* Ajustes responsive */
 @media (max-width: 768px) {
     .header-top-bar {
-        top: 60px; /* Ajusta según la altura del header en móvil */
+        top: 60px;
         height: 30px;
     }
     
@@ -127,7 +133,7 @@ body::before {
 
 @media (max-width: 480px) {
     .header-top-bar {
-        top: 50px; /* Ajusta según la altura del header en pantallas pequeñas */
+        top: 50px;
         height: 25px;
     }
     

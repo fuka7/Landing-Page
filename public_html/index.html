@@ -20,10 +20,101 @@
     <!-- CSS Styles -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/pages.css">
+
+    <style>
+        /* Estilos para el placeholder de video */
+        .video-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            min-height: 300px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 12px;
+            border: 2px dashed #dee2e6;
+        }
+
+        .placeholder-content {
+            text-align: center;
+            color: #6c757d;
+        }
+
+        .placeholder-content i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .placeholder-content h4 {
+            margin: 0 0 0.5rem 0;
+            font-weight: 500;
+        }
+
+        .placeholder-content p {
+            margin: 0;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Asegurar que los contenedores no se superpongan */
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            min-height: 300px;
+        }
+
+        .main-video,
+        .youtube-container,
+        .video-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .current-tutorial-info {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+            z-index: 10;
+        }
+
+        .tutorial-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            color: #28a745;
+            margin-bottom: 0.25rem;
+        }
+
+        .current-tutorial-info h4 {
+            margin: 0 0 0.25rem 0;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .current-tutorial-info p {
+            margin: 0;
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+    </style>
 </head>
 <body>
     <!-- Header Placeholder -->
     <div id="header-placeholder"></div>
+    
     <!-- Additional Services - 6 Sections -->
     <section class="additional-services">
         <div class="additional-container">
@@ -75,7 +166,7 @@
                 <a href="faq.html" class="additional-card">
                     <div class="additional-icon">
                         <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M20 2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h4l4 4 4-4h4c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-3 9h-2v2h-2v-2h-2V9h2V7h2v2h2v2z"/>
+                            <path d="M20 2H4c-1.1 0-2 .9 2 2h4l4 4 4-4h4c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-3 9h-2v2h-2v-2h-2V9h2V7h2v2h2v2z"/>
                         </svg>
                     </div>
                     <h3 class="additional-title">FAQ</h3>
@@ -95,15 +186,11 @@
         </div>
     </section>
 
-    <!-- Video Section -->
+    <!-- Video Section - SECCIÓN DE TUTORIAL DESTACADO (VERSIÓN CORREGIDA) -->
     <section class="video-section">
         <div class="video-section-container">
             <div class="video-section-header">
-                <h2 class="video-section-title">Cómo trabajamos</h2>
-                <p class="video-section-description">
-                    Descubre nuestro proceso de soporte técnico y cómo nuestro equipo especializado 
-                    resuelve los desafíos tecnológicos más complejos.
-                </p>
+                <h2 class="video-section-title">Tutorial Destacado</h2>
             </div>
             
             <div class="video-section-grid">
@@ -112,61 +199,82 @@
                     <div class="video-features">
                         <div class="video-feature">
                             <div class="video-feature-icon">
-                                <i class="bi bi-search"></i>
+                                <i class="bi bi-play-circle"></i>
                             </div>
                             <div class="video-feature-content">
-                                <h3 class="video-feature-title">Diagnóstico rápido y preciso</h3>
+                                <h3 class="video-feature-title">Tutoriales paso a paso</h3>
                                 <p class="video-feature-description">
-                                    Identificamos problemas en tiempo récord con herramientas avanzadas.
+                                    Aprende con instrucciones detalladas y ejemplos prácticos para cada proceso.
                                 </p>
                             </div>
                         </div>
 
                         <div class="video-feature">
                             <div class="video-feature-icon">
-                                <i class="bi bi-gear"></i>
+                                <i class="bi bi-arrow-clockwise"></i>
                             </div>
                             <div class="video-feature-content">
-                                <h3 class="video-feature-title">Soluciones personalizadas</h3>
+                                <h3 class="video-feature-title">Siempre actualizado</h3>
                                 <p class="video-feature-description">
-                                    Adaptamos cada solución a las necesidades específicas de tu empresa.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="video-feature">
-                            <div class="video-feature-icon">
-                                <i class="bi bi-shield-check"></i>
-                            </div>
-                            <div class="video-feature-content">
-                                <h3 class="video-feature-title">Seguimiento continuo</h3>
-                                <p class="video-feature-description">
-                                    Monitoreamos y aseguramos el funcionamiento óptimo a largo plazo.
+                                    Nuevos tutoriales añadidos regularmente con las últimas soluciones.
                                 </p>
                             </div>
                         </div>
                     </div>
+                    
+                    <!-- Botón para ir a la biblioteca completa -->
+                    <div class="tutorial-library-cta">
+                        <a href="tutoriales.html" class="library-btn">
+                            <i class="bi bi-collection"></i>
+                            <span>Ver Biblioteca Completa</span>
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                        <p class="library-cta-text">Explora todos nuestros tutoriales</p>
+                    </div>
                 </div>
 
-                <!-- Video Player -->
+                <!-- Video Player Container -->
                 <div class="video-player-container">
                     <div class="video-wrapper">
+                        <!-- Video HTML5 (para archivos subidos) -->
                         <video 
                             id="mainVideo" 
                             class="main-video"
-                            poster="https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=450&fit=crop"
+                            style="display: none;"
                             preload="metadata">
-                            <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
                             <p>Tu navegador no soporta videos HTML5.</p>
                         </video>
                         
-                        <div id="videoOverlay" class="video-overlay">
+                        <!-- YouTube Embed Container -->
+                        <div id="youtubeContainer" class="youtube-container" style="display: none;">
+                            <iframe 
+                                id="youtubeIframe"
+                                width="100%" 
+                                height="100%" 
+                                frameborder="0" 
+                                allow="autoplay; encrypted-media" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+
+                        <!-- Placeholder cuando no hay video -->
+                        <div id="videoPlaceholder" class="video-placeholder">
+                            <div class="placeholder-content">
+                                <i class="bi bi-camera-video"></i>
+                                <h4>Tutorial en preparación</h4>
+                                <p>Pronto tendremos contenido actualizado aquí</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Overlay de reproducción (solo para videos HTML5) -->
+                        <div id="videoOverlay" class="video-overlay" style="display: none;">
                             <button id="playButton" class="play-button">
                                 <i class="bi bi-play-fill"></i>
                             </button>
                         </div>
 
-                        <div id="videoControls" class="video-controls">
+                        <!-- Controles personalizados (solo para videos HTML5) -->
+                        <div id="videoControls" class="video-controls" style="display: none;">
                             <div class="progress-bar-container">
                                 <div id="progressFill" class="progress-fill"></div>
                             </div>
@@ -189,10 +297,14 @@
                             </div>
                         </div>
 
-                        <!-- Indicador de que es un video -->
-                        <div class="video-indicator">
-                            <i class="bi bi-play-circle"></i>
-                            <span>Video explicativo</span>
+                        <!-- Información del tutorial actual -->
+                        <div class="current-tutorial-info" id="currentTutorialInfo" style="display: none;">
+                            <div class="tutorial-badge">
+                                <i class="bi bi-mortarboard"></i>
+                                <span>Tutorial Actualizado</span>
+                            </div>
+                            <h4 id="currentTutorialTitle">Título del Tutorial</h4>
+                            <p id="currentTutorialCategory">Categoría</p>
                         </div>
                     </div>
                 </div>
@@ -228,33 +340,174 @@
     <script src="js/components.js"></script>
     <script src="js/main.js"></script>
 
-    <!-- Page-specific-->
+    <!-- SISTEMA DE GESTIÓN DE VIDEO TUTORIAL - VERSIÓN CORREGIDA -->
     <script>
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }, index * 100);
-                }
-            });
-        }, observerOptions);
-        document.querySelectorAll('.service-card').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(card);
-        });
-
-        class VideoPlayer {
+        // SISTEMA DE GESTIÓN DE VIDEO TUTORIAL - VERSIÓN LIMPIA
+        class TutorialVideoManager {
             constructor() {
-                this.video = document.getElementById('mainVideo');
+                this.currentVideoData = null;
+                this.isYouTubeVideo = false;
+                this.videoPlayer = null;
+                
+                // Elementos del DOM
+                this.elements = {
+                    mainVideo: document.getElementById('mainVideo'),
+                    youtubeContainer: document.getElementById('youtubeContainer'),
+                    youtubeIframe: document.getElementById('youtubeIframe'),
+                    videoPlaceholder: document.getElementById('videoPlaceholder'),
+                    videoOverlay: document.getElementById('videoOverlay'),
+                    videoControls: document.getElementById('videoControls'),
+                    tutorialInfo: document.getElementById('currentTutorialInfo'),
+                    tutorialTitle: document.getElementById('currentTutorialTitle'),
+                    tutorialCategory: document.getElementById('currentTutorialCategory')
+                };
+
+                this.init();
+            }
+
+            init() {
+                console.log('🎥 Inicializando Tutorial Video Manager...');
+                this.loadLatestTutorial();
+                this.setupEventListeners();
+            }
+
+            // Cargar el tutorial más reciente desde el panel de administración
+            loadLatestTutorial() {
+                try {
+                    const uploadedFiles = localStorage.getItem('mdshp_uploaded_files');
+                    
+                    if (!uploadedFiles) {
+                        console.log('📂 No hay archivos subidos, mostrando placeholder');
+                        this.showPlaceholder();
+                        return;
+                    }
+
+                    const files = JSON.parse(uploadedFiles);
+                    const videoFiles = files.filter(file => 
+                        file.type === 'video' || file.type === 'youtube'
+                    ).sort((a, b) => b.id - a.id);
+
+                    if (videoFiles.length === 0) {
+                        console.log('🎬 No hay videos disponibles, mostrando placeholder');
+                        this.showPlaceholder();
+                        return;
+                    }
+
+                    const latestVideo = videoFiles[0];
+                    console.log('✅ Cargando video más reciente:', latestVideo.title);
+                    this.loadVideo(latestVideo);
+
+                } catch (error) {
+                    console.error('❌ Error cargando tutorial:', error);
+                    this.showPlaceholder();
+                }
+            }
+
+            // Cargar video específico
+            loadVideo(videoData) {
+                this.currentVideoData = videoData;
+                this.hideAllContainers();
+                this.updateTutorialInfo(videoData);
+
+                if (videoData.type === 'youtube' && videoData.youtubeData?.id) {
+                    this.loadYouTubeVideo(videoData);
+                } else if (videoData.type === 'video' && videoData.filePath) {
+                    this.loadFileVideo(videoData);
+                } else {
+                    console.warn('⚠️ Tipo de video no reconocido:', videoData);
+                    this.showPlaceholder();
+                }
+            }
+
+            // Cargar video de YouTube
+            loadYouTubeVideo(videoData) {
+                console.log('📺 Cargando video de YouTube:', videoData.youtubeData.id);
+                
+                this.isYouTubeVideo = true;
+                this.elements.youtubeContainer.style.display = 'block';
+                
+                const videoId = videoData.youtubeData.id;
+                this.elements.youtubeIframe.src = 
+                    `https://www.youtube.com/embed/${videoId}?enablejsapi=1&rel=0&modestbranding=1`;
+            }
+
+            // Cargar video de archivo subido
+            loadFileVideo(videoData) {
+                console.log('🎞️ Cargando video de archivo:', videoData.fileName);
+                
+                this.isYouTubeVideo = false;
+                this.elements.mainVideo.style.display = 'block';
+                this.elements.videoOverlay.style.display = 'flex';
+                this.elements.videoControls.style.display = 'block';
+
+                // Cargar el archivo desde el servidor
+                this.elements.mainVideo.innerHTML = `
+                    <source src="${videoData.filePath}" type="video/mp4">
+                    <p>Tu navegador no soporta videos HTML5.</p>
+                `;
+                this.elements.mainVideo.load();
+
+                // Inicializar controles
+                this.initVideoControls();
+            }
+
+            // Mostrar placeholder cuando no hay videos
+            showPlaceholder() {
+                console.log('🔄 Mostrando placeholder');
+                this.hideAllContainers();
+                this.elements.videoPlaceholder.style.display = 'flex';
+                this.resetTutorialInfo();
+            }
+
+            // Ocultar todos los contenedores de video
+            hideAllContainers() {
+                this.elements.mainVideo.style.display = 'none';
+                this.elements.youtubeContainer.style.display = 'none';
+                this.elements.videoPlaceholder.style.display = 'none';
+                this.elements.videoOverlay.style.display = 'none';
+                this.elements.videoControls.style.display = 'none';
+            }
+
+            // Actualizar información del tutorial
+            updateTutorialInfo(videoData) {
+                this.elements.tutorialTitle.textContent = videoData.title;
+                this.elements.tutorialCategory.textContent = 
+                    videoData.category.charAt(0).toUpperCase() + videoData.category.slice(1);
+                this.elements.tutorialInfo.style.display = 'block';
+            }
+
+            // Resetear información a valores por defecto
+            resetTutorialInfo() {
+                this.elements.tutorialInfo.style.display = 'none';
+            }
+
+            // Inicializar controles de video HTML5
+            initVideoControls() {
+                if (this.videoPlayer) {
+                    this.videoPlayer.destroy();
+                }
+                this.videoPlayer = new VideoPlayerControls(this.elements.mainVideo);
+            }
+
+            // Configurar event listeners
+            setupEventListeners() {
+                // Escuchar cambios en localStorage
+                window.addEventListener('storage', (e) => {
+                    if (e.key === 'mdshp_uploaded_files') {
+                        console.log('🔄 Detectado cambio en archivos, recargando...');
+                        this.loadLatestTutorial();
+                    }
+                });
+
+                // Recargar manual (para desarrollo)
+                window.reloadTutorialVideo = () => this.loadLatestTutorial();
+            }
+        }
+
+        // Clase para manejar controles de video HTML5
+        class VideoPlayerControls {
+            constructor(videoElement) {
+                this.video = videoElement;
                 this.playButton = document.getElementById('playButton');
                 this.playPauseBtn = document.getElementById('playPauseBtn');
                 this.muteBtn = document.getElementById('muteBtn');
@@ -265,109 +518,39 @@
                 this.videoControls = document.getElementById('videoControls');
                 this.videoOverlay = document.getElementById('videoOverlay');
 
-                this.init();
+                this.initControls();
             }
 
-            init() {
-                if (!this.video) return;
-
-                console.log('Inicializando video player...');
-
-                // Asegurar que el overlay esté visible inicialmente
-                this.videoOverlay.style.display = 'flex';
-                this.videoOverlay.style.opacity = '1';
-                this.videoControls.style.display = 'block';
-                this.videoControls.style.opacity = '0.8';
-
-                this.playButton.addEventListener('click', () => {
-                    console.log('Play button clicked');
-                    this.togglePlay();
-                });
-
-                this.playPauseBtn.addEventListener('click', () => {
-                    this.togglePlay();
-                });
-
-                this.muteBtn.addEventListener('click', () => {
-                    this.toggleMute();
-                });
-
-                this.volumeSlider.addEventListener('input', (e) => {
+            initControls() {
+                // Event listeners para controles
+                this.playButton?.addEventListener('click', () => this.togglePlay());
+                this.playPauseBtn?.addEventListener('click', () => this.togglePlay());
+                this.muteBtn?.addEventListener('click', () => this.toggleMute());
+                this.fullscreenBtn?.addEventListener('click', () => this.toggleFullscreen());
+                
+                this.volumeSlider?.addEventListener('input', (e) => {
                     this.video.volume = e.target.value / 100;
                     this.updateMuteButton();
                 });
 
+                // Event listeners del video
+                this.video.addEventListener('play', () => this.onPlay());
+                this.video.addEventListener('pause', () => this.onPause());
+                this.video.addEventListener('timeupdate', () => this.updateProgress());
+                this.video.addEventListener('loadedmetadata', () => this.updateTime());
 
-                this.fullscreenBtn.addEventListener('click', () => {
-                    this.toggleFullscreen();
-                });
-
-                this.video.addEventListener('play', () => {
-                    console.log('Video started playing');
-                    this.videoOverlay.style.display = 'none';
-                    this.videoControls.style.opacity = '1';
-                    this.updatePlayButton();
-                });
-
-                this.video.addEventListener('pause', () => {
-                    console.log('Video paused');
-                    this.videoOverlay.style.display = 'flex';
-                    this.videoOverlay.style.opacity = '1';
-                    this.updatePlayButton();
-                });
-
-                this.video.addEventListener('timeupdate', () => {
-                    this.updateProgress();
-                    this.updateTime();
-                });
-
-                this.video.addEventListener('loadedmetadata', () => {
-                    this.updateTime();
-                });
-
+                // Progress bar click
                 const progressBar = document.querySelector('.progress-bar-container');
-                if (progressBar) {
-                    progressBar.addEventListener('click', (e) => {
-                        const rect = progressBar.getBoundingClientRect();
-                        const pos = (e.clientX - rect.left) / rect.width;
-                        this.video.currentTime = pos * this.video.duration;
-                    });
-                }
+                progressBar?.addEventListener('click', (e) => this.seekVideo(e));
 
-                const videoWrapper = document.querySelector('.video-wrapper');
-                let hideControlsTimeout;
-
-                if (videoWrapper) {
-                    videoWrapper.addEventListener('mouseenter', () => {
-                        clearTimeout(hideControlsTimeout);
-                        this.videoControls.style.opacity = '1';
-                        
-                        if (this.video.paused) {
-                            this.videoOverlay.style.display = 'flex';
-                            this.videoOverlay.style.opacity = '1';
-                        }
-                    });
-
-                    videoWrapper.addEventListener('mouseleave', () => {
-                        hideControlsTimeout = setTimeout(() => {
-                            if (!this.video.paused) {
-                                this.videoControls.style.opacity = '0.7';
-                            }
-                        }, 2000);
-                    });
-                }
-
-                this.video.addEventListener('click', () => {
-                    this.togglePlay();
-                });
+                // Mouse events para mostrar/ocultar controles
+                this.setupMouseEvents();
             }
 
             togglePlay() {
                 if (this.video.paused) {
-                    console.log('Starting video...');
                     this.video.play().catch(e => console.error('Error playing video:', e));
                 } else {
-                    console.log('Pausing video...');
                     this.video.pause();
                 }
             }
@@ -385,26 +568,74 @@
                 }
             }
 
+            onPlay() {
+                this.videoOverlay.style.display = 'none';
+                this.updatePlayButton();
+            }
+
+            onPause() {
+                this.videoOverlay.style.display = 'flex';
+                this.updatePlayButton();
+            }
+
             updatePlayButton() {
                 const playIcon = this.video.paused ? 'bi-play-fill' : 'bi-pause-fill';
-                this.playButton.innerHTML = `<i class="bi ${playIcon}"></i>`;
-                this.playPauseBtn.innerHTML = `<i class="bi ${playIcon}"></i>`;
+                if (this.playButton) {
+                    this.playButton.innerHTML = `<i class="bi ${playIcon}"></i>`;
+                }
+                if (this.playPauseBtn) {
+                    this.playPauseBtn.innerHTML = `<i class="bi ${playIcon}"></i>`;
+                }
             }
 
             updateMuteButton() {
-                const volumeIcon = this.video.muted || this.video.volume === 0 ? 'bi-volume-mute-fill' : 'bi-volume-up-fill';
-                this.muteBtn.innerHTML = `<i class="bi ${volumeIcon}"></i>`;
+                const volumeIcon = this.video.muted || this.video.volume === 0 
+                    ? 'bi-volume-mute-fill' 
+                    : 'bi-volume-up-fill';
+                if (this.muteBtn) {
+                    this.muteBtn.innerHTML = `<i class="bi ${volumeIcon}"></i>`;
+                }
             }
 
             updateProgress() {
-                const progress = (this.video.currentTime / this.video.duration) * 100;
-                this.progressFill.style.width = progress + '%';
+                if (this.video.duration) {
+                    const progress = (this.video.currentTime / this.video.duration) * 100;
+                    this.progressFill.style.width = progress + '%';
+                }
+                this.updateTime();
             }
 
             updateTime() {
                 const current = this.formatTime(this.video.currentTime);
                 const duration = this.formatTime(this.video.duration);
-                this.timeDisplay.textContent = `${current} / ${duration}`;
+                if (this.timeDisplay) {
+                    this.timeDisplay.textContent = `${current} / ${duration}`;
+                }
+            }
+
+            seekVideo(e) {
+                const progressBar = e.currentTarget;
+                const rect = progressBar.getBoundingClientRect();
+                const pos = (e.clientX - rect.left) / rect.width;
+                this.video.currentTime = pos * this.video.duration;
+            }
+
+            setupMouseEvents() {
+                const videoWrapper = document.querySelector('.video-wrapper');
+                let hideControlsTimeout;
+
+                videoWrapper?.addEventListener('mouseenter', () => {
+                    clearTimeout(hideControlsTimeout);
+                    this.videoControls.style.opacity = '1';
+                });
+
+                videoWrapper?.addEventListener('mouseleave', () => {
+                    hideControlsTimeout = setTimeout(() => {
+                        if (!this.video.paused) {
+                            this.videoControls.style.opacity = '0.7';
+                        }
+                    }, 2000);
+                });
             }
 
             formatTime(time) {
@@ -413,25 +644,40 @@
                 const seconds = Math.floor(time % 60);
                 return `${minutes}:${seconds.toString().padStart(2, '0')}`;
             }
+
+            destroy() {
+                // Cleanup event listeners si es necesario
+            }
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            console.log('DOM loaded, initializing video player...');
-            
-            setTimeout(() => {
-                const videoPlayer = new VideoPlayer();
-                console.log('Video player initialized:', videoPlayer);
-                
-                const overlay = document.getElementById('videoOverlay');
-                const playBtn = document.getElementById('playButton');
-                
-                if (overlay && playBtn) {
-                    overlay.style.display = 'flex';
-                    overlay.style.opacity = '1';
-                    playBtn.style.display = 'flex';
-                    console.log('Overlay and play button made visible');
+        // Animations para las cards de servicios
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 100);
                 }
-            }, 100);
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card, .additional-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+
+        // Inicializar cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('🚀 Inicializando sistema de video tutorial...');
+            new TutorialVideoManager();
         });
     </script>
 </body>

@@ -1138,7 +1138,6 @@
         margin: 1.5rem auto;
         max-width: 90%;
     }
-}
 
 @media (max-width: 480px) {
     /* Homepage sections mobile responsive */
@@ -1756,7 +1755,7 @@
 .faq-item {
     border: 1px solid #e0e0e0;
     padding: 1.5rem;
-    border-radius: 6px;
+    border-radius: 0px;
     background: #f8f9fa;
     transition: all 0.3s ease;
 }
