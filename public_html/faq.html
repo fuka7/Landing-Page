@@ -16,27 +16,199 @@
     <section class="page-hero">
         <div class="page-hero-content">
             <h1>Preguntas Frecuentes</h1>
-            <p>Encuentra respuestas rápidas a los temas más consultados.</p>
+            <p>Encuentra respuestas rápidas a los temas más consultados sobre productos y servicios HP.</p>
         </div>
     </section>
 
-    <!-- FAQ Section -->
+    <!-- FAQ Categories -->
     <section class="faq-section">
         <div class="faq-container">
-            <div class="faq-item">
-                <a href="https://support.hp.com/cl-es/document/ish_4425377-4342327-16?jumpid=in_r11839_cl/es/WIN11_SupportLink1" target="_blank" class="faq-link">
-                    <h3 class="faq-question">¿Cómo actualizar a Windows 11 en mi equipo HP?</h3>
-                </a>
+            <!-- Windows y Sistema Operativo -->
+            <div class="faq-category">
+                <h2 class="faq-category-title">Windows y Sistema Operativo</h2>
+                
+                <div class="faq-item" data-keywords="windows 11 actualizar upgrade">
+                    <div class="faq-link" onclick="toggleAnswer(this)">
+                        <h3 class="faq-question">¿Cómo actualizar a Windows 11 en mi equipo HP?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Para actualizar a Windows 11:</p>
+                        <p><strong>1.</strong> Verifica que tu equipo sea compatible usando la herramienta PC Health Check</p>
+                        <p><strong>2.</strong> Ve a Configuración > Windows Update</p>
+                        <p><strong>3.</strong> Haz clic en "Buscar actualizaciones"</p>
+                        <p><strong>4.</strong> Si aparece disponible, selecciona "Descargar e instalar"</p>
+                        <p><a href="https://support.hp.com/cl-es/document/ish_4425377-4342327-16?jumpid=in_r11839_cl/es/WIN11_SupportLink1" target="_blank">Guía completa de HP →</a></p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-keywords="limpieza pc mantenimiento limpiar computadora">
+                    <div class="faq-link" onclick="toggleAnswer(this)">
+                        <h3 class="faq-question">¿Cómo limpiar y mantener mi PC en buen estado?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>El mantenimiento regular de tu PC es importante para su buen funcionamiento:</p>
+                        <p><strong>•</strong> Limpieza física del equipo y ventiladores</p>
+                        <p><strong>•</strong> Eliminación de archivos temporales y basura</p>
+                        <p><strong>•</strong> Desfragmentación del disco duro</p>
+                        <p><strong>•</strong> Actualización de software y controladores</p>
+                        <p><strong>•</strong> Verificación de malware y virus</p>
+                        <p><a href="https://support.hp.com/cl-es/document/ish_4472222-4524073-16" target="_blank">Guía completa de limpieza HP →</a></p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-keywords="compatibilidad requisitos sistema hardware">
+                    <div class="faq-link" onclick="toggleAnswer(this)">
+                        <h3 class="faq-question">Información sobre compatibilidad y requisitos</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Consulta los requisitos de sistema y compatibilidad para:</p>
+                        <p><strong>•</strong> Actualizaciones de Windows</p>
+                        <p><strong>•</strong> Software y aplicaciones HP</p>
+                        <p><strong>•</strong> Controladores y firmware</p>
+                        <p><strong>•</strong> Componentes de hardware</p>
+                        <p><a href="https://support.hp.com/cl-es/document/ish_4425377-4342327-16" target="_blank">Ver compatibilidad →</a></p>
+                    </div>
+                </div>
             </div>
-            <div class="faq-item">
-                <a href="https://support.hp.com/cl-es/help/windows-10-support-center?jumpid=in_r11839_cl/es/WIN11_MDA" target="_blank" class="faq-link">
-                    <h3 class="faq-question">Centro de soporte para Windows 10</h3>
-                </a>
+
+            <!-- Problemas Comunes -->
+            <div class="faq-category">
+                <h2 class="faq-category-title">Problemas Comunes</h2>
+                
+                <div class="faq-item" data-keywords="wifi internet conectar red">
+                    <div class="faq-link" onclick="toggleAnswer(this)">
+                        <h3 class="faq-question">¿Cómo conectar mi computadora al WiFi?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Para conectarte a WiFi en Windows 11:</p>
+                        <p><strong>1.</strong> Haz clic en el ícono de WiFi en la esquina inferior derecha</p>
+                        <p><strong>2.</strong> Selecciona tu red WiFi de la lista</p>
+                        <p><strong>3.</strong> Haz clic en "Conectar"</p>
+                        <p><strong>4.</strong> Ingresa la contraseña de tu red</p>
+                        <p><em>Si no ves redes disponibles, verifica que el WiFi esté activado en tu computadora.</em></p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-keywords="lento rendimiento velocidad computadora">
+                    <div class="faq-link" onclick="toggleAnswer(this)">
+                        <h3 class="faq-question">Mi computadora está muy lenta, ¿qué puedo hacer?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Para mejorar la velocidad de tu computadora:</p>
+                        <p><strong>1.</strong> Reinicia tu computadora regularmente</p>
+                        <p><strong>2.</strong> Cierra programas que no estés usando</p>
+                        <p><strong>3.</strong> Libera espacio en el disco duro eliminando archivos innecesarios</p>
+                        <p><strong>4.</strong> Ejecuta el Liberador de espacio en disco de Windows</p>
+                        <p><strong>5.</strong> Verifica si hay actualizaciones pendientes</p>
+                        <p><em>Si el problema persiste, considera contactar soporte técnico.</em></p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-keywords="sonido audio no funciona volumen">
+                    <div class="faq-link" onclick="toggleAnswer(this)">
+                        <h3 class="faq-question">No tengo sonido en mi computadora</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Para solucionar problemas de sonido:</p>
+                        <p><strong>1.</strong> Verifica que el volumen no esté silenciado (ícono de altavoz en la barra inferior)</p>
+                        <p><strong>2.</strong> Revisa las conexiones de audífonos o parlantes</p>
+                        <p><strong>3.</strong> Haz clic derecho en el ícono de volumen y selecciona "Solucionar problemas de sonido"</p>
+                        <p><strong>4.</strong> Asegúrate de que el dispositivo correcto esté seleccionado como predeterminado</p>
+                        <p><em>Windows tiene un solucionador automático que puede resolver la mayoría de problemas de audio.</em></p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-keywords="copia seguridad respaldo archivos documentos">
+                    <div class="faq-link" onclick="toggleAnswer(this)">
+                        <h3 class="faq-question">¿Cómo hago una copia de seguridad de mis archivos?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Es muy importante respaldar tus archivos importantes:</p>
+                        <p><strong>Opción 1 - USB:</strong> Copia tus documentos, fotos y videos a una memoria USB</p>
+                        <p><strong>Opción 2 - OneDrive:</strong> Windows 11 incluye OneDrive para guardar archivos en la nube</p>
+                        <p><strong>Opción 3 - Disco externo:</strong> Usa un disco duro externo para mayor capacidad</p>
+                        <p><em>Recomendamos hacer copias regularmente, especialmente antes de actualizaciones importantes.</em></p>
+                    </div>
+                </div>
             </div>
-            <div class="faq-item">
-                <a href="https://support.hp.com/cl-es/document/ish_4425377-4342327-16" target="_blank" class="faq-link">
-                    <h3 class="faq-question">Información sobre compatibilidad y requisitos</h3>
-                </a>
+
+            <!-- Software y Controladores -->
+            <div class="faq-category">
+                <h2 class="faq-category-title">Software y Controladores</h2>
+                
+                <div class="faq-item" data-keywords="controladores drivers actualizar descargar">
+                    <div class="faq-link" onclick="toggleAnswer(this)">
+                        <h3 class="faq-question">¿Dónde descargar los controladores más recientes?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Para obtener controladores oficiales:</p>
+                        <p><strong>1.</strong> Visita hp.com/support</p>
+                        <p><strong>2.</strong> Ingresa el modelo de tu equipo</p>
+                        <p><strong>3.</strong> Selecciona tu sistema operativo</p>
+                        <p><strong>4.</strong> Descarga solo controladores de la sección oficial</p>
+                        <p><em>También puedes usar HP Support Assistant para detectar automáticamente las actualizaciones necesarias.</em></p>
+                        <p><a href="https://support.hp.com/cl-es" target="_blank">Guía completa de HP →</a></p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-keywords="hp support assistant herramienta utilidad">
+                    <div class="faq-link" onclick="toggleAnswer(this)">
+                        <h3 class="faq-question">¿Qué es HP Support Assistant y para qué sirve?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>HP Support Assistant es una herramienta gratuita que:</p>
+                        <p><strong>•</strong> Detecta automáticamente actualizaciones</p>
+                        <p><strong>•</strong> Ejecuta diagnósticos del sistema</p>
+                        <p><strong>•</strong> Optimiza el rendimiento del equipo</p>
+                        <p><strong>•</strong> Proporciona soporte técnico personalizado</p>
+                        <p><strong>•</strong> Mantiene tu equipo HP en óptimas condiciones</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Garantía y Servicio -->
+            <div class="faq-category">
+                <h2 class="faq-category-title">Garantía y Servicio</h2>
+                
+                <div class="faq-item" data-keywords="garantía verificar estado cobertura">
+                    <div class="faq-link" onclick="toggleAnswer(this)">
+                        <h3 class="faq-question">¿Cómo verificar el estado de mi garantía?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Para verificar tu garantía HP:</p>
+                        <p><strong>1.</strong> Ve a hp.com/go/warrantycheck</p>
+                        <p><strong>2.</strong> Ingresa el número de serie de tu equipo</p>
+                        <p><strong>3.</strong> Revisa la cobertura y fecha de vencimiento</p>
+                        <p><strong>4.</strong> Considera extender la garantía si está próxima a vencer</p>
+                        <p><em>El número de serie generalmente se encuentra en una etiqueta en la parte inferior del equipo.</em></p>
+                        <p><a href="https://support.hp.com/cl-es/check-warranty" target="_blank">Guía completa de HP →</a></p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-keywords="servicio técnico contactar soporte reparación">
+                    <div class="faq-link" onclick="toggleAnswer(this)">
+                        <h3 class="faq-question">¿Cómo contactar el servicio técnico autorizado?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Para obtener servicio técnico especializado:</p>
+                        <p><strong>•</strong> Teléfono: 800-474-6836 (llamada gratuita)</p>
+                        <p><strong>•</strong> Chat en línea: hp.com/support</p>
+                        <p><strong>•</strong> Centros de servicio autorizados en tu zona</p>
+                        <p><strong>•</strong> Soporte remoto a través de HP Support Assistant</p>
+                        <p><em>Ten a mano tu número de serie y descripción del problema.</em></p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -45,5 +217,32 @@
     <div id="footer-placeholder"></div>
 
     <script src="js/components.js"></script>
+    <script>
+        // Función para mostrar/ocultar respuestas
+        function toggleAnswer(element) {
+            const answer = element.nextElementSibling;
+            const toggle = element.querySelector('.faq-toggle');
+            
+            if (answer.style.display === 'block') {
+                answer.style.display = 'none';
+                toggle.textContent = '+';
+                element.parentElement.classList.remove('active');
+            } else {
+                answer.style.display = 'block';
+                toggle.textContent = '−';
+                element.parentElement.classList.add('active');
+            }
+        }
+            // Mostrar/ocultar categorías vacías
+            const categories = document.querySelectorAll('.faq-category');
+            categories.forEach(category => {
+                const visibleItems = category.querySelectorAll('.faq-item[style="display: block"], .faq-item:not([style])');
+                if (searchTerm === '' || visibleItems.length > 0) {
+                    category.style.display = 'block';
+                } else {
+                    category.style.display = 'none';
+                }
+            });
+    </script>
 </body>
 </html>

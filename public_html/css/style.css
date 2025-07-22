@@ -1282,7 +1282,7 @@ footer p {
     display: flex;
     align-items: center;
     gap: 12px;
-    background: linear-gradient(135deg, #0073e6 0%, #004494 100%);
+    background: #0096D6;
     color: white;
     padding: 16px 24px;
     border-radius: 0px;
