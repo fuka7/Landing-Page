@@ -183,7 +183,6 @@
     <script src="js/main.js"></script>
     <script src="js/chat-interface.js"></script>
 
-    <!-- Character counter and functionality -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const chatInput = document.getElementById('chatInput');
@@ -195,17 +194,13 @@
                     const length = this.value.length;
                     charCounter.textContent = `${length}/500`;
                     
-                    // Auto-resize
                     this.style.height = 'auto';
                     this.style.height = Math.min(this.scrollHeight, 100) + 'px';
-                    
-                    // Enable/disable send button
+
                     if (sendButton) {
                         sendButton.disabled = length === 0 || length > 500;
                     }
                 });
-
-                // Enter to send
                 chatInput.addEventListener('keypress', function(e) {
                     if (e.key === 'Enter' && !e.shiftKey) {
                         e.preventDefault();

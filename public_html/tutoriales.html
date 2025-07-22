@@ -47,7 +47,7 @@
                     <button class="upload-tab" data-tab="document">Documento</button>
                 </div>
 
-                <!-- Video Upload Form -->
+                <!-- Video Upload -->
                 <div class="upload-form-container active" id="video-form">
                     <form class="upload-form">
                         <div class="form-row">
@@ -87,7 +87,7 @@
                     </form>
                 </div>
 
-                <!-- Document Upload Form -->
+                <!-- Document Upload -->
                 <div class="upload-form-container" id="document-form">
                     <form class="upload-form">
                         <div class="form-row">
@@ -290,16 +290,13 @@
     <script src="js/components.js"></script>
     <script src="js/main.js"></script>
     <script>
-        // Tab switching
         document.querySelectorAll('.upload-tab').forEach(tab => {
             tab.addEventListener('click', function() {
                 const tabType = this.dataset.tab;
                 
-                // Update active tab
                 document.querySelectorAll('.upload-tab').forEach(t => t.classList.remove('active'));
                 this.classList.add('active');
                 
-                // Update active form
                 document.querySelectorAll('.upload-form-container').forEach(form => {
                     form.classList.remove('active');
                 });
@@ -307,12 +304,12 @@
             });
         });
 
-        // Filter functionality
+        // Filter 
         document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 const filter = this.dataset.filter;
                 
-                // Update active filter
+                // active filter
                 document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
                 
@@ -327,7 +324,7 @@
             });
         });
 
-        // Video modal functionality
+        // Video modal 
         const videoModal = document.getElementById('videoModal');
         const videoFrame = document.getElementById('videoFrame');
         const closeBtn = document.querySelector('.video-close');
@@ -355,7 +352,6 @@
             }
         });
 
-        // File upload handling
         document.querySelectorAll('input[type="file"]').forEach(input => {
             input.addEventListener('change', function() {
                 const fileBtn = this.parentElement.querySelector('.file-btn');

@@ -228,9 +228,8 @@
     <script src="js/components.js"></script>
     <script src="js/main.js"></script>
 
-    <!-- Page-specific JavaScript -->
+    <!-- Page-specific-->
     <script>
-        // Add subtle animation to service cards
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -246,8 +245,6 @@
                 }
             });
         }, observerOptions);
-
-        // Initialize card animations
         document.querySelectorAll('.service-card').forEach(card => {
             card.style.opacity = '0';
             card.style.transform = 'translateY(20px)';
@@ -255,7 +252,6 @@
             observer.observe(card);
         });
 
-        // Video player functionality
         class VideoPlayer {
             constructor() {
                 this.video = document.getElementById('mainVideo');
@@ -283,34 +279,29 @@
                 this.videoControls.style.display = 'block';
                 this.videoControls.style.opacity = '0.8';
 
-                // Play button overlay
                 this.playButton.addEventListener('click', () => {
                     console.log('Play button clicked');
                     this.togglePlay();
                 });
 
-                // Play/Pause button in controls
                 this.playPauseBtn.addEventListener('click', () => {
                     this.togglePlay();
                 });
 
-                // Mute button
                 this.muteBtn.addEventListener('click', () => {
                     this.toggleMute();
                 });
 
-                // Volume slider
                 this.volumeSlider.addEventListener('input', (e) => {
                     this.video.volume = e.target.value / 100;
                     this.updateMuteButton();
                 });
 
-                // Fullscreen button
+
                 this.fullscreenBtn.addEventListener('click', () => {
                     this.toggleFullscreen();
                 });
 
-                // Video events
                 this.video.addEventListener('play', () => {
                     console.log('Video started playing');
                     this.videoOverlay.style.display = 'none';
@@ -334,7 +325,6 @@
                     this.updateTime();
                 });
 
-                // Progress bar click
                 const progressBar = document.querySelector('.progress-bar-container');
                 if (progressBar) {
                     progressBar.addEventListener('click', (e) => {
@@ -344,7 +334,6 @@
                     });
                 }
 
-                // Mouse events for better UX
                 const videoWrapper = document.querySelector('.video-wrapper');
                 let hideControlsTimeout;
 
@@ -368,7 +357,6 @@
                     });
                 }
 
-                // Click on video to toggle play/pause
                 this.video.addEventListener('click', () => {
                     this.togglePlay();
                 });
@@ -427,16 +415,13 @@
             }
         }
 
-        // Initialize video player when DOM is ready
         document.addEventListener('DOMContentLoaded', () => {
             console.log('DOM loaded, initializing video player...');
             
-            // Small delay to ensure all elements are rendered
             setTimeout(() => {
                 const videoPlayer = new VideoPlayer();
                 console.log('Video player initialized:', videoPlayer);
                 
-                // Double-check overlay visibility
                 const overlay = document.getElementById('videoOverlay');
                 const playBtn = document.getElementById('playButton');
                 
