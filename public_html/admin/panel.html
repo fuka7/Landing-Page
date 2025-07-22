@@ -276,7 +276,7 @@
         document.getElementById('logoutBtn').addEventListener('click', function() {
             if (confirm('¿Está seguro que desea cerrar sesión?')) {
                 localStorage.removeItem('mdshp_admin_session');
-                window.location.href = 'login.html';
+                window.location.href = '../tutoriales.html';
             }
         });
 
@@ -648,48 +648,30 @@
                 
                 return `
                     <div class="file-item" data-id="${file.id}">
-                        <div class="file-item-icon ${itemClass}">
-                            <i class="${iconClass}"></i>
-                        </div>
-                        <div class="file-item-content">
-                            <h3 class="file-item-title">${file.title}</h3>
-                            <div class="file-item-meta">
-                                <span><i class="bi bi-tag"></i> ${file.category}</span>
-                                <span><i class="bi bi-file-earmark"></i> ${file.fileName}</span>
-                                <span><i class="bi bi-hdd"></i> ${file.fileSize}</span>
-                                <span><i class="bi bi-calendar"></i> ${file.uploadDate}</span>
-                                ${file.source === 'youtube' ? '<span><i class="bi bi-youtube"></i> YouTube</span>' : ''}
-                            </div>
-                        </div>
-                        <div class="file-item-actions">
-                            <button class="action-btn view-btn" onclick="viewFile(${file.id})">
-                                <i class="bi bi-eye"></i>
-                                Ver
-                            </button>
-                            <button class="action-btn delete-btn" onclick="deleteFile(${file.id})">
-                                <i class="bi bi-trash"></i>
-                                Eliminar
-                            </button>
-                        </div>
-                    </div>
-                `;
-            }).join('');
+            <div class="file-item-icon ${itemClass}">
+                <i class="${iconClass}"></i>
+            </div>
+            <div class="file-item-content">
+                <h3 class="file-item-title">${file.title}</h3>
+                <div class="file-item-meta">
+                    <span><i class="bi bi-tag"></i> ${file.category}</span>
+                    <span><i class="bi bi-file-earmark"></i> ${file.fileName}</span>
+                    <span><i class="bi bi-hdd"></i> ${file.fileSize}</span>
+                    <span><i class="bi bi-calendar"></i> ${file.uploadDate}</span>
+                    ${file.source === 'youtube' ? '<span><i class="bi bi-youtube"></i> YouTube</span>' : ''}
+                </div>
+            </div>
+            <div class="file-item-actions">
+                <button class="action-btn delete-btn" onclick="deleteFile(${file.id})">
+                    <i class="bi bi-trash"></i>
+                    Eliminar
+                </button>
+            </div>
+        </div>
+    `;
+}).join('');
             
             filesList.innerHTML = filesHTML;
-        }
-
-        // Ver archivo
-        function viewFile(fileId) {
-            const file = uploadedFiles.find(f => f.id === fileId);
-            if (file) {
-                let message = `Título: ${file.title}\nCategoría: ${file.category}\nDescripción: ${file.description}\nArchivo: ${file.fileName}`;
-                
-                if (file.source === 'youtube') {
-                    message += `\nTipo: Video de YouTube\nURL: ${file.youtubeData.url}`;
-                }
-                
-                alert(message);
-            }
         }
 
         // Eliminar archivo

@@ -672,14 +672,6 @@ body {
     background: #fecaca;
 }
 
-.view-btn {
-    background: #e0f2fe;
-    color: #0369a1;
-}
-
-.view-btn:hover {
-    background: #bae6fd;
-}
 
 /* Empty state */
 .empty-state {
