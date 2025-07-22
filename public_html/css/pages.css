@@ -1,0 +1,1740 @@
+/* ==============================================
+   PAGES.CSS - HP Design System - OPTIMIZADO
+   ============================================== */
+
+/* ==============================================
+   GENERAL PAGE ELEMENTS
+   ============================================== */
+
+/* Page Hero */
+.page-hero {
+    background: linear-gradient(135deg, var(--hp-gray-light) 0%, #e9ecef 100%);
+    padding: 4rem 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.page-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(135deg, transparent 0%, rgba(0, 150, 214, 0.02) 100%);
+    clip-path: polygon(40% 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+.page-hero-content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.page-hero h1 {
+    font-size: 3rem;
+    color: var(--hp-navy);
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+.page-hero p {
+    font-size: 1.2rem;
+    color: var(--hp-gray);
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+/* Service Card Links */
+.service-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.service-card-link:hover {
+    transform: translateY(-5px);
+    text-decoration: none;
+    color: inherit;
+}
+
+.card-arrow {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    color: rgba(0, 150, 214, 0.4);
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.service-card:hover .card-arrow {
+    color: var(--hp-blue);
+    transform: translateX(5px);
+}
+
+/* ==============================================
+   HOMEPAGE SECTIONS
+   ============================================== */
+
+/* Additional Services Section */
+.additional-services {
+    background: var(--hp-gray-light);
+    padding: 60px 20px;
+    margin-top: 40px;
+}
+
+.additional-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 36px;
+    font-weight: 400;
+    color: #333;
+    margin-bottom: 16px;
+    line-height: 1.2;
+}
+
+.section-description {
+    font-size: 18px;
+    color: #666;
+    max-width: 700px;
+    margin: 0 auto 60px;
+    line-height: 1.6;
+}
+
+.additional-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+}
+
+.additional-card {
+    background: white;
+    padding: 32px 24px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+    border: 1px solid #e5e5e5;
+    text-align: left;
+}
+
+.additional-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    text-decoration: none;
+    color: inherit;
+}
+
+.additional-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--hp-blue-light);
+    color: var(--hp-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    transition: all 0.3s ease;
+}
+
+.additional-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.additional-card:hover .additional-icon {
+    background: var(--hp-blue);
+    color: white;
+}
+
+.additional-title {
+    font-size: 20px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.additional-description {
+    color: #666;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+/* Contact Section */
+.contact {
+    background: white;
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.contact-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.contact-content h2 {
+    font-size: 36px;
+    font-weight: 400;
+    color: #333;
+    margin-bottom: 16px;
+    line-height: 1.2;
+}
+
+.contact-content p {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+.contact-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.contact-btn {
+    padding: 12px 32px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.contact-btn:hover {
+    transform: translateY(-2px);
+    text-decoration: none;
+}
+
+.contact-btn:first-child {
+    background: var(--hp-blue);
+    color: white;
+    border: 1px solid var(--hp-blue);
+}
+
+.contact-btn:first-child:hover {
+    background: var(--hp-blue-dark);
+    color: white;
+}
+
+.contact-btn.secondary {
+    background: transparent;
+    color: var(--hp-blue);
+    border: 1px solid var(--hp-blue);
+}
+
+.contact-btn.secondary:hover {
+    background: var(--hp-blue);
+    color: white;
+}
+
+/* ==============================================
+   MESA DE AYUDA PAGE
+   ============================================== */
+
+/* Redirect Info Card */
+.redirect-info-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    margin: 2rem auto;
+    max-width: 500px;
+}
+
+.redirect-message {
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #1e293b;
+}
+
+.countdown-number {
+    font-weight: bold;
+    color: #0096D6;
+}
+
+.progress-container {
+    width: 100%;
+    height: 4px;
+    background: #e2e8f0;
+    border-radius: 2px;
+    margin-bottom: 1.5rem;
+}
+
+.progress-bar {
+    height: 100%;
+    background: #0096D6;
+    width: 0%;
+    transition: width 1s linear;
+    border-radius: 2px;
+}
+
+.redirect-actions {
+    text-align: center;
+}
+
+.redirect-btn-primary {
+    background: #0096D6;
+    color: white;
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-right: 1rem;
+    transition: all 0.3s ease;
+}
+
+.redirect-btn-primary:hover {
+    background: #006bb3;
+    transform: translateY(-1px);
+}
+
+.redirect-btn-secondary {
+    color: #64748b;
+    text-decoration: none;
+    padding: 0.75rem 1rem;
+    transition: color 0.3s ease;
+}
+
+.redirect-btn-secondary:hover {
+    color: #0096D6;
+    text-decoration: none;
+}
+
+/* Main Services Section */
+.main-services {
+    padding: 4rem 2rem;
+    background: var(--hp-gray-light);
+}
+
+.services-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.service-description {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+
+/* Support Links Section */
+.support-links {
+    padding: 3rem 2rem;
+    background: white;
+    border-top: 1px solid #e5e5e5;
+}
+
+.support-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.support-subtitle {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+.support-link-grid {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.support-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: var(--hp-blue);
+    font-weight: 500;
+    padding: 1rem 1.5rem;
+    border: 2px solid rgba(0, 150, 214, 0.2);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.support-link:hover {
+    text-decoration: none;
+    color: var(--hp-blue);
+    border-color: var(--hp-blue);
+    background: var(--hp-blue-light);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-main);
+}
+
+.support-link i {
+    font-size: 1.2rem;
+}
+
+/* ==============================================
+   TUTORIALES PAGE - CSS CORREGIDO
+   ============================================== */
+
+/* Hero Section - Tutoriales */
+.tutoriales-hero {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 4rem 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.tutoriales-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(135deg, transparent 0%, rgba(0, 150, 214, 0.02) 100%);
+    clip-path: polygon(40% 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+.tutoriales-hero-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.tutoriales-hero-title {
+    font-size: 2.5rem;
+    color: #1e293b;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+.tutoriales-hero-subtitle {
+    font-size: 1.1rem;
+    color: #64748b;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Main Services Section */
+.tutoriales-main-services {
+    padding: 3rem 2rem;
+    background: white;
+}
+
+.tutoriales-services-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.tutoriales-services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+}
+
+.tutorial-service-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background: white;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    position: relative;
+}
+
+.tutorial-service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    text-decoration: none;
+    color: inherit;
+}
+
+.tutorial-service-card.video-card {
+    background: #0096D6;
+    color: white;
+    border-color: #0096D6;
+}
+
+.tutorial-service-image {
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f1f5f9;
+}
+
+.tutorial-service-card.video-card .tutorial-service-image {
+    background: #007BB5;
+}
+
+.tutorial-service-icon {
+    font-size: 4rem;
+    color: #0096D6;
+}
+
+.tutorial-service-card.video-card .tutorial-service-icon {
+    color: white;
+    opacity: 0.9;
+}
+
+.tutorial-service-content {
+    padding: 1.5rem;
+}
+
+.tutorial-service-title {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.tutorial-service-card.video-card .tutorial-service-title {
+    color: white;
+}
+
+.tutorial-service-description {
+    font-size: 0.9rem;
+    margin: 0;
+    color: #64748b;
+    line-height: 1.5;
+}
+
+.tutorial-service-card.video-card .tutorial-service-description {
+    color: white;
+    opacity: 0.9;
+}
+
+/* Tutorial Categories Section */
+.tutorial-categories {
+    padding: 4rem 2rem;
+    background: #f8f9fa;
+}
+
+.tutorial-categories-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.tutorial-categories-title {
+    text-align: center;
+    font-size: 2rem;
+    color: #1e293b;
+    margin-bottom: 3rem;
+    font-weight: 600;
+}
+
+.tutorial-categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.tutorial-category-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s ease;
+}
+
+.tutorial-category-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+.tutorial-category-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.tutorial-category-icon {
+    width: 60px;
+    height: 60px;
+    background: #E6F4FB;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.tutorial-category-icon i {
+    font-size: 1.8rem;
+    color: #0096D6;
+}
+
+.tutorial-category-title {
+    font-size: 1.3rem;
+    color: #1e293b;
+    margin: 0;
+    font-weight: 600;
+}
+
+.tutorial-category-description {
+    color: #64748b;
+    line-height: 1.6;
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+/* Support Links Section */
+.tutoriales-support-links {
+    background: white;
+    padding: 2rem;
+    border-top: 1px solid #e2e8f0;
+}
+
+.tutoriales-support-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.tutoriales-support-subtitle {
+    font-size: 1rem;
+    color: #64748b;
+    margin-bottom: 1.5rem;
+}
+
+.tutoriales-support-grid {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.tutoriales-support-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: #0096D6;
+    font-weight: 500;
+    padding: 0.75rem 1.5rem;
+    border: 2px solid rgba(0, 150, 214, 0.2);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.tutoriales-support-link:hover {
+    color: #0096D6;
+    text-decoration: none;
+    border-color: #0096D6;
+    background: #E6F4FB;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.tutoriales-support-link i {
+    font-size: 1.2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .tutoriales-hero {
+        padding: 2rem 1rem;
+    }
+    
+    .tutoriales-hero-title {
+        font-size: 2rem;
+    }
+    
+    .tutoriales-hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .tutoriales-main-services {
+        padding: 2rem 1rem;
+    }
+    
+    .tutoriales-services-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .tutorial-categories {
+        padding: 2rem 1rem;
+    }
+    
+    .tutorial-categories-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .tutoriales-support-grid {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .tutoriales-support-link {
+        width: 100%;
+        max-width: 280px;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .tutoriales-hero-title {
+        font-size: 1.75rem;
+    }
+    
+    .tutorial-category-card {
+        padding: 1.5rem;
+    }
+    
+    .tutorial-category-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.75rem;
+    }
+    
+    .tutorial-service-content {
+        padding: 1.25rem;
+    }
+}
+
+/* Video Modal */
+.video-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(30, 42, 74, 0.9);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+}
+
+.video-modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 800px;
+    aspect-ratio: 16/9;
+}
+
+.video-close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 2001;
+    transition: all 0.3s ease;
+}
+
+.video-close:hover {
+    color: var(--hp-blue-light);
+    transform: scale(1.1);
+}
+
+.video-modal iframe {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+}
+
+/* ==============================================
+   AUTOATENCION PAGE - Integrado
+   ============================================== */
+
+/* Hero Section */
+.autoatencion-hero {
+    background: white;
+    padding: 3rem 0;
+    border-bottom: 1px solid #e5e5e5;
+    margin-top: 0;
+}
+
+.autoatencion-hero-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.autoatencion-hero-content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.autoatencion-hero-title {
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: #333;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.autoatencion-hero-subtitle {
+    font-size: 1.125rem;
+    color: #666;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Chat Layout */
+.chat-main-section {
+    background: #f5f5f5;
+    padding: 3rem 0;
+}
+
+.chat-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Sidebar */
+.chat-sidebar {
+    background: white;
+    border: 1px solid #e5e5e5;
+    height: fit-content;
+}
+
+.quick-actions-card {
+    padding: 1.5rem;
+}
+
+.quick-actions-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 0.5rem;
+}
+
+.quick-actions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.quick-action-btn {
+    background: white;
+    border: 1px solid #e5e5e5;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+}
+
+.quick-action-btn:hover {
+    background: #f8f9fa;
+    border-color: #0096D6;
+}
+
+.quick-action-btn i {
+    color: #0096D6;
+    font-size: 1rem;
+    width: 16px;
+    text-align: center;
+}
+
+.quick-action-btn span {
+    color: #333;
+    font-weight: 500;
+}
+
+/* Chat Container */
+.chat-main {
+    background: white;
+    border: 1px solid #e5e5e5;
+}
+
+.chat-container-box {
+    display: flex;
+    flex-direction: column;
+    height: 600px;
+}
+
+/* Chat Header */
+.chat-header-section {
+    background: #0096D6;
+    color: white;
+    padding: 1.5rem;
+    border-bottom: 1px solid #007BB5;
+}
+
+.chat-header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bot-info-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.bot-avatar-circle {
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.bot-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.bot-name {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.bot-status {
+    font-size: 0.875rem;
+    opacity: 0.9;
+    margin-top: 0.25rem;
+}
+
+.chat-header-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.chat-header-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chat-header-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Chat Messages */
+.chat-messages-area {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+/* Chat Input */
+.chat-input-section {
+    background: white;
+    padding: 1.5rem;
+}
+
+.chat-input-container {
+    border: 1px solid #e5e5e5;
+    background: white;
+}
+
+.input-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-textarea {
+    width: 100%;
+    border: none;
+    padding: 1rem;
+    font-family: inherit;
+    font-size: 1rem;
+    resize: none;
+    outline: none;
+    background: white;
+    min-height: 80px;
+}
+
+.input-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background: #f8f9fa;
+    border-top: 1px solid #e5e5e5;
+}
+
+.char-counter {
+    font-size: 0.875rem;
+    color: #666;
+}
+
+.send-message-btn {
+    background: #0096D6;
+    border: none;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background 0.3s ease;
+}
+
+.send-message-btn:hover {
+    background: #007BB5;
+}
+
+.send-message-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+.send-message-btn i {
+    font-size: 0.875rem;
+}
+
+/* FAQ Section */
+.faq-quick-section {
+    background: white;
+    padding: 3rem 0;
+}
+
+.faq-section-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 400;
+    color: #333;
+    margin-bottom: 3rem;
+    line-height: 1.2;
+}
+
+.faq-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.faq-help-card {
+    background: white;
+    border: 1px solid #e5e5e5;
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.faq-help-card:hover {
+    border-color: #0096D6;
+    box-shadow: 0 2px 8px rgba(0, 150, 214, 0.1);
+    transform: translateY(-2px);
+}
+
+.faq-card-icon {
+    width: 48px;
+    height: 48px;
+    background: #f1f5f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.faq-card-icon i {
+    font-size: 1.5rem;
+    color: #0096D6;
+}
+
+.faq-card-content {
+    flex: 1;
+}
+
+.faq-card-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 0.5rem 0;
+}
+
+.faq-card-desc {
+    font-size: 0.875rem;
+    color: #666;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* Additional Resources */
+.additional-resources-section {
+    background: #f5f5f5;
+    padding: 3rem 0;
+}
+
+.resources-section-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 400;
+    color: #333;
+    margin-bottom: 3rem;
+    line-height: 1.2;
+}
+
+.resources-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.resource-link-card {
+    background: white;
+    border: 1px solid #e5e5e5;
+    padding: 1.5rem;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.3s ease;
+}
+
+.resource-link-card:hover {
+    border-color: #0096D6;
+    box-shadow: 0 2px 8px rgba(0, 150, 214, 0.1);
+    transform: translateY(-2px);
+    text-decoration: none;
+    color: inherit;
+}
+
+.resource-card-icon {
+    width: 48px;
+    height: 48px;
+    background: #f1f5f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.resource-card-icon i {
+    font-size: 1.5rem;
+    color: #0096D6;
+}
+
+.resource-card-content {
+    flex: 1;
+}
+
+.resource-card-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 0.5rem 0;
+}
+
+.resource-card-desc {
+    font-size: 0.875rem;
+    color: #666;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.resource-card-arrow {
+    color: #ccc;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.resource-link-card:hover .resource-card-arrow {
+    color: #0096D6;
+    transform: translateX(4px);
+}
+
+/* Scrollbar personalizado para chat */
+.chat-messages-area::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chat-messages-area::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.chat-messages-area::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+}
+
+.chat-messages-area::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* ==============================================
+   OTRAS PÁGINAS (mantenidas del original)
+   ============================================== */
+
+/* Hero Section */
+.tutoriales-hero,
+.indicadores-hero,
+.alcances-hero,
+.seguros-hero {
+    background: #f8f9fa;
+    padding: 3rem 2rem;
+    text-align: center;
+}
+
+.tutoriales-hero-container,
+.indicadores-hero-container,
+.alcances-hero-container,
+.seguros-hero-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.tutoriales-hero-title,
+.indicadores-hero-title,
+.alcances-hero-title,
+.seguros-hero-title {
+    font-size: 2.5rem;
+    color: #1e293b;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.tutoriales-hero-subtitle,
+.indicadores-hero-subtitle,
+.alcances-hero-subtitle,
+.seguros-hero-subtitle {
+    font-size: 1.1rem;
+    color: #64748b;
+    margin-bottom: 2rem;
+}
+
+/* Redirect Cards */
+.indicadores-redirect-card,
+.seguros-redirect-card {
+    background: white;
+    padding: 2rem;
+    border: 1px solid #e2e8f0;
+    margin: 2rem auto;
+    max-width: 500px;
+}
+
+.indicadores-redirect-message,
+.seguros-redirect-message {
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #1e293b;
+}
+
+/* Services Grids */
+.tutoriales-services,
+.indicadores-services,
+.alcances-services,
+.seguros-services {
+    padding: 3rem 2rem;
+    background: white;
+}
+
+.tutoriales-services-container,
+.indicadores-services-container,
+.alcances-services-container,
+.seguros-services-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.tutoriales-services-grid,
+.indicadores-services-grid,
+.alcances-services-grid,
+.seguros-services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1rem;
+}
+
+.tutorial-service-card,
+.indicadores-service-card,
+.alcances-service-card,
+.seguros-service-card {
+    border: 1px solid #e2e8f0;
+    background: white;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: all 0.3s ease;
+}
+
+.tutorial-service-card:hover,
+.indicadores-service-card:hover,
+.alcances-service-card:hover,
+.seguros-service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    text-decoration: none;
+    color: inherit;
+}
+
+.tutorial-service-card.video-card,
+.tutorial-service-card.featured-card,
+.indicadores-service-card.featured-card,
+.alcances-service-card.featured-card,
+.seguros-service-card.featured-card {
+    background: #0096D6;
+    color: white;
+}
+
+.tutorial-service-image,
+.indicadores-service-image,
+.alcances-service-image,
+.seguros-service-image {
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f1f5f9;
+}
+
+.tutorial-service-card.video-card .tutorial-service-image,
+.tutorial-service-card.featured-card .tutorial-service-image,
+.indicadores-service-card.featured-card .indicadores-service-image,
+.alcances-service-card.featured-card .alcances-service-image,
+.seguros-service-card.featured-card .seguros-service-image {
+    background: #007BB5;
+}
+
+.tutorial-service-icon,
+.indicadores-service-icon,
+.alcances-service-icon,
+.seguros-service-icon {
+    font-size: 4rem;
+    color: #0096D6;
+}
+
+.tutorial-service-card.video-card .tutorial-service-icon,
+.tutorial-service-card.featured-card .tutorial-service-icon,
+.indicadores-service-card.featured-card .indicadores-service-icon,
+.alcances-service-card.featured-card .alcances-service-icon,
+.seguros-service-card.featured-card .seguros-service-icon {
+    color: white;
+    opacity: 0.8;
+}
+
+.tutorial-service-content,
+.indicadores-service-content,
+.alcances-service-content,
+.seguros-service-content {
+    padding: 1.5rem;
+}
+
+.tutorial-service-title,
+.indicadores-service-title,
+.alcances-service-title,
+.seguros-service-title {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.tutorial-service-card.video-card .tutorial-service-title,
+.tutorial-service-card.featured-card .tutorial-service-title,
+.indicadores-service-card.featured-card .indicadores-service-title,
+.alcances-service-card.featured-card .alcances-service-title,
+.seguros-service-card.featured-card .seguros-service-title {
+    color: white;
+}
+
+.tutorial-service-description,
+.indicadores-service-description,
+.alcances-service-description,
+.seguros-service-description {
+    font-size: 0.9rem;
+    margin: 0;
+    color: #64748b;
+    line-height: 1.5;
+}
+
+.tutorial-service-card.video-card .tutorial-service-description,
+.tutorial-service-card.featured-card .tutorial-service-description,
+.indicadores-service-card.featured-card .indicadores-service-description,
+.alcances-service-card.featured-card .alcances-service-description,
+.seguros-service-card.featured-card .seguros-service-description {
+    color: white;
+    opacity: 0.9;
+}
+
+/* Support Links para todas las páginas */
+.tutoriales-support-links,
+.indicadores-support-links,
+.alcances-support-links,
+.seguros-support-links {
+    background: white;
+    padding: 2rem;
+    border-top: 1px solid #e2e8f0;
+}
+
+.tutoriales-support-container,
+.indicadores-support-container,
+.alcances-support-container,
+.seguros-support-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.tutoriales-support-subtitle,
+.indicadores-support-subtitle,
+.alcances-support-subtitle,
+.seguros-support-subtitle {
+    font-size: 1rem;
+    color: #64748b;
+    margin-bottom: 1.5rem;
+}
+
+.tutoriales-support-grid,
+.indicadores-support-grid,
+.alcances-support-grid,
+.seguros-support-grid {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.tutoriales-support-link,
+.indicadores-support-link,
+.alcances-support-link,
+.seguros-support-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: #0096D6;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.tutoriales-support-link:hover,
+.indicadores-support-link:hover,
+.alcances-support-link:hover,
+.seguros-support-link:hover {
+    color: #006bb3;
+    text-decoration: none;
+}
+
+/* ==============================================
+   RESPONSIVE DESIGN
+   ============================================== */
+
+@media (max-width: 768px) {
+    /* Homepage sections responsive */
+    .additional-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .section-title {
+        font-size: 28px;
+    }
+
+    .section-description {
+        font-size: 16px;
+        margin-bottom: 40px;
+    }
+
+    .contact-content h2 {
+        font-size: 28px;
+    }
+
+    .contact-content p {
+        font-size: 16px;
+        margin-bottom: 32px;
+    }
+
+    .contact-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .contact-btn {
+        width: 100%;
+        max-width: 280px;
+    }
+
+    /* Mesa de Ayuda page responsive */
+    .redirect-info-card {
+        margin: 1.5rem auto;
+        padding: 1.5rem;
+        max-width: 90%;
+    }
+
+    .redirect-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: center;
+    }
+
+    .redirect-btn-primary {
+        margin-right: 0;
+        width: 100%;
+        max-width: 200px;
+    }
+
+    .support-link-grid {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .support-link {
+        width: 100%;
+        max-width: 280px;
+        justify-content: center;
+    }
+
+    /* Autoatencion responsive */
+    .autoatencion-hero-title {
+        font-size: 2rem;
+    }
+
+    .autoatencion-hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .chat-layout {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .chat-sidebar {
+        order: 2;
+    }
+
+    .chat-main {
+        order: 1;
+    }
+
+    .chat-container-box {
+        height: 500px;
+    }
+
+    .faq-cards-grid,
+    .resources-cards-grid {
+        grid-template-columns: 1fr;
+        padding: 0 1rem;
+    }
+
+    .chat-header-actions {
+        display: none;
+    }
+
+    /* Other pages responsive */
+    .page-hero h1 {
+        font-size: 2rem;
+    }
+    
+    .upload-card {
+        padding: 2rem 1rem;
+    }
+    
+    .tutorials-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .gallery-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .banner-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    /* Otras páginas responsive */
+    .tutoriales-hero-title,
+    .indicadores-hero-title,
+    .alcances-hero-title,
+    .seguros-hero-title {
+        font-size: 2rem;
+    }
+
+    .tutoriales-hero-subtitle,
+    .indicadores-hero-subtitle,
+    .alcances-hero-subtitle,
+    .seguros-hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .tutoriales-support-grid,
+    .indicadores-support-grid,
+    .alcances-support-grid,
+    .seguros-support-grid {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .seguros-redirect-card,
+    .indicadores-redirect-card {
+        padding: 1.5rem;
+        margin: 1.5rem auto;
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Homepage sections mobile responsive */
+    .additional-services {
+        padding: 40px 20px;
+    }
+
+    .additional-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .additional-card {
+        padding: 24px 20px;
+    }
+
+    .contact {
+        padding: 40px 20px;
+    }
+
+    .section-title {
+        font-size: 24px;
+    }
+
+    .section-description {
+        font-size: 15px;
+    }
+
+    .contact-content h2 {
+        font-size: 24px;
+    }
+
+    .contact-content p {
+        font-size: 15px;
+    }
+
+    /* Mesa de Ayuda mobile responsive */
+    .redirect-info-card {
+        padding: 1rem;
+        margin: 1rem auto;
+    }
+
+    /* Autoatencion mobile responsive */
+    .autoatencion-hero {
+        padding: 2rem 0;
+    }
+
+    .autoatencion-hero-title {
+        font-size: 1.75rem;
+    }
+
+    .chat-main-section {
+        padding: 2rem 0;
+    }
+
+    .faq-quick-section,
+    .additional-resources-section {
+        padding: 2rem 0;
+    }
+
+    .faq-help-card,
+    .resource-link-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+        padding: 1.25rem;
+    }
+
+    .input-controls {
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: stretch;
+    }
+
+    .send-message-btn {
+        justify-content: center;
+        width: 100%;
+    }
+
+    /* Tutoriales page mobile responsive */
+    .tutoriales-services-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .tutorial-categories-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .tutoriales-support-grid {
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+
+    .tutoriales-support-link {
+        width: 100% !important;
+        max-width: 280px !important;
+        justify-content: center !important;
+    }
+
+    /* Otras páginas mobile */
+    .tutoriales-hero,
+    .indicadores-hero,
+    .alcances-hero,
+    .seguros-hero {
+        padding: 2rem 1rem;
+    }
+
+    .tutoriales-hero-title,
+    .indicadores-hero-title,
+    .alcances-hero-title,
+    .seguros-hero-title {
+        font-size: 1.8rem;
+    }
+}

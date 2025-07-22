@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mesa de Ayuda - MDSHP | Centro de Soporte HP</title>
+    <meta name="description" content="Accede al sistema de tickets de Mesa de Ayuda para gestionar tus solicitudes de soporte técnico.">
+    
+    <!-- HP Favicon -->
+    <link rel="icon" type="image/x-icon" href="imagenes/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="imagenes/favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="imagenes/favicon.png">
+    
+    <!-- Google Fonts - HP Style -->
+    <link href="https://fonts.googleapis.com/css2?family=Forma+DJR+Display:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700;9..144,800;9..144,900&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css">
+    
+    <!-- CSS Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">Mesa de Ayuda - Sistema de Tickets</h1>
+            <p class="hero-subtitle">Accede al sistema externo para crear y gestionar tus tickets de soporte técnico</p>
+            
+            <!-- Redirect Info -->
+            <div class="redirect-info-card">
+                <p class="redirect-message">
+                    Redirigiéndote en <span id="countdown" class="countdown-number">5</span> segundos...
+                </p>
+                <div class="progress-container">
+                    <div id="progressBar" class="progress-bar"></div>
+                </div>
+                <div class="redirect-actions">
+                    <button onclick="redirectNow()" class="redirect-btn-primary">
+                        Ir Ahora
+                    </button>
+                    <a href="index.html" class="redirect-btn-secondary">Cancelar</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Services -->
+    <section class="main-services">
+        <div class="services-container">
+            <div class="services-grid">
+                <a href="autoatencion.html" class="service-card">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=400&h=160&fit=crop&crop=center" alt="Chatbot de ayuda">
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Prueba el chatbot primero</h3>
+                        <p class="service-description">Obtén respuestas inmediatas para problemas comunes antes de crear un ticket.</p>
+                        <div class="service-arrow">→</div>
+                    </div>
+                </a>
+
+                <a href="tutoriales.html" class="service-card">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=160&fit=crop&crop=center" alt="Tutoriales">
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Consulta tutoriales</h3>
+                        <p class="service-description">Biblioteca completa de guías paso a paso para resolver problemas técnicos.</p>
+                        <div class="service-arrow">→</div>
+                    </div>
+                </a>
+
+                <a href="alcances-exclusiones.html" class="service-card">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&h=160&fit=crop&crop=center" alt="Alcances del servicio">
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Revisa alcances del servicio</h3>
+                        <p class="service-description">Verifica qué servicios están incluidos en tu plan de soporte.</p>
+                        <div class="service-arrow">→</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Links -->
+    <section class="support-links">
+        <div class="support-container">
+            <p class="support-subtitle">Soporte para otro producto:</p>
+            <div class="support-link-grid">
+                <a href="tutoriales.html" class="support-link">
+                    <i class="bi bi-windows"></i>
+                    <span>Soporte para Windows 11</span>
+                </a>
+                <a href="activacion-seguro.html" class="support-link">
+                    <i class="bi bi-shield-check"></i>
+                    <span>Seguros para equipos</span>
+                </a>
+                <a href="autoatencion.html" class="support-link">
+                    <i class="bi bi-chat-dots"></i>
+                    <span>Pregunta a nuestro Asistente Virtual</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Components Loader -->
+    <script src="js/components.js"></script>
+    <script src="js/main.js"></script>
+
+    <!-- Page-specific JavaScript -->
+    <script>
+        // Countdown functionality
+        let countdown = 5;
+        const countdownElement = document.getElementById('countdown');
+        const progressBar = document.getElementById('progressBar');
+        
+        function updateCountdown() {
+            countdownElement.textContent = countdown;
+            const progress = ((5 - countdown) / 5) * 100;
+            progressBar.style.width = progress + '%';
+            
+            if (countdown <= 0) {
+                redirectToSystem();
+            } else {
+                countdown--;
+                setTimeout(updateCountdown, 1000);
+            }
+        }
+        
+        function redirectToSystem() {
+            alert('🎫 Redirigiendo al Sistema de Tickets...\n\nEn un entorno real, aquí se abriría el sistema externo de gestión de tickets.');
+        }
+        
+        function redirectNow() {
+            redirectToSystem();
+        }
+        
+        // Start countdown
+        setTimeout(updateCountdown, 1000);
+    </script>
+</body>
+</html>

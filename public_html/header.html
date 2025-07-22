@@ -1,0 +1,98 @@
+<!-- Header Principal (blanco) -->
+<header class="header">
+    <div class="header-container">
+        <div class="logo-section">
+            <a href="index.html" class="logo">
+                <img src="imagenes/logo_HP.jpg" alt="HP Logo" class="logo-image">
+            </a>
+            <div class="platform-status">
+                <span class="status-text">Plataforma en Desarrollo</span>
+            </div>
+        </div>
+        
+        <div class="header-actions">
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Buscar soporte de HP">
+                <button class="search-btn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                    </svg>
+                </button>
+            </div>
+            <a href="autoatencion.html" class="login-btn chat-btn">Chat</a>
+            <a href="mesa-de-ayuda.html" class="login-btn ticket-btn">Crear Ticket</a>
+        </div>
+    </div>
+</header>
+
+<!-- Barra negra de soporte -->
+<div class="header-top-bar">
+    <div class="header-top-container">
+        <nav class="header-top-nav">
+            <li><a href="index.html">Inicio Soporte</a></li>
+            <li><a href="mesa-de-ayuda.html">Contacto</a></li>
+            <li><a href="tutoriales.html">Software y drivers</a></li>
+            <li class="dropdown">
+                <a href="tutoriales.html">
+                    Diagnósticos
+                    <i class="bi bi-chevron-down dropdown-icon"></i>
+                </a>
+                <div class="dropdown-menu">
+                    <a href="tutoriales.html">Herramientas de diagnóstico para ordenadores</a>
+                    <a href="tutoriales.html">Soporte para Windows</a>
+                </div>
+            </li>
+        </nav>
+    </div>
+</div>
+
+<!-- Estilos CSS adicionales para el texto de desarrollo -->
+<style>
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.platform-status {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.status-text {
+    background: #ffffff;
+    color: rgb(44, 44, 44);
+    padding: 4px 12px;
+    font-size: 23px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 0;
+}
+
+/* Responsive para móvil */
+@media (max-width: 768px) {
+    .logo-section {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .status-text {
+        font-size: 11px;
+        padding: 3px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-section {
+        gap: 6px;
+    }
+    
+    .status-text {
+        font-size: 80px;
+        padding: 2px 8px;
+    }
+}
+</style>

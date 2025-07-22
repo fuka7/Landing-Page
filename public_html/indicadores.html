@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indicadores - MDSHP | Centro de Soporte HP</title>
+    <meta name="description" content="Accede al dashboard de indicadores de gestión con métricas en tiempo real.">
+    
+    <!-- HP Favicon -->
+    <link rel="icon" type="image/x-icon" href="imagenes/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="imagenes/favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="imagenes/favicon.png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Forma+DJR+Display:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700;9..144,800;9..144,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
+
+    <!-- Hero -->
+    <section class="indicadores-hero">
+        <div class="indicadores-hero-container">
+            <h1 class="indicadores-hero-title">Indicadores de Gestión</h1>
+            <p class="indicadores-hero-subtitle">Accede al dashboard con métricas en tiempo real y reportes de gestión</p>
+            
+            <div class="indicadores-redirect-card">
+                <p class="indicadores-redirect-message">
+                    Redirigiéndote en <span id="countdown" class="countdown-number">6</span> segundos...
+                </p>
+                <div class="progress-container">
+                    <div id="progressBar" class="progress-bar"></div>
+                </div>
+                <div class="redirect-actions">
+                    <button onclick="redirectNow()" class="redirect-btn-primary">Ir al Dashboard</button>
+                    <a href="index.html" class="redirect-btn-secondary">Cancelar</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="indicadores-services">
+        <div class="indicadores-services-container">
+            <div class="indicadores-services-grid">
+                <div class="indicadores-service-card featured-card">
+                    <div class="indicadores-service-image">
+                        <i class="bi bi-graph-up-arrow indicadores-service-icon"></i>
+                    </div>
+                    <div class="indicadores-service-content">
+                        <h3 class="indicadores-service-title">Métricas en tiempo real</h3>
+                        <p class="indicadores-service-description">Dashboard con indicadores clave de rendimiento actualizados automáticamente.</p>
+                    </div>
+                </div>
+
+                <a href="mesa-de-ayuda.html" class="indicadores-service-card">
+                    <div class="indicadores-service-image">
+                        <i class="bi bi-file-earmark-text indicadores-service-icon"></i>
+                    </div>
+                    <div class="indicadores-service-content">
+                        <h3 class="indicadores-service-title">Reportes personalizables</h3>
+                        <p class="indicadores-service-description">Genera reportes adaptados a tus necesidades con exportación en PDF y Excel.</p>
+                    </div>
+                </a>
+
+                <a href="autoatencion.html" class="indicadores-service-card">
+                    <div class="indicadores-service-image">
+                        <i class="bi bi-graph-up indicadores-service-icon"></i>
+                    </div>
+                    <div class="indicadores-service-content">
+                        <h3 class="indicadores-service-title">Análisis de tendencias</h3>
+                        <p class="indicadores-service-description">Identificación de patrones para optimizar procesos y anticipar necesidades.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support -->
+    <section class="indicadores-support-links">
+        <div class="indicadores-support-container">
+            <p class="indicadores-support-subtitle">Soporte para otro producto:</p>
+            <div class="indicadores-support-grid">
+                <a href="tutoriales.html" class="indicadores-support-link">
+                    <i class="bi bi-windows"></i><span>Soporte para Windows 11</span>
+                </a>
+                <a href="mesa-de-ayuda.html" class="indicadores-support-link">
+                    <i class="bi bi-headset"></i><span>Mesa de ayuda</span>
+                </a>
+                <a href="autoatencion.html" class="indicadores-support-link">
+                    <i class="bi bi-chat-dots"></i><span>Pregunta a nuestro Asistente Virtual</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Components Loader -->
+    <script src="js/components.js"></script>
+    <script src="js/main.js"></script>
+
+    <!-- Page-specific JavaScript -->
+    <script>
+        let countdown = 6;
+        const countdownElement = document.getElementById('countdown');
+        const progressBar = document.getElementById('progressBar');
+        
+        function updateCountdown() {
+            countdownElement.textContent = countdown;
+            const progress = ((6 - countdown) / 6) * 100;
+            progressBar.style.width = progress + '%';
+            
+            if (countdown <= 0) {
+                redirectToSystem();
+            } else {
+                countdown--;
+                setTimeout(updateCountdown, 1000);
+            }
+        }
+        
+        function redirectToSystem() {
+            alert('📊 Redirigiendo al Dashboard de Indicadores...');
+        }
+        
+        function redirectNow() {
+            redirectToSystem();
+        }
+        
+        setTimeout(updateCountdown, 1000);
+    </script>
+</body>
+</html>
