@@ -1,5 +1,5 @@
 /* ==============================================
-   PAGES.CSS - HP Design System - OPTIMIZADO
+   PAGES.CSS 
    ============================================== */
 
 /* ==============================================
@@ -384,10 +384,10 @@
 }
 
 /* ==============================================
-   TUTORIALES PAGE - DISEÑO HP CORPORATIVO SIMPLE
+   TUTORIALES PAGE -
    ============================================== */
 
-/* Header Section - Simple y rectangular */
+/* Header Section*/
 .tutoriales-header {
     background: #ffffff;
     border-bottom: 1px solid #e0e0e0;
@@ -542,7 +542,7 @@
     min-height: 80px;
 }
 
-/* File Upload - Simple */
+/* File Upload */
 .file-upload {
     display: flex;
     align-items: center;
@@ -596,7 +596,7 @@
     background: #0082b8;
 }
 
-/* Tutorials Library - Layout Simple */
+/* Tutorials Library */
 .tutorials-library {
     background: #ffffff;
     padding: 2rem 0;
@@ -988,7 +988,7 @@
 }
 
 /* ==============================================
-   AUTOATENCION PAGE - Integrado
+   AUTOATENCION PAGE 
    ============================================== */
 
 /* Hero Section */
@@ -1438,7 +1438,7 @@
 }
 
 /* ==============================================
-   OTRAS PÁGINAS (mantenidas del original)
+   OTRAS PÁGINAS
    ============================================== */
 
 /* Hero Section */
