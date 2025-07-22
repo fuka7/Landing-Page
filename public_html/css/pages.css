@@ -1967,3 +1967,523 @@
         font-size: 1.8rem;
     }
 }
+/* ==============================================
+   ALCANCES Y EXCLUSIONES PAGE
+   ============================================== */
+
+/* Header Section */
+.alcances-header {
+    background: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 2rem 0;
+}
+
+.alcances-header .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.alcances-header h1 {
+    font-size: 2rem;
+    color: #333333;
+    font-weight: 400;
+    margin: 0 0 0.5rem 0;
+    letter-spacing: normal;
+}
+
+.alcances-header p {
+    font-size: 1rem;
+    color: #666666;
+    margin: 0;
+    font-weight: 400;
+}
+
+/* Legal Notice */
+.legal-notice {
+    background: #f8f9fa;
+    padding: 2rem 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.notice-card {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-left: 4px solid #0096d6;
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+}
+
+.notice-icon {
+    width: 48px;
+    height: 48px;
+    background: #e7f4fd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.notice-icon i {
+    font-size: 1.5rem;
+    color: #0096d6;
+}
+
+.notice-content h3 {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #333333;
+    margin: 0 0 0.5rem 0;
+}
+
+.notice-content p {
+    font-size: 0.95rem;
+    color: #666666;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* Section Headers */
+.section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.section-header h2 {
+    font-size: 1.75rem;
+    font-weight: 400;
+    color: #333333;
+    margin: 0 0 0.5rem 0;
+}
+
+.section-header p {
+    font-size: 1rem;
+    color: #666666;
+    margin: 0;
+}
+
+/* Alcances Section */
+.alcances-section {
+    background: #ffffff;
+    padding: 3rem 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.alcances-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.alcance-item {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    padding: 2rem;
+    display: flex;
+    gap: 1.5rem;
+    transition: all 0.2s ease;
+}
+
+.alcance-item:hover {
+    border-color: #0096d6;
+    box-shadow: 0 2px 8px rgba(0, 150, 214, 0.1);
+}
+
+.alcance-icon {
+    width: 64px;
+    height: 64px;
+    background: #e7f4fd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.alcance-icon i {
+    font-size: 2rem;
+    color: #0096d6;
+}
+
+.alcance-content h3 {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #333333;
+    margin: 0 0 1rem 0;
+}
+
+.alcance-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.alcance-content li {
+    font-size: 0.9rem;
+    color: #666666;
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+    position: relative;
+    line-height: 1.4;
+}
+
+.alcance-content li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #28a745;
+    font-weight: bold;
+}
+
+/* Exclusiones Section */
+.exclusiones-section {
+    background: #f8f9fa;
+    padding: 3rem 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.exclusiones-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.exclusion-item {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    padding: 2rem;
+    display: flex;
+    gap: 1.5rem;
+    transition: all 0.2s ease;
+}
+
+.exclusion-item:hover {
+    border-color: #dc3545;
+    box-shadow: 0 2px 8px rgba(220, 53, 69, 0.1);
+}
+
+.exclusion-icon {
+    width: 64px;
+    height: 64px;
+    background: #fdf2f2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.exclusion-icon i {
+    font-size: 2rem;
+    color: #dc3545;
+}
+
+.exclusion-content h3 {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #333333;
+    margin: 0 0 1rem 0;
+}
+
+.exclusion-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.exclusion-content li {
+    font-size: 0.9rem;
+    color: #666666;
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+    position: relative;
+    line-height: 1.4;
+}
+
+.exclusion-content li::before {
+    content: "✗";
+    position: absolute;
+    left: 0;
+    color: #dc3545;
+    font-weight: bold;
+}
+
+/* Terms Section */
+.terms-section {
+    background: #ffffff;
+    padding: 3rem 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.terms-card {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    padding: 2rem;
+}
+
+.terms-card h2 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #333333;
+    margin: 0 0 2rem 0;
+    text-align: center;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.terms-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+}
+
+.term-item {
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-left: 3px solid #0096d6;
+}
+
+.term-item h4 {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #333333;
+    margin: 0 0 0.75rem 0;
+}
+
+.term-item p {
+    font-size: 0.9rem;
+    color: #666666;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* Contact Legal Section */
+.contact-legal {
+    background: #f8f9fa;
+    padding: 3rem 0;
+}
+
+.contact-card {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    padding: 2rem;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.contact-icon {
+    width: 80px;
+    height: 80px;
+    background: #e7f4fd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.contact-icon i {
+    font-size: 2.5rem;
+    color: #0096d6;
+}
+
+.contact-content h3 {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #333333;
+    margin: 0 0 0.75rem 0;
+}
+
+.contact-content p {
+    font-size: 0.95rem;
+    color: #666666;
+    margin: 0 0 1.5rem 0;
+    line-height: 1.5;
+}
+
+.contact-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.contact-btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.contact-btn.primary {
+    background: #0096d6;
+    color: #ffffff;
+    border: 1px solid #0096d6;
+}
+
+.contact-btn.primary:hover {
+    background: #0082b8;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.contact-btn.secondary {
+    background: #ffffff;
+    color: #0096d6;
+    border: 1px solid #0096d6;
+}
+
+.contact-btn.secondary:hover {
+    background: #e7f4fd;
+    color: #0096d6;
+    text-decoration: none;
+}
+
+/* ==============================================
+   RESPONSIVE DESIGN - ALCANCES Y EXCLUSIONES
+   ============================================== */
+
+@media (max-width: 768px) {
+    .alcances-header {
+        padding: 1.5rem 0;
+    }
+    
+    .alcances-header .container {
+        padding: 0 1rem;
+    }
+    
+    .alcances-header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .notice-card {
+        margin: 0 1rem;
+        padding: 1.25rem 1.5rem;
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+    
+    .section-header {
+        margin-bottom: 2rem;
+    }
+    
+    .section-header h2 {
+        font-size: 1.5rem;
+    }
+    
+    .alcances-grid,
+    .exclusiones-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin: 0 1rem;
+    }
+    
+    .alcance-item,
+    .exclusion-item {
+        padding: 1.5rem;
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+    
+    .terms-card {
+        margin: 0 1rem;
+        padding: 1.5rem;
+    }
+    
+    .terms-content {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .contact-card {
+        margin: 0 1rem;
+        padding: 1.5rem;
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+    
+    .contact-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .contact-btn {
+        justify-content: center;
+        width: 100%;
+        max-width: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .alcances-header h1 {
+        font-size: 1.25rem;
+    }
+    
+    .alcances-section,
+    .exclusiones-section,
+    .terms-section,
+    .contact-legal {
+        padding: 2rem 0;
+    }
+    
+    .alcances-grid,
+    .exclusiones-grid {
+        margin: 0 0.5rem;
+    }
+    
+    .alcance-item,
+    .exclusion-item {
+        padding: 1rem;
+    }
+    
+    .alcance-icon,
+    .exclusion-icon {
+        width: 48px;
+        height: 48px;
+    }
+    
+    .alcance-icon i,
+    .exclusion-icon i {
+        font-size: 1.5rem;
+    }
+    
+    .terms-card {
+        margin: 0 0.5rem;
+        padding: 1rem;
+    }
+    
+    .term-item {
+        padding: 1rem;
+    }
+    
+    .contact-card {
+        margin: 0 0.5rem;
+        padding: 1rem;
+    }
+    
+    .contact-icon {
+        width: 64px;
+        height: 64px;
+    }
+    
+    .contact-icon i {
+        font-size: 2rem;
+    }
+}
