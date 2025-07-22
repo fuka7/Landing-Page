@@ -38,39 +38,23 @@
         <div class="search-container">
             <div class="search-header">
                 <h2>Encuentre el tutorial que necesita</h2>
-                <p>Busque por título, categoría o contenido</p>
             </div>
             
             <div class="search-controls">
                 <div class="search-wrapper">
                     <i class="bi bi-search search-icon"></i>
-                    <input type="text" class="search-input" id="searchInput" placeholder="Buscar tutoriales...">
+                    <input type="text" class="search-input" id="searchInput" placeholder="Ej: hardware, windows,..">
                 </div>
-                
-                <select class="filter-select" id="categoryFilter">
-                    <option value="">Todas las categorías</option>
-                    <option value="hardware">Hardware</option>
-                    <option value="software">Software</option>
-                    <option value="redes">Redes</option>
-                    <option value="seguridad">Seguridad</option>
-                    <option value="procedimientos">Procedimientos</option>
-                </select>
-                
+            
                 <select class="filter-select" id="typeFilter">
                     <option value="">Todos los tipos</option>
                     <option value="video">Videos</option>
                     <option value="document">Documentos</option>
                 </select>
-                
-                <select class="filter-select" id="sortFilter">
-                    <option value="recent">Más recientes</option>
-                    <option value="popular">Más populares</option>
-                    <option value="title">Por título</option>
-                </select>
             </div>
             
             <div class="results-count" id="resultsCount">
-                Mostrando 6 tutoriales
+                Cargando tutoriales...
             </div>
         </div>
     </section>
@@ -94,150 +78,21 @@
                 </div>
             </div>
 
+            <!-- Loading State -->
+            <div class="loading-tutorials" id="loadingState">
+                <div class="loading-spinner"></div>
+                <h3>Cargando tutoriales...</h3>
+                <p>Por favor espere mientras cargamos el contenido</p>
+            </div>
+
             <!-- Grid View -->
-            <div class="tutorials-grid-view" id="tutorialsGrid">
-                <!-- Video Tutorial -->
-                <div class="tutorial-grid-card" data-category="software" data-type="video" data-title="configurar outlook 365">
-                    <div class="tutorial-thumbnail video">
-                        <i class="bi bi-play-circle thumbnail-icon"></i>
-                        <div class="tutorial-duration">5:32</div>
-                    </div>
-                    <div class="tutorial-grid-content">
-                        <h3 class="tutorial-grid-title">Configurar Outlook 365</h3>
-                        <p class="tutorial-grid-description">Configuración de cuenta de correo corporativo paso a paso con todas las opciones avanzadas</p>
-                        <div class="tutorial-grid-meta">
-                            <span class="tutorial-category-badge">Software</span>
-                            <div class="tutorial-stats">
-                                <span><i class="bi bi-eye"></i> 1,234</span>
-                                <span><i class="bi bi-calendar3"></i> 22/07/2025</span>
-                            </div>
-                        </div>
-                        <div class="tutorial-grid-actions">
-                            <button class="tutorial-action-btn play-tutorial-btn" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
-                                <i class="bi bi-play"></i> Ver Tutorial
-                            </button>
-                        </div>
-                    </div>
-                </div>
+            <div class="tutorials-grid-view" id="tutorialsGrid" style="display: none;">
+                <!-- Los tutoriales se cargarán dinámicamente aquí -->
+            </div>
 
-                <!-- Video Tutorial -->
-                <div class="tutorial-grid-card" data-category="hardware" data-type="video" data-title="resolución problemas impresora">
-                    <div class="tutorial-thumbnail video">
-                        <i class="bi bi-play-circle thumbnail-icon"></i>
-                        <div class="tutorial-duration">8:45</div>
-                    </div>
-                    <div class="tutorial-grid-content">
-                        <h3 class="tutorial-grid-title">Resolución de Problemas de Impresora</h3>
-                        <p class="tutorial-grid-description">Soluciones para problemas comunes de conectividad y configuración de impresoras</p>
-                        <div class="tutorial-grid-meta">
-                            <span class="tutorial-category-badge">Hardware</span>
-                            <div class="tutorial-stats">
-                                <span><i class="bi bi-eye"></i> 856</span>
-                                <span><i class="bi bi-calendar3"></i> 21/07/2025</span>
-                            </div>
-                        </div>
-                        <div class="tutorial-grid-actions">
-                            <button class="tutorial-action-btn play-tutorial-btn" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
-                                <i class="bi bi-play"></i> Ver Tutorial
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Video Tutorial -->
-                <div class="tutorial-grid-card" data-category="redes" data-type="video" data-title="configuración vpn corporativa">
-                    <div class="tutorial-thumbnail video">
-                        <i class="bi bi-play-circle thumbnail-icon"></i>
-                        <div class="tutorial-duration">12:18</div>
-                    </div>
-                    <div class="tutorial-grid-content">
-                        <h3 class="tutorial-grid-title">Configuración de VPN Corporativa</h3>
-                        <p class="tutorial-grid-description">Guía completa para conexión VPN desde ubicaciones remotas y solución de problemas</p>
-                        <div class="tutorial-grid-meta">
-                            <span class="tutorial-category-badge">Redes</span>
-                            <div class="tutorial-stats">
-                                <span><i class="bi bi-eye"></i> 2,105</span>
-                                <span><i class="bi bi-calendar3"></i> 20/07/2025</span>
-                            </div>
-                        </div>
-                        <div class="tutorial-grid-actions">
-                            <button class="tutorial-action-btn play-tutorial-btn" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
-                                <i class="bi bi-play"></i> Ver Tutorial
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Document -->
-                <div class="tutorial-grid-card" data-category="seguridad" data-type="document" data-title="manual seguridad digital">
-                    <div class="tutorial-thumbnail document">
-                        <i class="bi bi-file-earmark-pdf thumbnail-icon"></i>
-                    </div>
-                    <div class="tutorial-grid-content">
-                        <h3 class="tutorial-grid-title">Manual de Seguridad Digital</h3>
-                        <p class="tutorial-grid-description">Mejores prácticas de seguridad para usuarios corporativos y protección de datos</p>
-                        <div class="tutorial-grid-meta">
-                            <span class="tutorial-category-badge">Seguridad</span>
-                            <div class="tutorial-stats">
-                                <span><i class="bi bi-download"></i> 432</span>
-                                <span><i class="bi bi-file-earmark"></i> 2.4 MB</span>
-                            </div>
-                        </div>
-                        <div class="tutorial-grid-actions">
-                            <button class="tutorial-action-btn download-tutorial-btn">
-                                <i class="bi bi-download"></i> Descargar
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Video Tutorial -->
-                <div class="tutorial-grid-card" data-category="software" data-type="video" data-title="microsoft teams reuniones efectivas">
-                    <div class="tutorial-thumbnail video">
-                        <i class="bi bi-play-circle thumbnail-icon"></i>
-                        <div class="tutorial-duration">6:22</div>
-                    </div>
-                    <div class="tutorial-grid-content">
-                        <h3 class="tutorial-grid-title">Microsoft Teams: Reuniones Efectivas</h3>
-                        <p class="tutorial-grid-description">Uso avanzado de Teams para reuniones productivas y colaboración en equipo</p>
-                        <div class="tutorial-grid-meta">
-                            <span class="tutorial-category-badge">Software</span>
-                            <div class="tutorial-stats">
-                                <span><i class="bi bi-eye"></i> 1,789</span>
-                                <span><i class="bi bi-calendar3"></i> 19/07/2025</span>
-                            </div>
-                        </div>
-                        <div class="tutorial-grid-actions">
-                            <button class="tutorial-action-btn play-tutorial-btn" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
-                                <i class="bi bi-play"></i> Ver Tutorial
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Video Tutorial -->
-                <div class="tutorial-grid-card" data-category="hardware" data-type="video" data-title="mantenimiento preventivo pc">
-                    <div class="tutorial-thumbnail video">
-                        <i class="bi bi-play-circle thumbnail-icon"></i>
-                        <div class="tutorial-duration">4:15</div>
-                    </div>
-                    <div class="tutorial-grid-content">
-                        <h3 class="tutorial-grid-title">Mantenimiento Preventivo de PC</h3>
-                        <p class="tutorial-grid-description">Rutinas de limpieza y mantenimiento para equipos corporativos y prolongar vida útil</p>
-                        <div class="tutorial-grid-meta">
-                            <span class="tutorial-category-badge">Hardware</span>
-                            <div class="tutorial-stats">
-                                <span><i class="bi bi-eye"></i> 945</span>
-                                <span><i class="bi bi-calendar3"></i> 18/07/2025</span>
-                            </div>
-                        </div>
-                        <div class="tutorial-grid-actions">
-                            <button class="tutorial-action-btn play-tutorial-btn" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
-                                <i class="bi bi-play"></i> Ver Tutorial
-                            </button>
-                        </div>
-                    </div>
-                </div>
+            <!-- List View -->
+            <div class="tutorials-list-view" id="tutorialsList" style="display: none;">
+                <!-- Los tutoriales en vista de lista se cargarán dinámicamente aquí -->
             </div>
 
             <!-- No Results -->
@@ -246,7 +101,15 @@
                     <i class="bi bi-search"></i>
                 </div>
                 <h3>No se encontraron tutoriales</h3>
-                <p>Intente con diferentes términos de búsqueda o filtros</p>
+            </div>
+
+            <!-- Empty State -->
+            <div class="no-results" id="emptyState" style="display: none;">
+                <div class="no-results-icon">
+                    <i class="bi bi-folder2-open"></i>
+                </div>
+                <h3>No hay tutoriales disponibles</h3>
+                <p>Los tutoriales aparecerán aquí cuando el administrador los suba</p>
             </div>
         </div>
     </section>
@@ -277,22 +140,302 @@
         // Variables globales
         let currentView = 'grid';
         let allTutorials = [];
+        let filteredTutorials = [];
 
         // Inicializar la página
         document.addEventListener('DOMContentLoaded', function() {
-            initializeTutorials();
+            loadTutorials();
             initializeSearch();
             initializeViewToggle();
             initializeVideoModal();
             initializeAdminAccess();
+            
+            // Escuchar cambios en localStorage para sincronización en tiempo real
+            window.addEventListener('storage', function(e) {
+                if (e.key === 'mdshp_uploaded_files') {
+                    loadTutorials();
+                }
+            });
+
+            // Escuchar eventos personalizados para sincronización inmediata
+            window.addEventListener('tutorialUploaded', function(e) {
+                loadTutorials();
+            });
+
+            window.addEventListener('tutorialDeleted', function(e) {
+                loadTutorials();
+            });
+
+            // También verificar periódicamente por si la página está abierta en la misma pestaña
+            setInterval(checkForUpdates, 3000);
         });
+
+        // Variables para detectar cambios
+        let lastUpdateTime = null;
+
+        function checkForUpdates() {
+            // Solo verificar si no estamos en una pestaña oculta
+            if (document.hidden) return;
+            
+            const stored = localStorage.getItem('mdshp_uploaded_files');
+            if (stored) {
+                try {
+                    const files = JSON.parse(stored);
+                    const currentUpdateTime = files.length > 0 ? Math.max(...files.map(f => f.id)) : 0;
+                    
+                    if (lastUpdateTime !== null && currentUpdateTime !== lastUpdateTime) {
+                        loadTutorials();
+                    }
+                    
+                    if (lastUpdateTime === null) {
+                        lastUpdateTime = currentUpdateTime;
+                    }
+                } catch (e) {
+                    console.error('Error checking for updates:', e);
+                }
+            } else if (lastUpdateTime !== 0) {
+                // Si no hay datos pero antes sí había, recargar
+                loadTutorials();
+            }
+        }
+
+        // Cargar tutoriales desde localStorage
+        function loadTutorials() {
+            // Solo mostrar loading si no hay tutoriales cargados
+            if (allTutorials.length === 0) {
+                showLoading();
+            }
+            
+            setTimeout(() => {
+                const stored = localStorage.getItem('mdshp_uploaded_files');
+                allTutorials = [];
+                
+                if (stored) {
+                    try {
+                        const files = JSON.parse(stored);
+                        allTutorials = files.map(file => transformFileToTutorial(file));
+                        
+                        // Ordenar por más recientes primero
+                        allTutorials.sort((a, b) => b.id - a.id);
+                    } catch (e) {
+                        console.error('Error loading tutorials:', e);
+                    }
+                }
+
+                renderTutorials();
+                hideLoading();
+                performSearch(); // Aplicar filtros actuales
+                
+                // Actualizar lastUpdateTime
+                lastUpdateTime = allTutorials.length > 0 ? Math.max(...allTutorials.map(t => t.id)) : 0;
+            }, allTutorials.length === 0 ? 500 : 100); // Carga más rápida si ya hay contenido
+        }
+
+        // Transformar archivo del panel a formato tutorial
+        function transformFileToTutorial(file) {
+            const tutorial = {
+                id: file.id,
+                title: file.title,
+                description: file.description,
+                category: file.category,
+                type: file.source === 'youtube' ? 'youtube' : (file.type === 'video' ? 'video' : 'document'),
+                // Para filtros, YouTube se considera como video
+                filterType: file.source === 'youtube' || file.type === 'video' ? 'video' : 'document',
+                uploadDate: file.uploadDate,
+                fileName: file.fileName,
+                fileSize: file.fileSize,
+                source: file.source || 'file'
+            };
+
+            // Información específica de YouTube
+            if (file.source === 'youtube' && file.youtubeData) {
+                tutorial.youtubeData = file.youtubeData;
+                tutorial.videoUrl = file.youtubeData.url;
+                tutorial.embedUrl = `https://www.youtube.com/embed/${file.youtubeData.id}`;
+                tutorial.thumbnail = file.youtubeData.thumbnail;
+                tutorial.duration = file.youtubeData.duration || 'N/A';
+            }
+
+            return tutorial;
+        }
+
+        // Mostrar estado de carga
+        function showLoading() {
+            document.getElementById('loadingState').style.display = 'block';
+            document.getElementById('tutorialsGrid').style.display = 'none';
+            document.getElementById('tutorialsList').style.display = 'none';
+            document.getElementById('noResults').style.display = 'none';
+            document.getElementById('emptyState').style.display = 'none';
+        }
+
+        // Ocultar estado de carga
+        function hideLoading() {
+            document.getElementById('loadingState').style.display = 'none';
+            
+            if (allTutorials.length === 0) {
+                document.getElementById('emptyState').style.display = 'block';
+            } else {
+                showCurrentView();
+            }
+        }
+
+        // Mostrar vista actual
+        function showCurrentView() {
+            const tutorialsGrid = document.getElementById('tutorialsGrid');
+            const tutorialsList = document.getElementById('tutorialsList');
+            
+            if (currentView === 'grid') {
+                tutorialsGrid.style.display = 'grid';
+                tutorialsList.style.display = 'none';
+            } else {
+                tutorialsGrid.style.display = 'none';
+                tutorialsList.style.display = 'flex';
+            }
+        }
+
+        // Renderizar tutoriales
+        function renderTutorials() {
+            if (allTutorials.length === 0) {
+                return;
+            }
+
+            // Renderizar vista de cuadrícula
+            const tutorialsGrid = document.getElementById('tutorialsGrid');
+            const gridHTML = allTutorials.map(tutorial => createTutorialGridHTML(tutorial)).join('');
+            tutorialsGrid.innerHTML = gridHTML;
+
+            // Renderizar vista de lista
+            const tutorialsList = document.getElementById('tutorialsList');
+            const listHTML = allTutorials.map(tutorial => createTutorialListHTML(tutorial)).join('');
+            tutorialsList.innerHTML = listHTML;
+
+            // Actualizar contador
+            updateResultsCount(allTutorials.length);
+        }
+
+        // Crear HTML para tutorial en vista de cuadrícula
+        function createTutorialGridHTML(tutorial) {
+            const isVideo = tutorial.type === 'video' || tutorial.type === 'youtube';
+            const isYoutube = tutorial.type === 'youtube';
+            const isDocument = tutorial.type === 'document';
+
+            let thumbnailClass = 'document';
+            let thumbnailIcon = 'bi-file-earmark-text';
+            let actionButton = `<button class="tutorial-action-btn download-tutorial-btn">
+                                    <i class="bi bi-download"></i> Descargar
+                                </button>`;
+
+            if (isVideo) {
+                thumbnailClass = 'video';
+                thumbnailIcon = 'bi-play-circle';
+                
+                if (isYoutube) {
+                    thumbnailClass = 'youtube';
+                    actionButton = `<button class="tutorial-action-btn play-tutorial-btn" data-video="${tutorial.embedUrl}">
+                                        <i class="bi bi-play"></i> Ver video
+                                    </button>`;
+                } else {
+                    actionButton = `<button class="tutorial-action-btn play-tutorial-btn" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
+                                        <i class="bi bi-play"></i> Ver tutorial
+                                    </button>`;
+                }
+            }
+
+            const durationHTML = tutorial.duration && isVideo ? 
+                `<div class="tutorial-duration">${tutorial.duration}</div>` : '';
+
+            const statsHTML = isDocument ? 
+                `<span><i class="bi bi-file-earmark"></i> ${tutorial.fileSize}</span>` :
+                `<span><i class="bi bi-calendar3"></i> ${tutorial.uploadDate}</span>`;
+
+            return `
+                <div class="tutorial-grid-card" data-category="${tutorial.category}" data-type="${tutorial.filterType}" data-title="${tutorial.title.toLowerCase()}" data-description="${tutorial.description.toLowerCase()}">
+                    <div class="tutorial-thumbnail ${thumbnailClass}">
+                        <i class="bi ${thumbnailIcon} thumbnail-icon"></i>
+                        ${durationHTML}
+                    </div>
+                    <div class="tutorial-grid-content">
+                        <h3 class="tutorial-grid-title">${tutorial.title}</h3>
+                        <p class="tutorial-grid-description">${tutorial.description}</p>
+                        <div class="tutorial-grid-meta">
+                            <span class="tutorial-category-badge">${tutorial.category}</span>
+                            <div class="tutorial-stats">
+                                ${statsHTML}
+                                ${isYoutube ? '<span><i class="bi bi-youtube"></i> YouTube</span>' : ''}
+                            </div>
+                        </div>
+                        <div class="tutorial-grid-actions">
+                            ${actionButton}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Crear HTML para tutorial en vista de lista
+        function createTutorialListHTML(tutorial) {
+            const isVideo = tutorial.type === 'video' || tutorial.type === 'youtube';
+            const isYoutube = tutorial.type === 'youtube';
+            const isDocument = tutorial.type === 'document';
+
+            let thumbnailClass = 'document';
+            let thumbnailIcon = 'bi-file-earmark-text';
+            let actionButton = `<button class="tutorial-list-action-btn download-btn">
+                                    <i class="bi bi-download"></i> Descargar
+                                </button>`;
+
+            if (isVideo) {
+                thumbnailClass = 'video';
+                thumbnailIcon = 'bi-play-circle';
+                
+                if (isYoutube) {
+                    thumbnailClass = 'youtube';
+                    actionButton = `<button class="tutorial-list-action-btn play-btn play-tutorial-btn" data-video="${tutorial.embedUrl}">
+                                        <i class="bi bi-play"></i> Ver video
+                                    </button>`;
+                } else {
+                    actionButton = `<button class="tutorial-list-action-btn play-btn play-tutorial-btn" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
+                                        <i class="bi bi-play"></i> Ver Tutorial
+                                    </button>`;
+                }
+            }
+
+            const durationHTML = tutorial.duration && isVideo ? 
+                `<div class="tutorial-list-duration">${tutorial.duration}</div>` : '';
+
+            const statsHTML = isDocument ? 
+                `<span><i class="bi bi-file-earmark"></i> ${tutorial.fileSize}</span>` :
+                `<span><i class="bi bi-calendar3"></i> ${tutorial.uploadDate}</span>`;
+
+            return `
+                <div class="tutorial-list-item" data-category="${tutorial.category}" data-type="${tutorial.filterType}" data-title="${tutorial.title.toLowerCase()}" data-description="${tutorial.description.toLowerCase()}">
+                    <div class="tutorial-list-thumbnail ${thumbnailClass}">
+                        <i class="bi ${thumbnailIcon} thumbnail-icon"></i>
+                        ${durationHTML}
+                    </div>
+                    <div class="tutorial-list-content">
+                        <h3 class="tutorial-list-title">${tutorial.title}</h3>
+                        <p class="tutorial-list-description">${tutorial.description}</p>
+                        <div class="tutorial-list-meta">
+                            <span class="tutorial-list-badge">${tutorial.category}</span>
+                            <div class="tutorial-list-stats">
+                                ${statsHTML}
+                                ${isYoutube ? '<span><i class="bi bi-youtube"></i> YouTube</span>' : ''}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tutorial-list-actions">
+                        ${actionButton}
+                    </div>
+                </div>
+            `;
+        }
 
         // Inicializar acceso administrativo
         function initializeAdminAccess() {
             const adminAccessBtn = document.getElementById('adminAccessBtn');
             
             adminAccessBtn.addEventListener('click', function() {
-                // Verificar si existe una sesión administrativa activa
                 const session = localStorage.getItem('mdshp_admin_session');
                 
                 if (session) {
@@ -301,113 +444,215 @@
                         const now = new Date().toISOString();
                         
                         if (sessionData.expiresAt > now) {
-                            // Sesión válida, ir directamente al panel
                             window.location.href = 'admin/panel.html';
                             return;
                         } else {
-                            // Sesión expirada, limpiar
                             localStorage.removeItem('mdshp_admin_session');
                         }
                     } catch (e) {
-                        // Sesión corrupta, limpiar
                         localStorage.removeItem('mdshp_admin_session');
                     }
                 }
                 
-                // No hay sesión válida, ir al login
                 window.location.href = 'admin/login.html';
             });
-        }
-
-        // Inicializar tutoriales
-        function initializeTutorials() {
-            allTutorials = Array.from(document.querySelectorAll('.tutorial-grid-card')).map(card => ({
-                element: card,
-                listElement: document.querySelector(`.tutorial-item[data-title="${card.dataset.title}"]`),
-                category: card.dataset.category,
-                type: card.dataset.type,
-                title: card.dataset.title,
-                text: card.textContent.toLowerCase()
-            }));
-            
-            updateResultsCount();
         }
 
         // Inicializar búsqueda y filtros
         function initializeSearch() {
             const searchInput = document.getElementById('searchInput');
-            const categoryFilter = document.getElementById('categoryFilter');
             const typeFilter = document.getElementById('typeFilter');
-            const sortFilter = document.getElementById('sortFilter');
 
             // Event listeners
             searchInput.addEventListener('input', debounce(performSearch, 300));
-            categoryFilter.addEventListener('change', performSearch);
             typeFilter.addEventListener('change', performSearch);
-            sortFilter.addEventListener('change', performSearch);
         }
 
-        // Realizar búsqueda
+        // Realizar búsqueda avanzada
         function performSearch() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            const categoryFilter = document.getElementById('categoryFilter').value;
-            const typeFilter = document.getElementById('typeFilter').value;
-            const sortFilter = document.getElementById('sortFilter').value;
+            if (allTutorials.length === 0) {
+                return;
+            }
 
-            let filteredTutorials = allTutorials.filter(tutorial => {
-                const matchesSearch = !searchTerm || tutorial.text.includes(searchTerm);
-                const matchesCategory = !categoryFilter || tutorial.category === categoryFilter;
-                const matchesType = !typeFilter || tutorial.type === typeFilter;
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+            const typeFilter = document.getElementById('typeFilter').value;
+
+            filteredTutorials = allTutorials.filter(tutorial => {
+                // Búsqueda mejorada en múltiples campos
+                const matchesSearch = !searchTerm || (
+                    tutorial.title.toLowerCase().includes(searchTerm) ||
+                    tutorial.description.toLowerCase().includes(searchTerm) ||
+                    tutorial.category.toLowerCase().includes(searchTerm) ||
+                    tutorial.fileName.toLowerCase().includes(searchTerm) ||
+                    // Búsquedas específicas por términos comunes
+                    searchMatches(searchTerm, tutorial)
+                );
                 
-                return matchesSearch && matchesCategory && matchesType;
+                // Filtro por tipo
+                const matchesType = !typeFilter || tutorial.filterType === typeFilter;
+                
+                return matchesSearch && matchesType;
             });
 
-            // Aplicar ordenamiento
-            filteredTutorials = sortTutorials(filteredTutorials, sortFilter);
+            // Ordenar por relevancia y luego por fecha
+            filteredTutorials = sortByRelevance(filteredTutorials, searchTerm);
 
-            // Mostrar/ocultar tutoriales
-            allTutorials.forEach(tutorial => {
-                const isVisible = filteredTutorials.includes(tutorial);
-                tutorial.element.style.display = isVisible ? 'block' : 'none';
-                if (tutorial.listElement) {
-                    tutorial.listElement.style.display = isVisible ? 'flex' : 'none';
-                }
+            // Mostrar/ocultar tutoriales en ambas vistas
+            const allGridCards = document.querySelectorAll('.tutorial-grid-card');
+            const allListItems = document.querySelectorAll('.tutorial-list-item');
+            
+            allGridCards.forEach(card => {
+                const cardTitle = card.dataset.title;
+                const cardType = card.dataset.type;
+                
+                const isVisible = filteredTutorials.some(tutorial => 
+                    tutorial.title.toLowerCase() === cardTitle &&
+                    tutorial.filterType === cardType
+                );
+                
+                card.style.display = isVisible ? 'block' : 'none';
+            });
+
+            allListItems.forEach(item => {
+                const itemTitle = item.dataset.title;
+                const itemType = item.dataset.type;
+                
+                const isVisible = filteredTutorials.some(tutorial => 
+                    tutorial.title.toLowerCase() === itemTitle &&
+                    tutorial.filterType === itemType
+                );
+                
+                item.style.display = isVisible ? 'flex' : 'none';
             });
 
             // Actualizar contador y mostrar mensaje si no hay resultados
-            updateResultsCount(filteredTutorials.length);
-            document.getElementById('noResults').style.display = 
-                filteredTutorials.length === 0 ? 'block' : 'none';
+            updateResultsCount(filteredTutorials.length, searchTerm, typeFilter);
+            
+            const noResults = document.getElementById('noResults');
+            const tutorialsGrid = document.getElementById('tutorialsGrid');
+            const tutorialsList = document.getElementById('tutorialsList');
+            
+            if (filteredTutorials.length === 0 && allTutorials.length > 0) {
+                noResults.style.display = 'block';
+                tutorialsGrid.style.display = 'none';
+                tutorialsList.style.display = 'none';
+            } else {
+                noResults.style.display = 'none';
+                showCurrentView();
+            }
         }
 
-        // Ordenar tutoriales
-        function sortTutorials(tutorials, sortBy) {
-            return tutorials.sort((a, b) => {
-                switch (sortBy) {
-                    case 'title':
-                        return a.title.localeCompare(b.title);
-                    case 'popular':
-                        // Simular popularidad basada en el orden actual
-                        return Math.random() - 0.5;
-                    case 'recent':
-                    default:
-                        // Mantener orden actual (más recientes primero)
-                        return 0;
+        // Función de búsqueda inteligente
+        function searchMatches(searchTerm, tutorial) {
+            // Mapeo de términos comunes a categorías y temas
+            const searchMappings = {
+                // Hardware
+                'hardware': ['hardware', 'equipo', 'pc', 'computador', 'componente'],
+                'problemas de pc': ['hardware', 'soporte', 'reparacion', 'mantenimiento'],
+                'impresora': ['hardware', 'impresora', 'imprimir', 'tinta'],
+                'memoria': ['hardware', 'ram', 'memoria', 'almacenamiento'],
+                
+                // Software
+                'software': ['software', 'programa', 'aplicacion', 'sistema'],
+                'windows': ['software', 'windows', 'microsoft', 'sistema operativo'],
+                'office': ['software', 'office', 'word', 'excel', 'powerpoint'],
+                'outlook': ['software', 'outlook', 'correo', 'email'],
+                'teams': ['software', 'teams', 'reuniones', 'videollamada'],
+                
+                // Redes
+                'redes': ['redes', 'internet', 'wifi', 'conexion'],
+                'vpn': ['redes', 'vpn', 'conexion remota', 'seguridad'],
+                'wifi': ['redes', 'wifi', 'inalambrico', 'conexion'],
+                'internet': ['redes', 'internet', 'navegador', 'web'],
+                
+                // Seguridad
+                'seguridad': ['seguridad', 'antivirus', 'proteccion', 'privacidad'],
+                'antivirus': ['seguridad', 'antivirus', 'malware', 'virus'],
+                'contraseña': ['seguridad', 'password', 'contraseña', 'acceso'],
+                
+                // Procedimientos
+                'procedimientos': ['procedimientos', 'proceso', 'guia', 'manual'],
+                'configurar': ['procedimientos', 'configuracion', 'setup', 'instalar'],
+                'instalar': ['procedimientos', 'instalacion', 'setup', 'configurar']
+            };
+
+            // Verificar coincidencias directas en el mapeo
+            for (const [key, values] of Object.entries(searchMappings)) {
+                if (searchTerm.includes(key.toLowerCase())) {
+                    return values.some(value => 
+                        tutorial.title.toLowerCase().includes(value) ||
+                        tutorial.description.toLowerCase().includes(value) ||
+                        tutorial.category.toLowerCase().includes(value)
+                    );
                 }
+            }
+
+            // Verificar términos individuales
+            const searchWords = searchTerm.split(' ');
+            return searchWords.some(word => {
+                if (word.length < 3) return false; // Ignorar palabras muy cortas
+                
+                return tutorial.title.toLowerCase().includes(word) ||
+                       tutorial.description.toLowerCase().includes(word) ||
+                       tutorial.category.toLowerCase().includes(word);
+            });
+        }
+
+        // Ordenar por relevancia
+        function sortByRelevance(tutorials, searchTerm) {
+            if (!searchTerm) {
+                // Sin búsqueda, ordenar por más recientes
+                return tutorials.sort((a, b) => b.id - a.id);
+            }
+
+            return tutorials.sort((a, b) => {
+                // Puntuación de relevancia
+                let scoreA = 0;
+                let scoreB = 0;
+
+                // Mayor puntuación si coincide en el título
+                if (a.title.toLowerCase().includes(searchTerm)) scoreA += 10;
+                if (b.title.toLowerCase().includes(searchTerm)) scoreB += 10;
+
+                // Puntuación media si coincide en la descripción
+                if (a.description.toLowerCase().includes(searchTerm)) scoreA += 5;
+                if (b.description.toLowerCase().includes(searchTerm)) scoreB += 5;
+
+                // Menor puntuación si coincide en la categoría
+                if (a.category.toLowerCase().includes(searchTerm)) scoreA += 2;
+                if (b.category.toLowerCase().includes(searchTerm)) scoreB += 2;
+
+                // Si tienen la misma puntuación, ordenar por más recientes
+                if (scoreA === scoreB) {
+                    return b.id - a.id;
+                }
+
+                return scoreB - scoreA;
             });
         }
 
         // Actualizar contador de resultados
-        function updateResultsCount(count = null) {
+        function updateResultsCount(count = null, searchTerm = '', typeFilter = '') {
             const totalCount = count !== null ? count : allTutorials.length;
             const resultsCount = document.getElementById('resultsCount');
             
+            let contextText = '';
+            
+            // Agregar contexto de filtros
+            if (typeFilter) {
+                contextText += ` de ${typeFilter}`;
+            }
+            
+            if (searchTerm) {
+                contextText += ` para "${searchTerm}"`;
+            }
+
             if (totalCount === 0) {
-                resultsCount.textContent = 'No se encontraron tutoriales';
+                resultsCount.textContent = `No se encontraron tutoriales${contextText}`;
             } else if (totalCount === 1) {
-                resultsCount.textContent = 'Mostrando 1 tutorial';
+                resultsCount.textContent = `1 tutorial${contextText}`;
             } else {
-                resultsCount.textContent = `Mostrando ${totalCount} tutoriales`;
+                resultsCount.textContent = `${totalCount} tutoriales${contextText}`;
             }
         }
 
@@ -415,16 +660,13 @@
         function initializeViewToggle() {
             const gridViewBtn = document.getElementById('gridViewBtn');
             const listViewBtn = document.getElementById('listViewBtn');
-            const tutorialsGrid = document.getElementById('tutorialsGrid');
-            const tutorialsList = document.getElementById('tutorialsList');
 
             gridViewBtn.addEventListener('click', function() {
                 if (currentView !== 'grid') {
                     currentView = 'grid';
                     this.classList.add('active');
                     listViewBtn.classList.remove('active');
-                    tutorialsGrid.classList.remove('hidden');
-                    if (tutorialsList) tutorialsList.classList.add('hidden');
+                    showCurrentView();
                 }
             });
 
@@ -433,8 +675,7 @@
                     currentView = 'list';
                     this.classList.add('active');
                     gridViewBtn.classList.remove('active');
-                    if (tutorialsList) tutorialsList.classList.remove('hidden');
-                    tutorialsGrid.classList.add('hidden');
+                    showCurrentView();
                 }
             });
         }
@@ -445,10 +686,10 @@
             const videoFrame = document.getElementById('videoFrame');
             const closeBtn = document.querySelector('.video-close');
 
-            // Event delegation for video buttons
+            // Event delegation for video buttons (funciona con ambas vistas)
             document.addEventListener('click', function(e) {
-                if (e.target.closest('.play-tutorial-btn, .play-btn')) {
-                    const button = e.target.closest('.play-tutorial-btn, .play-btn');
+                if (e.target.closest('.play-tutorial-btn') || e.target.closest('.play-btn')) {
+                    const button = e.target.closest('.play-tutorial-btn') || e.target.closest('.play-btn');
                     const videoUrl = button.dataset.video;
                     if (videoUrl) {
                         videoFrame.src = videoUrl;
@@ -495,7 +736,7 @@
 
         // Manejar descargas
         document.addEventListener('click', function(e) {
-            if (e.target.closest('.download-tutorial-btn, .download-btn')) {
+            if (e.target.closest('.download-tutorial-btn') || e.target.closest('.download-btn')) {
                 e.preventDefault();
                 alert('Descarga iniciada. El archivo se guardará en su carpeta de descargas.');
             }
