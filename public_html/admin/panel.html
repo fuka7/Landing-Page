@@ -446,6 +446,13 @@
             document.getElementById('fileSelectedInfo').style.display = 'none';
             resetYouTubePreview();
             youtubeVideoData = null;
+            
+            // Limpiar contenido del archivo
+            const fileInput = document.getElementById('fileInput');
+            if (fileInput) {
+                fileInput.fileContent = null;
+                fileInput.fileType = null;
+            }
         }
 
         // Inicializar upload de archivos
@@ -487,7 +494,10 @@
 
             // Remover archivo
             removeFileBtn.addEventListener('click', function() {
+                const fileInput = document.getElementById('fileInput');
                 fileInput.value = '';
+                fileInput.fileContent = null;
+                fileInput.fileType = null;
                 fileUploadArea.style.display = 'block';
                 fileSelectedInfo.style.display = 'none';
             });
@@ -524,6 +534,17 @@
                 fileIcon.className = 'bi bi-play-circle';
             } else {
                 fileIcon.className = 'bi bi-file-earmark-text';
+            }
+            
+            // Para documentos, convertir a Base64 para poder descargar después
+            if (!file.type.startsWith('video/')) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    // Guardar el contenido del archivo en el input para usarlo después
+                    document.getElementById('fileInput').fileContent = e.target.result;
+                    document.getElementById('fileInput').fileType = file.type;
+                };
+                reader.readAsDataURL(file);
             }
             
             document.getElementById('fileUploadArea').style.display = 'none';
@@ -593,8 +614,18 @@
                     fileSize: formatFileSize(formData.file.size),
                     type: formData.file.type.startsWith('video/') ? 'video' : 'document',
                     uploadDate: new Date().toLocaleDateString('es-ES'),
-                    source: 'file'
+                    source: 'file',
+                    mimeType: formData.file.type
                 };
+
+                // Para documentos, guardar el contenido del archivo
+                if (!formData.file.type.startsWith('video/')) {
+                    const fileInput = document.getElementById('fileInput');
+                    if (fileInput.fileContent) {
+                        newFile.fileContent = fileInput.fileContent;
+                        newFile.downloadable = true;
+                    }
+                }
             } else {
                 newFile = {
                     id: Date.now(),

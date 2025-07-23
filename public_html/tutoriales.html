@@ -149,6 +149,7 @@
             initializeViewToggle();
             initializeVideoModal();
             initializeAdminAccess();
+            initializeDownloads(); // Nueva función para descargas
             
             // Escuchar cambios en localStorage para sincronización en tiempo real
             window.addEventListener('storage', function(e) {
@@ -244,7 +245,11 @@
                 uploadDate: file.uploadDate,
                 fileName: file.fileName,
                 fileSize: file.fileSize,
-                source: file.source || 'file'
+                source: file.source || 'file',
+                // Datos para descarga
+                downloadable: file.downloadable || false,
+                fileContent: file.fileContent || null,
+                mimeType: file.mimeType || null
             };
 
             // Información específica de YouTube
@@ -321,9 +326,7 @@
 
             let thumbnailClass = 'document';
             let thumbnailIcon = 'bi-file-earmark-text';
-            let actionButton = `<button class="tutorial-action-btn download-tutorial-btn">
-                                    <i class="bi bi-download"></i> Descargar
-                                </button>`;
+            let actionButton = '';
 
             if (isVideo) {
                 thumbnailClass = 'video';
@@ -339,6 +342,16 @@
                                         <i class="bi bi-play"></i> Ver tutorial
                                     </button>`;
                 }
+            } else if (isDocument) {
+                if (tutorial.downloadable && tutorial.fileContent) {
+                    actionButton = `<button class="tutorial-action-btn download-tutorial-btn" data-tutorial-id="${tutorial.id}">
+                                        <i class="bi bi-download"></i> Descargar
+                                    </button>`;
+                } else {
+                    actionButton = `<button class="tutorial-action-btn download-tutorial-btn-disabled" disabled>
+                                        <i class="bi bi-download"></i> No disponible
+                                    </button>`;
+                }
             }
 
             const durationHTML = tutorial.duration && isVideo ? 
@@ -349,7 +362,7 @@
                 `<span><i class="bi bi-calendar3"></i> ${tutorial.uploadDate}</span>`;
 
             return `
-                <div class="tutorial-grid-card" data-category="${tutorial.category}" data-type="${tutorial.filterType}" data-title="${tutorial.title.toLowerCase()}" data-description="${tutorial.description.toLowerCase()}">
+                <div class="tutorial-grid-card" data-category="${tutorial.category || ''}" data-type="${tutorial.filterType}" data-title="${tutorial.title.toLowerCase()}" data-description="${tutorial.description.toLowerCase()}">
                     <div class="tutorial-thumbnail ${thumbnailClass}">
                         <i class="bi ${thumbnailIcon} thumbnail-icon"></i>
                         ${durationHTML}
@@ -358,7 +371,7 @@
                         <h3 class="tutorial-grid-title">${tutorial.title}</h3>
                         <p class="tutorial-grid-description">${tutorial.description}</p>
                         <div class="tutorial-grid-meta">
-                            <span class="tutorial-category-badge">${tutorial.category}</span>
+                            ${tutorial.category ? `<span class="tutorial-category-badge">${tutorial.category}</span>` : ''}
                             <div class="tutorial-stats">
                                 ${statsHTML}
                                 ${isYoutube ? '<span><i class="bi bi-youtube"></i> YouTube</span>' : ''}
@@ -380,9 +393,7 @@
 
             let thumbnailClass = 'document';
             let thumbnailIcon = 'bi-file-earmark-text';
-            let actionButton = `<button class="tutorial-list-action-btn download-btn">
-                                    <i class="bi bi-download"></i> Descargar
-                                </button>`;
+            let actionButton = '';
 
             if (isVideo) {
                 thumbnailClass = 'video';
@@ -398,6 +409,16 @@
                                         <i class="bi bi-play"></i> Ver Tutorial
                                     </button>`;
                 }
+            } else if (isDocument) {
+                if (tutorial.downloadable && tutorial.fileContent) {
+                    actionButton = `<button class="tutorial-list-action-btn download-btn" data-tutorial-id="${tutorial.id}">
+                                        <i class="bi bi-download"></i> Descargar
+                                    </button>`;
+                } else {
+                    actionButton = `<button class="tutorial-list-action-btn download-btn-disabled" disabled>
+                                        <i class="bi bi-download"></i> No disponible
+                                    </button>`;
+                }
             }
 
             const durationHTML = tutorial.duration && isVideo ? 
@@ -408,7 +429,7 @@
                 `<span><i class="bi bi-calendar3"></i> ${tutorial.uploadDate}</span>`;
 
             return `
-                <div class="tutorial-list-item" data-category="${tutorial.category}" data-type="${tutorial.filterType}" data-title="${tutorial.title.toLowerCase()}" data-description="${tutorial.description.toLowerCase()}">
+                <div class="tutorial-list-item" data-category="${tutorial.category || ''}" data-type="${tutorial.filterType}" data-title="${tutorial.title.toLowerCase()}" data-description="${tutorial.description.toLowerCase()}">
                     <div class="tutorial-list-thumbnail ${thumbnailClass}">
                         <i class="bi ${thumbnailIcon} thumbnail-icon"></i>
                         ${durationHTML}
@@ -417,7 +438,7 @@
                         <h3 class="tutorial-list-title">${tutorial.title}</h3>
                         <p class="tutorial-list-description">${tutorial.description}</p>
                         <div class="tutorial-list-meta">
-                            <span class="tutorial-list-badge">${tutorial.category}</span>
+                            ${tutorial.category ? `<span class="tutorial-list-badge">${tutorial.category}</span>` : ''}
                             <div class="tutorial-list-stats">
                                 ${statsHTML}
                                 ${isYoutube ? '<span><i class="bi bi-youtube"></i> YouTube</span>' : ''}
@@ -429,6 +450,151 @@
                     </div>
                 </div>
             `;
+        }
+
+        // Inicializar funcionalidad de descargas
+        function initializeDownloads() {
+            document.addEventListener('click', function(e) {
+                // Botones de descarga en vista de cuadrícula
+                if (e.target.closest('.download-tutorial-btn')) {
+                    e.preventDefault();
+                    const button = e.target.closest('.download-tutorial-btn');
+                    const tutorialId = button.dataset.tutorialId;
+                    downloadTutorial(tutorialId);
+                }
+                
+                // Botones de descarga en vista de lista
+                if (e.target.closest('.download-btn') && !e.target.closest('.download-btn-disabled')) {
+                    e.preventDefault();
+                    const button = e.target.closest('.download-btn');
+                    const tutorialId = button.dataset.tutorialId;
+                    downloadTutorial(tutorialId);
+                }
+            });
+        }
+
+        // Función para descargar tutorial
+        function downloadTutorial(tutorialId) {
+            try {
+                // Buscar el tutorial
+                const tutorial = allTutorials.find(t => t.id == tutorialId);
+                
+                if (!tutorial) {
+                    showDownloadError('Tutorial no encontrado.');
+                    return;
+                }
+
+                if (!tutorial.downloadable || !tutorial.fileContent) {
+                    showDownloadError('El archivo no está disponible para descarga.');
+                    return;
+                }
+
+                // Mostrar indicador de descarga
+                showDownloadProgress(tutorial.title);
+
+                // Crear enlace de descarga
+                const link = document.createElement('a');
+                link.href = tutorial.fileContent;
+                link.download = tutorial.fileName;
+                link.style.display = 'none';
+                
+                // Agregar al DOM, hacer clic y remover
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                // Mostrar mensaje de éxito
+                setTimeout(() => {
+                    showDownloadSuccess(tutorial.title);
+                }, 500);
+
+            } catch (error) {
+                console.error('Error downloading file:', error);
+                showDownloadError('Error al descargar el archivo.');
+            }
+        }
+
+        // Mostrar progreso de descarga
+        function showDownloadProgress(filename) {
+            // Crear y mostrar toast de progreso
+            const toast = createDownloadToast('progress', `Descargando "${filename}"...`, 'bi-download');
+            showToast(toast);
+        }
+
+        // Mostrar éxito de descarga
+        function showDownloadSuccess(filename) {
+            hideAllToasts();
+            const toast = createDownloadToast('success', `"${filename}" descargado exitosamente`, 'bi-check-circle');
+            showToast(toast);
+            setTimeout(() => hideToast(toast), 3000);
+        }
+
+        // Mostrar error de descarga
+        function showDownloadError(message) {
+            hideAllToasts();
+            const toast = createDownloadToast('error', message, 'bi-exclamation-triangle');
+            showToast(toast);
+            setTimeout(() => hideToast(toast), 4000);
+        }
+
+        // Crear toast de descarga
+        function createDownloadToast(type, message, icon) {
+            const toast = document.createElement('div');
+            toast.className = `download-toast download-toast-${type}`;
+            toast.innerHTML = `
+                <i class="bi ${icon}"></i>
+                <span>${message}</span>
+            `;
+            
+            // Estilos dinámicos
+            toast.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${type === 'success' ? '#d4edda' : type === 'error' ? '#f8d7da' : '#e7f4fd'};
+                color: ${type === 'success' ? '#155724' : type === 'error' ? '#721c24' : '#0c5460'};
+                border: 1px solid ${type === 'success' ? '#c3e6cb' : type === 'error' ? '#f5c6cb' : '#bee5eb'};
+                border-radius: 8px;
+                padding: 12px 16px;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                font-size: 14px;
+                font-weight: 500;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                z-index: 10000;
+                min-width: 300px;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+            `;
+            
+            return toast;
+        }
+
+        // Mostrar toast
+        function showToast(toast) {
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                toast.style.transform = 'translateX(0)';
+            }, 10);
+        }
+
+        // Ocultar toast
+        function hideToast(toast) {
+            if (toast && toast.parentNode) {
+                toast.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    if (toast.parentNode) {
+                        toast.parentNode.removeChild(toast);
+                    }
+                }, 300);
+            }
+        }
+
+        // Ocultar todos los toasts
+        function hideAllToasts() {
+            const existingToasts = document.querySelectorAll('.download-toast');
+            existingToasts.forEach(hideToast);
         }
 
         // Inicializar acceso administrativo
@@ -482,7 +648,7 @@
                 const matchesSearch = !searchTerm || (
                     tutorial.title.toLowerCase().includes(searchTerm) ||
                     tutorial.description.toLowerCase().includes(searchTerm) ||
-                    tutorial.category.toLowerCase().includes(searchTerm) ||
+                    (tutorial.category && tutorial.category.toLowerCase().includes(searchTerm)) ||
                     tutorial.fileName.toLowerCase().includes(searchTerm) ||
                     // Búsquedas específicas por términos comunes
                     searchMatches(searchTerm, tutorial)
@@ -582,7 +748,7 @@
                     return values.some(value => 
                         tutorial.title.toLowerCase().includes(value) ||
                         tutorial.description.toLowerCase().includes(value) ||
-                        tutorial.category.toLowerCase().includes(value)
+                        (tutorial.category && tutorial.category.toLowerCase().includes(value))
                     );
                 }
             }
@@ -594,7 +760,7 @@
                 
                 return tutorial.title.toLowerCase().includes(word) ||
                        tutorial.description.toLowerCase().includes(word) ||
-                       tutorial.category.toLowerCase().includes(word);
+                       (tutorial.category && tutorial.category.toLowerCase().includes(word));
             });
         }
 
@@ -619,8 +785,8 @@
                 if (b.description.toLowerCase().includes(searchTerm)) scoreB += 5;
 
                 // Menor puntuación si coincide en la categoría
-                if (a.category.toLowerCase().includes(searchTerm)) scoreA += 2;
-                if (b.category.toLowerCase().includes(searchTerm)) scoreB += 2;
+                if (a.category && a.category.toLowerCase().includes(searchTerm)) scoreA += 2;
+                if (b.category && b.category.toLowerCase().includes(searchTerm)) scoreB += 2;
 
                 // Si tienen la misma puntuación, ordenar por más recientes
                 if (scoreA === scoreB) {
@@ -733,14 +899,6 @@
                 timeout = setTimeout(later, wait);
             };
         }
-
-        // Manejar descargas
-        document.addEventListener('click', function(e) {
-            if (e.target.closest('.download-tutorial-btn') || e.target.closest('.download-btn')) {
-                e.preventDefault();
-                alert('Descarga iniciada. El archivo se guardará en su carpeta de descargas.');
-            }
-        });
     </script>
 </body>
 </html>
