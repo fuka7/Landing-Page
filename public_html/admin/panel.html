@@ -94,22 +94,9 @@
                 </div>
 
                 <form class="form-section" id="uploadForm">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Título <span class="required">*</span></label>
-                            <input type="text" id="tutorialTitle" placeholder="Nombre del tutorial" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Categoría <span class="required">*</span></label>
-                            <select id="tutorialCategory" required>
-                                <option value="">Seleccionar categoría</option>
-                                <option value="hardware">Hardware</option>
-                                <option value="software">Software</option>
-                                <option value="redes">Redes</option>
-                                <option value="seguridad">Seguridad</option>
-                                <option value="procedimientos">Procedimientos</option>
-                            </select>
-                        </div>
+                    <div class="form-group">
+                        <label>Título <span class="required">*</span></label>
+                        <input type="text" id="tutorialTitle" placeholder="Nombre del tutorial" required>
                     </div>
 
                     <!-- File Upload Tab -->
@@ -338,8 +325,8 @@
             });
         }
 
-        // Cargar video de YouTube
-        function loadYouTubeVideo(url) {
+        // Cargar video de YouTube (funcionalidad real)
+        async function loadYouTubeVideo(url) {
             const videoId = extractYouTubeVideoId(url);
             if (!videoId) {
                 showError('El link de YouTube no es válido. Asegúrese de usar el formato correcto.');
@@ -352,15 +339,24 @@
             loadBtn.disabled = true;
             loadBtn.innerHTML = '<i class="bi bi-hourglass-split"></i> Cargando...';
 
-            // Simular carga de datos del video (en producción usarías YouTube Data API)
-            setTimeout(() => {
+            try {
+                // Obtener información básica del video usando oEmbed API de YouTube
+                const oembedUrl = `https://www.youtube.com/oembed?url=${encodeURIComponent(url)}&format=json`;
+                
+                const response = await fetch(oembedUrl);
+                if (!response.ok) {
+                    throw new Error('No se pudo cargar la información del video');
+                }
+                
+                const data = await response.json();
+                
                 const videoData = {
                     id: videoId,
                     url: url,
-                    title: `Tutorial de YouTube ${videoId}`,
-                    channel: 'Canal de YouTube',
-                    duration: '10:25',
-                    description: 'Descripción del video de YouTube...',
+                    title: data.title,
+                    channel: data.author_name,
+                    duration: 'N/A', // oEmbed no proporciona duración
+                    description: `Video de YouTube de ${data.author_name}`,
                     thumbnail: `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`
                 };
 
@@ -375,7 +371,34 @@
 
                 loadBtn.disabled = false;
                 loadBtn.innerHTML = originalText;
-            }, 1500);
+                
+            } catch (error) {
+                console.error('Error al cargar video:', error);
+                
+                // Fallback: crear datos básicos del video
+                const videoData = {
+                    id: videoId,
+                    url: url,
+                    title: `Video de YouTube - ${videoId}`,
+                    channel: 'Canal de YouTube',
+                    duration: 'N/A',
+                    description: 'Video de YouTube',
+                    thumbnail: `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`
+                };
+
+                youtubeVideoData = videoData;
+                showYouTubePreview(videoData);
+                
+                const titleInput = document.getElementById('tutorialTitle');
+                if (!titleInput.value) {
+                    titleInput.value = videoData.title;
+                }
+
+                loadBtn.disabled = false;
+                loadBtn.innerHTML = originalText;
+                
+                showError('No se pudo obtener toda la información del video, pero el enlace es válido.');
+            }
         }
 
         // Extraer ID de video de YouTube
@@ -516,13 +539,12 @@
             return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
         }
 
-        // Envío del formulario
+        // Envío del formulario (funcionalidad real)
         document.getElementById('uploadForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
             const formData = {
                 title: document.getElementById('tutorialTitle').value,
-                category: document.getElementById('tutorialCategory').value,
                 description: document.getElementById('tutorialDescription').value,
                 uploadMethod: currentUploadMethod
             };
@@ -530,24 +552,24 @@
             if (currentUploadMethod === 'file') {
                 formData.file = document.getElementById('fileInput').files[0];
                 
-                if (!formData.title || !formData.category || !formData.description || !formData.file) {
+                if (!formData.title || !formData.description || !formData.file) {
                     showError('Por favor complete todos los campos requeridos.');
                     return;
                 }
             } else {
                 formData.youtube = youtubeVideoData;
                 
-                if (!formData.title || !formData.category || !formData.description || !formData.youtube) {
+                if (!formData.title || !formData.description || !formData.youtube) {
                     showError('Por favor complete todos los campos requeridos y cargue un video de YouTube.');
                     return;
                 }
             }
             
-            simulateUpload(formData);
+            processUpload(formData);
         });
 
-        // Simular subida
-        function simulateUpload(formData) {
+        // Procesar subida (funcionalidad real sin simulación)
+        function processUpload(formData) {
             const uploadProgress = document.getElementById('uploadProgress');
             const progressBarFill = document.getElementById('progressBarFill');
             const submitBtn = document.getElementById('submitBtn');
@@ -556,84 +578,91 @@
             submitBtn.disabled = true;
             hideMessages();
             
-            let progress = 0;
-            const interval = setInterval(() => {
-                progress += Math.random() * 25 + 10;
-                if (progress > 100) progress = 100;
-                
-                progressBarFill.style.width = progress + '%';
-                
-                if (progress === 100) {
-                    clearInterval(interval);
-                    setTimeout(() => {
-                        let newFile;
-                        
-                        if (formData.uploadMethod === 'file') {
-                            newFile = {
-                                id: Date.now(),
-                                title: formData.title,
-                                category: formData.category,
-                                description: formData.description,
-                                fileName: formData.file.name,
-                                fileSize: formatFileSize(formData.file.size),
-                                type: formData.file.type.startsWith('video/') ? 'video' : 'document',
-                                uploadDate: new Date().toLocaleDateString('es-ES'),
-                                source: 'file'
-                            };
-                        } else {
-                            newFile = {
-                                id: Date.now(),
-                                title: formData.title,
-                                category: formData.category,
-                                description: formData.description,
-                                fileName: `${formData.youtube.title}.youtube`,
-                                fileSize: 'Video de YouTube',
-                                type: 'youtube',
-                                uploadDate: new Date().toLocaleDateString('es-ES'),
-                                source: 'youtube',
-                                youtubeData: formData.youtube
-                            };
-                        }
-                        
-                        uploadedFiles.push(newFile);
-                        localStorage.setItem('mdshp_uploaded_files', JSON.stringify(uploadedFiles));
-                        
-                        showSuccess('Tutorial subido exitosamente!');
-                        resetUploadForm();
-                        uploadProgress.style.display = 'none';
-                        submitBtn.disabled = false;
-                        
-                        loadUploadedFiles();
-                    }, 1000);
-                }
-            }, 200);
-        }
-
-        // Cargar archivos subidos
-        function loadUploadedFiles() {
-            const stored = localStorage.getItem('mdshp_uploaded_files');
-            if (stored) {
-                uploadedFiles = JSON.parse(stored);
+            // Mostrar progreso inmediato
+            progressBarFill.style.width = '100%';
+            
+            // Crear el nuevo archivo
+            let newFile;
+            
+            if (formData.uploadMethod === 'file') {
+                newFile = {
+                    id: Date.now(),
+                    title: formData.title,
+                    description: formData.description,
+                    fileName: formData.file.name,
+                    fileSize: formatFileSize(formData.file.size),
+                    type: formData.file.type.startsWith('video/') ? 'video' : 'document',
+                    uploadDate: new Date().toLocaleDateString('es-ES'),
+                    source: 'file'
+                };
+            } else {
+                newFile = {
+                    id: Date.now(),
+                    title: formData.title,
+                    description: formData.description,
+                    fileName: `${formData.youtube.title}.youtube`,
+                    fileSize: 'Video de YouTube',
+                    type: 'youtube',
+                    uploadDate: new Date().toLocaleDateString('es-ES'),
+                    source: 'youtube',
+                    youtubeData: formData.youtube
+                };
             }
             
-            renderFilesList();
+            // Agregar archivo a la lista PRIMERO
+            uploadedFiles.push(newFile);
+            
+            // Guardar en localStorage
+            localStorage.setItem('mdshp_uploaded_files', JSON.stringify(uploadedFiles));
+            
+            // FORZAR actualización inmediata de la interfaz
+            updateFilesDisplay();
+            
+            // Mostrar mensaje de éxito
+            showSuccess('Tutorial subido exitosamente!');
+            
+            // Reset formulario
+            resetUploadForm();
+            
+            // Ocultar progreso y hacer scroll
+            setTimeout(() => {
+                uploadProgress.style.display = 'none';
+                progressBarFill.style.width = '0%';
+                submitBtn.disabled = false;
+                
+                // Scroll hacia los archivos subidos
+                document.querySelector('.files-section').scrollIntoView({ 
+                    behavior: 'smooth' 
+                });
+            }, 300);
         }
 
-        // Renderizar lista de archivos
-        function renderFilesList() {
+        // Función específica para actualizar la visualización de archivos
+        function updateFilesDisplay() {
             const filesList = document.getElementById('filesList');
             const emptyState = document.getElementById('emptyState');
             const filesCount = document.getElementById('filesCount');
             
+            console.log('Actualizando lista con', uploadedFiles.length, 'archivos'); // Debug
+            
+            // Actualizar contador inmediatamente
             filesCount.textContent = `${uploadedFiles.length} archivo${uploadedFiles.length !== 1 ? 's' : ''}`;
             
             if (uploadedFiles.length === 0) {
-                emptyState.style.display = 'block';
+                // Mostrar estado vacío
+                filesList.innerHTML = `
+                    <div class="empty-state" id="emptyState">
+                        <div class="empty-state-icon">
+                            <i class="bi bi-folder2-open"></i>
+                        </div>
+                        <h3>No hay tutoriales subidos</h3>
+                        <p>Los archivos que suba aparecerán aquí</p>
+                    </div>
+                `;
                 return;
             }
             
-            emptyState.style.display = 'none';
-            
+            // Crear HTML para todos los archivos
             const filesHTML = uploadedFiles.map(file => {
                 let iconClass = 'bi bi-file-earmark-text';
                 let itemClass = 'document';
@@ -648,30 +677,92 @@
                 
                 return `
                     <div class="file-item" data-id="${file.id}">
-            <div class="file-item-icon ${itemClass}">
-                <i class="${iconClass}"></i>
-            </div>
-            <div class="file-item-content">
-                <h3 class="file-item-title">${file.title}</h3>
-                <div class="file-item-meta">
-                    <span><i class="bi bi-tag"></i> ${file.category}</span>
-                    <span><i class="bi bi-file-earmark"></i> ${file.fileName}</span>
-                    <span><i class="bi bi-hdd"></i> ${file.fileSize}</span>
-                    <span><i class="bi bi-calendar"></i> ${file.uploadDate}</span>
-                    ${file.source === 'youtube' ? '<span><i class="bi bi-youtube"></i> YouTube</span>' : ''}
-                </div>
-            </div>
-            <div class="file-item-actions">
-                <button class="action-btn delete-btn" onclick="deleteFile(${file.id})">
-                    <i class="bi bi-trash"></i>
-                    Eliminar
-                </button>
-            </div>
-        </div>
-    `;
-}).join('');
+                        <div class="file-item-icon ${itemClass}">
+                            <i class="${iconClass}"></i>
+                        </div>
+                        <div class="file-item-content">
+                            <h3 class="file-item-title">${file.title}</h3>
+                            <div class="file-item-meta">
+                                <span><i class="bi bi-file-earmark"></i> ${file.fileName}</span>
+                                <span><i class="bi bi-hdd"></i> ${file.fileSize}</span>
+                                <span><i class="bi bi-calendar"></i> ${file.uploadDate}</span>
+                                ${file.source === 'youtube' ? '<span><i class="bi bi-youtube"></i> YouTube</span>' : ''}
+                            </div>
+                        </div>
+                        <div class="file-item-actions">
+                            <button class="action-btn delete-btn" onclick="deleteFile(${file.id})">
+                                <i class="bi bi-trash"></i>
+                                Eliminar
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
             
+            // Actualizar el contenido del contenedor
             filesList.innerHTML = filesHTML;
+            
+            console.log('HTML generado:', filesHTML.substring(0, 100) + '...'); // Debug
+        }
+
+        // Función para crear elemento de archivo individual (ya no se usa, pero mantengo por compatibilidad)
+        function createFileElement(file) {
+            const fileItem = document.createElement('div');
+            fileItem.className = 'file-item';
+            fileItem.setAttribute('data-id', file.id);
+            
+            let iconClass = 'bi bi-file-earmark-text';
+            let itemClass = 'document';
+            
+            if (file.type === 'video') {
+                iconClass = 'bi bi-play-circle';
+                itemClass = 'video';
+            } else if (file.type === 'youtube') {
+                iconClass = 'bi bi-youtube';
+                itemClass = 'youtube';
+            }
+            
+            fileItem.innerHTML = `
+                <div class="file-item-icon ${itemClass}">
+                    <i class="${iconClass}"></i>
+                </div>
+                <div class="file-item-content">
+                    <h3 class="file-item-title">${file.title}</h3>
+                    <div class="file-item-meta">
+                        <span><i class="bi bi-file-earmark"></i> ${file.fileName}</span>
+                        <span><i class="bi bi-hdd"></i> ${file.fileSize}</span>
+                        <span><i class="bi bi-calendar"></i> ${file.uploadDate}</span>
+                        ${file.source === 'youtube' ? '<span><i class="bi bi-youtube"></i> YouTube</span>' : ''}
+                    </div>
+                </div>
+                <div class="file-item-actions">
+                    <button class="action-btn delete-btn" onclick="deleteFile(${file.id})">
+                        <i class="bi bi-trash"></i>
+                        Eliminar
+                    </button>
+                </div>
+            `;
+            
+            return fileItem;
+        }
+
+        // Cargar archivos subidos
+        function loadUploadedFiles() {
+            const stored = localStorage.getItem('mdshp_uploaded_files');
+            if (stored) {
+                try {
+                    uploadedFiles = JSON.parse(stored);
+                } catch (e) {
+                    console.error('Error al cargar archivos:', e);
+                    uploadedFiles = [];
+                }
+            }
+            updateFilesDisplay();
+        }
+
+        // Renderizar lista de archivos (mantener para compatibilidad)
+        function renderFilesList() {
+            updateFilesDisplay();
         }
 
         // Eliminar archivo
@@ -680,7 +771,7 @@
             if (file && confirm(`¿Está seguro que desea eliminar "${file.title}"?`)) {
                 uploadedFiles = uploadedFiles.filter(f => f.id !== fileId);
                 localStorage.setItem('mdshp_uploaded_files', JSON.stringify(uploadedFiles));
-                renderFilesList();
+                updateFilesDisplay(); // Usar la nueva función de actualización
                 showSuccess('Archivo eliminado exitosamente');
             }
         }
