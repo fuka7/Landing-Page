@@ -649,6 +649,9 @@
             // FORZAR actualización inmediata de la interfaz
             updateFilesDisplay();
             
+            // Notificar a otras pestañas/ventanas que hay un nuevo tutorial
+            notifyNewTutorial(newFile);
+            
             // Mostrar mensaje de éxito
             showSuccess('Tutorial subido exitosamente!');
             
@@ -666,6 +669,38 @@
                     behavior: 'smooth' 
                 });
             }, 300);
+        }
+
+        // Función para notificar nuevo tutorial a otras páginas
+        function notifyNewTutorial(tutorialData) {
+            try {
+                // Solo notificar si es un video (para el index.html)
+                if (tutorialData.type === 'video' || tutorialData.type === 'youtube') {
+                    console.log('📺 Nuevo video subido, notificando a otras páginas...');
+                    
+                    // Crear evento personalizado para localStorage
+                    const notificationData = {
+                        type: 'NEW_TUTORIAL',
+                        tutorial: tutorialData,
+                        timestamp: Date.now()
+                    };
+                    
+                    // Disparar evento a través de localStorage para comunicación entre pestañas
+                    localStorage.setItem('mdshp_tutorial_notification', JSON.stringify(notificationData));
+                    
+                    // Limpiar la notificación después de un momento
+                    setTimeout(() => {
+                        localStorage.removeItem('mdshp_tutorial_notification');
+                    }, 1000);
+                    
+                    // Si existe la función global en la misma ventana, llamarla también
+                    if (typeof window.notifyTutorialUpdate === 'function') {
+                        window.notifyTutorialUpdate();
+                    }
+                }
+            } catch (error) {
+                console.error('Error notificando nuevo tutorial:', error);
+            }
         }
 
         // Función específica para actualizar la visualización de archivos
@@ -800,10 +835,42 @@
         function deleteFile(fileId) {
             const file = uploadedFiles.find(f => f.id === fileId);
             if (file && confirm(`¿Está seguro que desea eliminar "${file.title}"?`)) {
+                const wasVideo = file.type === 'video' || file.type === 'youtube';
+                
                 uploadedFiles = uploadedFiles.filter(f => f.id !== fileId);
                 localStorage.setItem('mdshp_uploaded_files', JSON.stringify(uploadedFiles));
-                updateFilesDisplay(); // Usar la nueva función de actualización
+                updateFilesDisplay();
                 showSuccess('Archivo eliminado exitosamente');
+                
+                // Si se eliminó un video, notificar al index para que se actualice
+                if (wasVideo) {
+                    notifyTutorialDeleted(file);
+                }
+            }
+        }
+
+        // Función para notificar eliminación de tutorial
+        function notifyTutorialDeleted(deletedTutorial) {
+            try {
+                console.log('🗑️ Video eliminado, notificando a otras páginas...');
+                
+                // Crear evento personalizado para localStorage
+                const notificationData = {
+                    type: 'TUTORIAL_DELETED',
+                    deletedTutorial: deletedTutorial,
+                    timestamp: Date.now()
+                };
+                
+                // Disparar evento a través de localStorage
+                localStorage.setItem('mdshp_tutorial_notification', JSON.stringify(notificationData));
+                
+                // Limpiar la notificación después de un momento
+                setTimeout(() => {
+                    localStorage.removeItem('mdshp_tutorial_notification');
+                }, 1000);
+                
+            } catch (error) {
+                console.error('Error notificando eliminación de tutorial:', error);
             }
         }
 

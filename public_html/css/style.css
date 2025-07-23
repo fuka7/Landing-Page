@@ -1582,3 +1582,125 @@ footer p {
         padding: 2rem 1rem 4rem;
     }
 }
+/* Estilos para el placeholder de video */
+        .video-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            min-height: 300px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 12px;
+            border: 2px dashed #dee2e6;
+        }
+
+        .placeholder-content {
+            text-align: center;
+            color: #6c757d;
+        }
+
+        .placeholder-content i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .placeholder-content h4 {
+            margin: 0 0 0.5rem 0;
+            font-weight: 500;
+        }
+
+        .placeholder-content p {
+            margin: 0;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Asegurar que los contenedores no se superpongan */
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            min-height: 300px;
+        }
+
+        .main-video,
+        .youtube-container,
+        .video-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .current-tutorial-info {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+            z-index: 10;
+        }
+
+        .tutorial-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            color: #28a745;
+            margin-bottom: 0.25rem;
+        }
+
+        .current-tutorial-info h4 {
+            margin: 0 0 0.25rem 0;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .current-tutorial-info p {
+            margin: 0;
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        /* Animación de actualización */
+        .updating-animation {
+            animation: pulse 1s ease-in-out;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+
+        /* Notificación de nuevo tutorial */
+        .new-tutorial-notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #28a745;
+            color: white;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 10000;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .new-tutorial-notification.show {
+            transform: translateX(0);
+        }

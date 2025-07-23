@@ -20,96 +20,6 @@
     <!-- CSS Styles -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/pages.css">
-
-    <style>
-        /* Estilos para el placeholder de video */
-        .video-placeholder {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            height: 100%;
-            min-height: 300px;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            border-radius: 12px;
-            border: 2px dashed #dee2e6;
-        }
-
-        .placeholder-content {
-            text-align: center;
-            color: #6c757d;
-        }
-
-        .placeholder-content i {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            opacity: 0.5;
-        }
-
-        .placeholder-content h4 {
-            margin: 0 0 0.5rem 0;
-            font-weight: 500;
-        }
-
-        .placeholder-content p {
-            margin: 0;
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-
-        /* Asegurar que los contenedores no se superpongan */
-        .video-wrapper {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            min-height: 300px;
-        }
-
-        .main-video,
-        .youtube-container,
-        .video-placeholder {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 12px;
-            overflow: hidden;
-        }
-
-        .current-tutorial-info {
-            position: absolute;
-            top: 1rem;
-            left: 1rem;
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 0.75rem 1rem;
-            border-radius: 8px;
-            backdrop-filter: blur(10px);
-            z-index: 10;
-        }
-
-        .tutorial-badge {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.8rem;
-            color: #28a745;
-            margin-bottom: 0.25rem;
-        }
-
-        .current-tutorial-info h4 {
-            margin: 0 0 0.25rem 0;
-            font-size: 1rem;
-            font-weight: 600;
-        }
-
-        .current-tutorial-info p {
-            margin: 0;
-            font-size: 0.8rem;
-            opacity: 0.8;
-        }
-    </style>
 </head>
 <body>
     <!-- Header Placeholder -->
@@ -186,7 +96,7 @@
         </div>
     </section>
 
-    <!-- Video Section - SECCIÓN DE TUTORIAL DESTACADO (VERSIÓN CORREGIDA) -->
+    <!-- Video Section - SECCIÓN DE TUTORIAL DESTACADO -->
     <section class="video-section">
         <div class="video-section-container">
             <div class="video-section-header">
@@ -235,7 +145,7 @@
 
                 <!-- Video Player Container -->
                 <div class="video-player-container">
-                    <div class="video-wrapper">
+                    <div class="video-wrapper" id="videoWrapper">
                         <!-- Video HTML5 (para archivos subidos) -->
                         <video 
                             id="mainVideo" 
@@ -304,7 +214,7 @@
                                 <span>Tutorial Actualizado</span>
                             </div>
                             <h4 id="currentTutorialTitle">Título del Tutorial</h4>
-                            <p id="currentTutorialCategory">Categoría</p>
+                            <p id="currentTutorialDescription">Descripción del tutorial</p>
                         </div>
                     </div>
                 </div>
@@ -340,14 +250,15 @@
     <script src="js/components.js"></script>
     <script src="js/main.js"></script>
 
-    <!-- SISTEMA DE GESTIÓN DE VIDEO TUTORIAL - VERSIÓN CORREGIDA -->
+    <!-- SISTEMA DE GESTIÓN DE VIDEO TUTORIAL  -->
     <script>
-        // SISTEMA DE GESTIÓN DE VIDEO TUTORIAL - VERSIÓN LIMPIA
         class TutorialVideoManager {
             constructor() {
                 this.currentVideoData = null;
                 this.isYouTubeVideo = false;
                 this.videoPlayer = null;
+                this.lastVideoId = null;
+                this.checkInterval = null;
                 
                 // Elementos del DOM
                 this.elements = {
@@ -359,7 +270,8 @@
                     videoControls: document.getElementById('videoControls'),
                     tutorialInfo: document.getElementById('currentTutorialInfo'),
                     tutorialTitle: document.getElementById('currentTutorialTitle'),
-                    tutorialCategory: document.getElementById('currentTutorialCategory')
+                    tutorialDescription: document.getElementById('currentTutorialDescription'),
+                    videoWrapper: document.getElementById('videoWrapper')
                 };
 
                 this.init();
@@ -369,6 +281,7 @@
                 console.log('🎥 Inicializando Tutorial Video Manager...');
                 this.loadLatestTutorial();
                 this.setupEventListeners();
+                this.startPeriodicCheck();
             }
 
             // Cargar el tutorial más reciente desde el panel de administración
@@ -383,8 +296,10 @@
                     }
 
                     const files = JSON.parse(uploadedFiles);
+                    
+                    // Filtrar solo videos (incluyendo YouTube)
                     const videoFiles = files.filter(file => 
-                        file.type === 'video' || file.type === 'youtube'
+                        file.type === 'video' || file.type === 'youtube' || file.source === 'youtube'
                     ).sort((a, b) => b.id - a.id);
 
                     if (videoFiles.length === 0) {
@@ -394,8 +309,20 @@
                     }
 
                     const latestVideo = videoFiles[0];
-                    console.log('✅ Cargando video más reciente:', latestVideo.title);
-                    this.loadVideo(latestVideo);
+                    const previousVideoId = this.lastVideoId;
+                    
+                    // Solo actualizar si es un video diferente
+                    if (this.lastVideoId !== latestVideo.id) {
+                        console.log('✅ Cargando nuevo tutorial:', latestVideo.title);
+                        this.lastVideoId = latestVideo.id;
+                        this.loadVideo(latestVideo);
+                        
+                        // Solo mostrar notificación si había un video anterior (no es carga inicial) 
+                        // y el nuevo video es más reciente
+                        if (previousVideoId !== null && latestVideo.id > previousVideoId) {
+                            this.showNewTutorialNotification(latestVideo.title);
+                        }
+                    }
 
                 } catch (error) {
                     console.error('❌ Error cargando tutorial:', error);
@@ -409,7 +336,13 @@
                 this.hideAllContainers();
                 this.updateTutorialInfo(videoData);
 
-                if (videoData.type === 'youtube' && videoData.youtubeData?.id) {
+                // Agregar animación de actualización
+                this.elements.videoWrapper.classList.add('updating-animation');
+                setTimeout(() => {
+                    this.elements.videoWrapper.classList.remove('updating-animation');
+                }, 1000);
+
+                if (videoData.source === 'youtube' && videoData.youtubeData?.id) {
                     this.loadYouTubeVideo(videoData);
                 } else if (videoData.type === 'video' && videoData.filePath) {
                     this.loadFileVideo(videoData);
@@ -457,6 +390,7 @@
                 this.hideAllContainers();
                 this.elements.videoPlaceholder.style.display = 'flex';
                 this.resetTutorialInfo();
+                this.lastVideoId = null;
             }
 
             // Ocultar todos los contenedores de video
@@ -471,14 +405,70 @@
             // Actualizar información del tutorial
             updateTutorialInfo(videoData) {
                 this.elements.tutorialTitle.textContent = videoData.title;
-                this.elements.tutorialCategory.textContent = 
-                    videoData.category.charAt(0).toUpperCase() + videoData.category.slice(1);
+                this.elements.tutorialDescription.textContent = videoData.description || 'Nuevo tutorial disponible';
                 this.elements.tutorialInfo.style.display = 'block';
             }
 
             // Resetear información a valores por defecto
             resetTutorialInfo() {
                 this.elements.tutorialInfo.style.display = 'none';
+            }
+
+            // Mostrar notificación de nuevo tutorial
+            showNewTutorialNotification(title) {
+                // Solo mostrar si no es la carga inicial y hay un video actual diferente
+                if (this.lastVideoId !== null) {
+                    const notification = document.createElement('div');
+                    notification.className = 'new-tutorial-notification';
+                    notification.innerHTML = `
+                        <i class="bi bi-check-circle"></i>
+                        <span>Nuevo tutorial: "${title}"</span>
+                    `;
+                    
+                    document.body.appendChild(notification);
+                    
+                    // Mostrar notificación
+                    setTimeout(() => {
+                        notification.classList.add('show');
+                    }, 100);
+                    
+                    // Ocultar después de 4 segundos
+                    setTimeout(() => {
+                        notification.classList.remove('show');
+                        setTimeout(() => {
+                            if (notification.parentNode) {
+                                notification.parentNode.removeChild(notification);
+                            }
+                        }, 300);
+                    }, 4000);
+                }
+            }
+
+            // Mostrar notificación de actualización por eliminación
+            showUpdateNotification() {
+                const notification = document.createElement('div');
+                notification.className = 'new-tutorial-notification';
+                notification.style.background = '#ffc107';
+                notification.style.color = '#856404';
+                notification.innerHTML = `
+                    <i class="bi bi-arrow-clockwise"></i>
+                    <span>Tutorial destacado actualizado</span>
+                `;
+                
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.classList.add('show');
+                }, 100);
+                
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                    setTimeout(() => {
+                        if (notification.parentNode) {
+                            notification.parentNode.removeChild(notification);
+                        }
+                    }, 300);
+                }, 3000);
             }
 
             // Inicializar controles de video HTML5
@@ -491,16 +481,67 @@
 
             // Configurar event listeners
             setupEventListeners() {
-                // Escuchar cambios en localStorage
+                // Escuchar cambios en localStorage (para otras pestañas)
                 window.addEventListener('storage', (e) => {
                     if (e.key === 'mdshp_uploaded_files') {
-                        console.log('🔄 Detectado cambio en archivos, recargando...');
-                        this.loadLatestTutorial();
+                        console.log('🔄 Detectado cambio en localStorage, recargando...');
+                        setTimeout(() => this.loadLatestTutorial(), 500);
+                    }
+                    
+                    // Escuchar notificaciones específicas del panel de administración
+                    if (e.key === 'mdshp_tutorial_notification') {
+                        try {
+                            const notificationData = JSON.parse(e.newValue);
+                            
+                            if (notificationData.type === 'NEW_TUTORIAL') {
+                                console.log('📺 Notificación de nuevo tutorial desde panel');
+                                // No mostrar notificación aquí, se mostrará cuando se cargue
+                                setTimeout(() => this.loadLatestTutorial(), 200);
+                            } else if (notificationData.type === 'TUTORIAL_DELETED') {
+                                console.log('🗑️ Tutorial eliminado, actualizando...');
+                                // Verificar si el tutorial eliminado era el que se estaba mostrando
+                                if (this.currentVideoData && this.currentVideoData.id === notificationData.deletedTutorial.id) {
+                                    // El tutorial actual fue eliminado, cargar el siguiente
+                                    setTimeout(() => {
+                                        this.loadLatestTutorial();
+                                        this.showUpdateNotification();
+                                    }, 200);
+                                }
+                            }
+                        } catch (error) {
+                            console.error('Error procesando notificación:', error);
+                        }
                     }
                 });
 
-                // Recargar manual (para desarrollo)
+                // Escuchar eventos personalizados (para la misma pestaña)
+                window.addEventListener('tutorialUploaded', (e) => {
+                    console.log('📤 Nuevo tutorial subido, actualizando...');
+                    setTimeout(() => this.loadLatestTutorial(), 1000);
+                });
+
+                // Función global para recargar manualmente
                 window.reloadTutorialVideo = () => this.loadLatestTutorial();
+            }
+
+            // Verificación periódica para asegurar sincronización
+            startPeriodicCheck() {
+                this.checkInterval = setInterval(() => {
+                    // Solo verificar si la página está visible
+                    if (!document.hidden) {
+                        this.loadLatestTutorial();
+                    }
+                }, 5000); // Verificar cada 5 segundos
+            }
+
+            // Limpiar recursos al cerrar
+            destroy() {
+                if (this.checkInterval) {
+                    clearInterval(this.checkInterval);
+                }
+                if (this.videoPlayer) {
+                    this.videoPlayer.destroy();
+                }
             }
         }
 
@@ -650,6 +691,12 @@
             }
         }
 
+        // Sistema para enviar eventos desde el panel de administración
+        window.notifyTutorialUpdate = function() {
+            // Disparar evento personalizado
+            window.dispatchEvent(new CustomEvent('tutorialUploaded'));
+        };
+
         // Animations para las cards de servicios
         const observerOptions = {
             threshold: 0.1,
@@ -674,10 +721,20 @@
             observer.observe(card);
         });
 
+        // Variable global para el manager
+        let tutorialManager;
+
         // Inicializar cuando el DOM esté listo
         document.addEventListener('DOMContentLoaded', () => {
             console.log('🚀 Inicializando sistema de video tutorial...');
-            new TutorialVideoManager();
+            tutorialManager = new TutorialVideoManager();
+        });
+
+        // Limpiar recursos al cerrar la página
+        window.addEventListener('beforeunload', () => {
+            if (tutorialManager) {
+                tutorialManager.destroy();
+            }
         });
     </script>
 </body>
