@@ -499,8 +499,6 @@ a.ticket-btn:hover {
 .additional-card:hover .additional-icon svg {
     color: var(--hp-blue) !important;
 }
-    border-radius: 0; 
-}
 
 .additional-icon svg {
     width: 32px;
