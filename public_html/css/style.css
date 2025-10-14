@@ -371,7 +371,13 @@ a.ticket-btn:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 24px rgba(0,0,0,0.12);
     text-decoration: none;
-    color: inherit;
+}
+
+.service-card:hover svg,
+.service-card:hover .additional-icon,
+.additional-card:hover svg,
+.additional-card:hover .additional-icon {
+    color: inherit !important;
 }
 
 .service-image {
@@ -475,10 +481,24 @@ a.ticket-btn:hover {
     width: 64px;
     height: 64px;
     background: var(--hp-blue-light);
+    color: var(--hp-blue) !important;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 20px;
+}
+
+.additional-icon svg {
+    color: var(--hp-blue) !important;
+}
+
+.additional-card:hover .additional-icon {
+    background: var(--hp-blue-light);
+}
+
+.additional-card:hover .additional-icon svg {
+    color: var(--hp-blue) !important;
+}
     border-radius: 0; 
 }
 
