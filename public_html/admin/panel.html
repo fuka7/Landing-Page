@@ -237,12 +237,24 @@
                 const sessionData = JSON.parse(session);
                 const now = new Date().toISOString();
                 
+                // Verificar que existan todos los campos necesarios
+                if (!sessionData.email || !sessionData.passwordHash || !sessionData.expiresAt) {
+                    throw new Error('Sesión inválida');
+                }
+
                 if (sessionData.expiresAt <= now) {
                     localStorage.removeItem('mdshp_admin_session');
                     window.location.href = 'login.html';
                     return;
                 }
+
+                // Verificar que el email sea el correcto
+                if (sessionData.email !== 'admin@mdshp.com') {
+                    throw new Error('Usuario no autorizado');
+                }
+
             } catch (e) {
+                console.error('Error de autenticación:', e);
                 localStorage.removeItem('mdshp_admin_session');
                 window.location.href = 'login.html';
                 return;

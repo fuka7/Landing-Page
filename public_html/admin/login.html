@@ -57,10 +57,6 @@
                     <div class="spinner" id="loginSpinner" style="display: none;"></div>
                 </button>
                 
-                <div class="forgot-password">
-                    <a href="#" id="forgotPassword">¿Olvidaste tu contraseña?</a>
-                </div>
-                
                 <div class="back-to-site">
                     <a href="../tutoriales.html">
                         <i class="bi bi-arrow-left"></i>
@@ -72,10 +68,6 @@
     </section>
 
     <script>
-        // Configuración de administrador único
-        const ADMIN_EMAIL = 'admin@mdshp.com';
-        const ADMIN_PASSWORD = 'MDSHP2024!';
-
         // Elementos del DOM
         const loginForm = document.getElementById('loginForm');
         const emailInput = document.getElementById('email');
@@ -86,7 +78,6 @@
         const loginSpinner = document.getElementById('loginSpinner');
         const errorMessage = document.getElementById('errorMessage');
         const successMessage = document.getElementById('successMessage');
-        const forgotPassword = document.getElementById('forgotPassword');
 
         // Toggle password visibility
         passwordToggle.addEventListener('click', function() {
@@ -116,15 +107,25 @@
             successMessage.style.display = 'none';
         }
 
+        // Credenciales de administrador (cambiar en producción)
+        const ADMIN_EMAIL = 'admin@mdshp.com';
+        const ADMIN_PASSWORD = 'MdsHP2024#';
+
+        // Función para generar hash simple (cambiar en producción)
+        function generateHash(password) {
+            return btoa(password + 'mdshp_salt');
+        }
+
         // Validar credenciales
         function validateCredentials(email, password) {
             return email === ADMIN_EMAIL && password === ADMIN_PASSWORD;
         }
 
         // Crear sesión administrativa
-        function createAdminSession(email) {
+        function createAdminSession(email, password) {
             const sessionData = {
                 email: email,
+                passwordHash: generateHash(password),
                 loginTime: new Date().toISOString(),
                 expiresAt: new Date(Date.now() + 4 * 60 * 60 * 1000).toISOString() // 4 horas
             };
@@ -155,7 +156,7 @@
 
             // Validar credenciales
             if (validateCredentials(email, password)) {
-                createAdminSession(email);
+                createAdminSession(email, password);
                 showSuccess('Acceso autorizado. Redirigiendo...');
                 
                 setTimeout(() => {
@@ -169,12 +170,6 @@
                 loginText.style.display = 'span';
                 loginSpinner.style.display = 'none';
             }
-        });
-
-        // Forgot password handler
-        forgotPassword.addEventListener('click', function(e) {
-            e.preventDefault();
-            alert('Para recuperar su contraseña, contacte al administrador del sistema en: soporte@mdshp.com');
         });
 
         // Verificar si ya hay una sesión activa
