@@ -947,6 +947,7 @@
     color: #333;
     margin-bottom: 16px;
     line-height: 1.2;
+    font-weight: bold;
 }
 
 .section-description {
@@ -1035,6 +1036,7 @@
     color: #333;
     margin-bottom: 16px;
     line-height: 1.2;
+    font-weight: bold;
 }
 
 .contact-content p {

@@ -1,0 +1,458 @@
+/* ============================================
+   TUTORIAL DESTACADO - ESTILOS COMPLETOS
+   ============================================ */
+
+/* Video Section Grid */
+.video-section-grid {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+    align-items: start;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Video Features */
+.video-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.video-features {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.video-feature {
+    background: white;
+    padding: 1.5rem 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    min-height: 120px;
+}
+
+.video-feature:hover {
+    transform: translateX(5px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.video-feature-icon {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    border-radius: 50%;
+    background: rgba(0, 150, 214, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.video-feature-icon i {
+    font-size: 2rem;
+    color: #0096D6;
+}
+
+.video-feature-content {
+    text-align: left;
+}
+
+.video-feature-title {
+    color: #2c3e50;
+    margin: 0 0 0.5rem 0;
+    font-size: 1.25rem;
+}
+
+.video-feature-description {
+    color: #6c757d;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* Video Player Container - Área principal de visualización */
+.video-player-container {
+    position: relative;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    overflow: hidden;
+    display: block;
+}
+
+/* Tutorial Destacado */
+.document-preview {
+    height: 100%;
+    padding: 0;
+}
+
+.featured-card {
+    background: white;
+    padding: 2rem 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    min-height: 300px;
+}
+
+.featured-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.featured-icon {
+    width: 70px;
+    height: 70px;
+    min-width: 70px;
+    border-radius: 50%;
+    background: rgba(0, 150, 214, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+}
+
+.featured-icon i {
+    font-size: 2rem;
+    color: #0096D6;
+}
+
+.featured-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+}
+
+.featured-badge {
+    background: #0096D6;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.featured-badge.video {
+    background: #dc3545;
+}
+
+.featured-badge.youtube {
+    background: #ff0000;
+}
+
+.featured-badge.document {
+    background: #0096D6;
+}
+
+.featured-badge.image {
+    background: #28a745;
+}
+
+.featured-badge i {
+    font-size: 1rem;
+}
+
+.featured-title {
+    color: #2c3e50;
+    font-size: 1.5rem;
+    margin: 0;
+    line-height: 1.4;
+    font-weight: 600;
+}
+
+.featured-download-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: #0096D6;
+    color: white;
+    text-decoration: none;
+    padding: 0.875rem 2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+}
+
+.featured-download-btn:hover {
+    background: #007bb3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 150, 214, 0.3);
+}
+
+/* Biblioteca Completa Button */
+.tutorial-library-cta {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.library-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: #0096D6;
+    color: white;
+    text-decoration: none;
+    padding: 1rem 2rem;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+    margin-bottom: 0.5rem;
+}
+
+.library-btn:hover {
+    background: #007bb3;
+}
+
+.library-cta-text {
+    color: #6c757d;
+    margin: 0;
+    font-size: 0.875rem;
+}
+
+/* Estados */
+.loading-state,
+.empty-tutorial-state,
+.error-tutorial-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 2rem;
+    text-align: center;
+    min-height: 350px;
+    background: white;
+    border-radius: 12px;
+}
+
+.empty-tutorial-state {
+    color: #6c757d;
+}
+
+.empty-tutorial-icon {
+    font-size: 2.5rem;
+    color: #0096D6;
+    margin-bottom: 1rem;
+}
+
+/* Animaciones */
+.loading-spinner i {
+    font-size: 2rem;
+    color: #0096D6;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Estado de error */
+.error-tutorial-state .error-tutorial-icon {
+    color: #dc3545;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.retry-btn {
+    background: #0096D6;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    transition: background-color 0.2s;
+}
+
+.retry-btn:hover {
+    background: #007bb3;
+}
+
+/* Featured tutorial contenedor */
+.featured-tutorial {
+    background: transparent;
+    border-radius: 12px;
+    overflow: visible;
+    height: auto;
+}
+
+/* Tutorial meta información */
+.tutorial-meta {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #e9ecef;
+    background: #f8f9fa;
+    position: relative;
+}
+
+/* BADGE DE TIPO DE ARCHIVO */
+.tutorial-type-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.tutorial-type-badge.video {
+    background: #dc3545;
+    color: white;
+}
+
+.tutorial-type-badge.youtube {
+    background: #ff0000;
+    color: white;
+}
+
+.tutorial-type-badge.document {
+    background: #0096D6;
+    color: white;
+}
+
+.tutorial-type-badge.image {
+    background: #28a745;
+    color: white;
+}
+
+.tutorial-type-badge i {
+    font-size: 1rem;
+}
+
+.tutorial-title {
+    margin: 0;
+    color: #2c3e50;
+    font-size: 1.25rem;
+    font-weight: 600;
+    padding-right: 120px; /* Espacio para el badge */
+}
+
+.tutorial-description {
+    display: none; /* Ocultar la descripción */
+}
+
+.tutorial-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.tutorial-tag {
+    background: #e9ecef;
+    color: #495057;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+}
+
+/* Video Containers */
+.youtube-embed,
+.video-wrapper,
+.image-wrapper {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* Aspect ratio 16:9 */
+    height: 0;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #000;
+}
+
+.youtube-embed iframe,
+.video-wrapper video,
+.image-wrapper img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border: none;
+}
+
+/* Controles de video */
+.video-controls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.7));
+    padding: 1rem;
+    transition: opacity 0.3s ease;
+}
+
+.progress-bar-container {
+    width: 100%;
+    height: 4px;
+    background: rgba(255,255,255,0.2);
+    cursor: pointer;
+    margin-bottom: 0.5rem;
+}
+
+.progress-fill {
+    height: 100%;
+    background: #0096D6;
+    width: 0;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .video-section-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .video-features {
+        gap: 1.5rem;
+    }
+    
+    .video-player-container {
+        min-height: 300px;
+    }
+    
+    .featured-tutorial {
+        min-height: 300px;
+    }
+    
+    .tutorial-title {
+        padding-right: 0;
+        margin-bottom: 2.5rem; /* Espacio para el badge en móvil */
+    }
+    
+    .tutorial-type-badge {
+        top: auto;
+        bottom: 1rem;
+        right: 1.5rem;
+    }
+}
