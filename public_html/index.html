@@ -20,6 +20,7 @@
     <!-- CSS Styles -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/pages.css">
+    <link rel="stylesheet" href="css/chatbot-floating.css">
 </head>
 <body>
     <!-- Header Placeholder -->
@@ -238,14 +239,28 @@
     <!-- Footer Placeholder -->
     <div id="footer-placeholder"></div>
 
-    <!-- Virtual Assistant Button -->
-    <button class="virtual-assistant" onclick="window.location.href='chatonline.html'">
-        <svg class="chat-icon" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M20 2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h4l4 4 4-4h4c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-3 9h-2v2h-2v-2h-2V9h2V7h2v2h2v2z"/>
-        </svg>
-        Pregunte a nuestro Asistente Virtual
-    </button>
+    <!-- Botón del Asistente Virtual -->
+<button class="virtual-assistant" id="virtualAssistantBtn">
+    <svg class="chat-icon" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M20 2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h4l4 4 4-4h4c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-3 9h-2v2h-2v-2h-2V9h2V7h2v2h2v2z"/>
+    </svg>
+    Pregunte a nuestro Asistente Virtual
+</button>
 
+<!-- Ventana flotante del Chatbot -->
+<div class="chatbot-popup" id="chatbotPopup">
+    <div class="chatbot-header">
+        <span>Asistente Virtual HP</span>
+        <button class="chatbot-close" id="chatbotClose">&times;</button>
+    </div>
+    <iframe 
+        src="chatbot.html" 
+        class="chatbot-iframe"
+        title="Chatbot"></iframe>
+</div>
+
+<!-- Script del Chatbot -->
+<script src="js/chatbot-controller.js"></script>
     <!-- Components Loader -->
     <script src="js/components.js"></script>
     <script src="js/main.js"></script>
