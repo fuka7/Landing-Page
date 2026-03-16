@@ -20,7 +20,6 @@
     <!-- CSS Styles -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/pages.css">
-    <link rel="stylesheet" href="css/chatbot-floating.css">
     <link rel="stylesheet" href="css/tutorial-featured.css">
 </head>
 <body>
@@ -258,33 +257,33 @@
     <!-- Footer Placeholder -->
     <div id="footer-placeholder"></div>
 
-    <!-- Botón del Asistente Virtual -->
-    <button class="virtual-assistant" id="virtualAssistantBtn">
-        <svg class="chat-icon" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M20 2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h4l4 4 4-4h4c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-3 9h-2v2h-2v-2h-2V9h2V7h2v2h2v2z"/>
-        </svg>
-        Pregunte a nuestro Asistente Virtual
-    </button>
-
-    <!-- Ventana flotante del Chatbot -->
-    <div class="chatbot-popup" id="chatbotPopup">
-        <div class="chatbot-header">
-            <span>Asistente Virtual HP</span>
-            <button class="chatbot-close" id="chatbotClose">&times;</button>
-        </div>
-        <iframe 
-            src="chatbot.html" 
-            class="chatbot-iframe"
-            title="Chatbot"></iframe>
-    </div>
-
-    <!-- Script del Chatbot -->
-    <script src="js/chatbot-controller.js"></script>
     <!-- Components Loader -->
     <script src="js/components.js"></script>
     <script src="js/main.js"></script>
 
     <!-- SISTEMA DE GESTIÓN DE VIDEO TUTORIAL -->
     <script src="js/tutorial-manager.js"></script>
+
+    <!-- Chatwoot - Asistente Virtual -->
+    <script>
+      window.chatwootSettings = {
+        "position": "right",
+        "type": "expanded_bubble",
+        "launcherTitle": "Chatea con nosotros"
+      };
+      (function(d,t) {
+        var BASE_URL="https://chat.mdshp.cl";
+        var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+        g.src=BASE_URL+"/packs/js/sdk.js";
+        g.async = true;
+        s.parentNode.insertBefore(g,s);
+        g.onload=function(){
+          window.chatwootSDK.run({
+            websiteToken: '3NvSFJ4Ac4bhjgf87x4EoqNY',
+            baseUrl: BASE_URL
+          })
+        }
+      })(document,"script");
+    </script>
 </body>
 </html>
